@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		52FB21F61A164D2C001DC8F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB21F51A164D2C001DC8F0 /* main.m */; };
 		52FB21F91A164D2C001DC8F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB21F81A164D2C001DC8F0 /* AppDelegate.m */; };
-		52FB21FC1A164D2D001DC8F0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB21FB1A164D2D001DC8F0 /* ViewController.m */; };
 		52FB21FF1A164D2D001DC8F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FB21FD1A164D2D001DC8F0 /* Main.storyboard */; };
 		52FB22011A164D2D001DC8F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FB22001A164D2D001DC8F0 /* Images.xcassets */; };
 		52FB22041A164D2D001DC8F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB22021A164D2D001DC8F0 /* LaunchScreen.xib */; };
 		52FB22101A164D2D001DC8F0 /* Walking_The_BorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB220F1A164D2D001DC8F0 /* Walking_The_BorderTests.m */; };
+		52FB221C1A164EDA001DC8F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB221A1A164EDA001DC8F0 /* MainViewController.m */; };
+		52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB221B1A164EDA001DC8F0 /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +33,15 @@
 		52FB21F51A164D2C001DC8F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		52FB21F71A164D2C001DC8F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		52FB21F81A164D2C001DC8F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		52FB21FA1A164D2C001DC8F0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		52FB21FB1A164D2D001DC8F0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		52FB21FE1A164D2D001DC8F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52FB22001A164D2D001DC8F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		52FB22031A164D2D001DC8F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		52FB22091A164D2D001DC8F0 /* Walking The BorderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Walking The BorderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FB220E1A164D2D001DC8F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52FB220F1A164D2D001DC8F0 /* Walking_The_BorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Walking_The_BorderTests.m; sourceTree = "<group>"; };
+		52FB22191A164EDA001DC8F0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		52FB221A1A164EDA001DC8F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		52FB221B1A164EDA001DC8F0 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +85,13 @@
 			children = (
 				52FB21F71A164D2C001DC8F0 /* AppDelegate.h */,
 				52FB21F81A164D2C001DC8F0 /* AppDelegate.m */,
-				52FB21FA1A164D2C001DC8F0 /* ViewController.h */,
-				52FB21FB1A164D2D001DC8F0 /* ViewController.m */,
 				52FB21FD1A164D2D001DC8F0 /* Main.storyboard */,
 				52FB22001A164D2D001DC8F0 /* Images.xcassets */,
 				52FB22021A164D2D001DC8F0 /* LaunchScreen.xib */,
 				52FB21F31A164D2C001DC8F0 /* Supporting Files */,
+				52FB22191A164EDA001DC8F0 /* MainViewController.h */,
+				52FB221A1A164EDA001DC8F0 /* MainViewController.m */,
+				52FB221B1A164EDA001DC8F0 /* MainViewController.xib */,
 			);
 			path = "Walking The Border";
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				52FB21FF1A164D2D001DC8F0 /* Main.storyboard in Resources */,
 				52FB22041A164D2D001DC8F0 /* LaunchScreen.xib in Resources */,
 				52FB22011A164D2D001DC8F0 /* Images.xcassets in Resources */,
+				52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,8 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52FB21FC1A164D2D001DC8F0 /* ViewController.m in Sources */,
 				52FB21F91A164D2C001DC8F0 /* AppDelegate.m in Sources */,
+				52FB221C1A164EDA001DC8F0 /* MainViewController.m in Sources */,
 				52FB21F61A164D2C001DC8F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
