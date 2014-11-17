@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6250"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
+                <outlet property="leftButton" destination="7vq-25-0r5" id="Kcj-BT-GSg"/>
+                <outlet property="rightButton" destination="2or-XN-1jC" id="jxF-HE-zWi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +15,81 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vq-25-0r5" userLabel="Left Button">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="aNa-PV-DJ3"/>
+                        <constraint firstAttribute="height" constant="160" id="hhf-vp-L0a"/>
+                        <constraint firstAttribute="height" constant="160" id="pdG-fO-fvF"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="aNa-PV-DJ3"/>
+                            <exclude reference="hhf-vp-L0a"/>
+                            <exclude reference="pdG-fO-fvF"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <exclude reference="aNa-PV-DJ3"/>
+                            <exclude reference="hhf-vp-L0a"/>
+                            <include reference="pdG-fO-fvF"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2or-XN-1jC" userLabel="Right Button">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7vq-25-0r5" firstAttribute="width" secondItem="2or-XN-1jC" secondAttribute="width" id="Cum-sN-frl"/>
+                <constraint firstItem="2or-XN-1jC" firstAttribute="leading" secondItem="7vq-25-0r5" secondAttribute="trailing" constant="38" id="JFg-J1-bGJ">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="2or-XN-1jC" secondAttribute="trailing" constant="-198" id="VW8-ly-wLy">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="7vq-25-0r5" firstAttribute="height" secondItem="2or-XN-1jC" secondAttribute="height" id="pMS-Iy-Ft8"/>
+                <constraint firstAttribute="bottom" secondItem="2or-XN-1jC" secondAttribute="bottom" constant="-181" id="qt4-fP-k2w">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="bottom" secondItem="7vq-25-0r5" secondAttribute="bottom" id="udp-0o-Q5e"/>
+                <constraint firstItem="7vq-25-0r5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xb3-JU-9VF"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="7vq-25-0r5"/>
+                    <exclude reference="2or-XN-1jC"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="JFg-J1-bGJ"/>
+                    <exclude reference="VW8-ly-wLy"/>
+                    <exclude reference="qt4-fP-k2w"/>
+                    <exclude reference="Cum-sN-frl"/>
+                    <exclude reference="pMS-Iy-Ft8"/>
+                    <exclude reference="udp-0o-Q5e"/>
+                    <exclude reference="xb3-JU-9VF"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="7vq-25-0r5"/>
+                    <include reference="2or-XN-1jC"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="JFg-J1-bGJ"/>
+                    <include reference="VW8-ly-wLy"/>
+                    <include reference="qt4-fP-k2w"/>
+                    <include reference="Cum-sN-frl"/>
+                    <include reference="pMS-Iy-Ft8"/>
+                    <include reference="udp-0o-Q5e"/>
+                    <include reference="xb3-JU-9VF"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

@@ -10,18 +10,43 @@
 
 @interface MainViewController ()
 
+@property (strong, nonatomic)IBOutlet UIView* rightButton;
+@property (strong, nonatomic)IBOutlet UIView* leftButton;
+
 @end
 
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UITapGestureRecognizer* rightTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightTap:)];
+    UITapGestureRecognizer* leftTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftTap:)];
+    
+    [self.rightButton addGestureRecognizer:rightTap];
+    [self.leftButton addGestureRecognizer:leftTap];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)leftTap:(id)sender {
+    
+    
+    
+    
+}
+
+- (IBAction)rightTap:(id)sender {
+    
+    
+    
+    
 }
 
 /*
