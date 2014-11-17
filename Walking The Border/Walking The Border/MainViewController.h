@@ -10,4 +10,7 @@
 
 @interface MainViewController : UIViewController
 
+- (IBAction)leftTap:(id)sender;
+- (IBAction)rightTap:(id)sender;
+
 @end

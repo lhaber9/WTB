@@ -10,8 +10,10 @@
 
 @interface MainViewController ()
 
-@property (strong, nonatomic)IBOutlet UIView* rightButton;
-@property (strong, nonatomic)IBOutlet UIView* leftButton;
+@property (strong, nonatomic)IBOutlet UIButton* rightButton;
+@property (strong, nonatomic)IBOutlet UIButton* leftButton;
+
+@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundConstraint;
 
 @end
 
@@ -20,11 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer* rightTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightTap:)];
-    UITapGestureRecognizer* leftTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftTap:)];
-    
-    [self.rightButton addGestureRecognizer:rightTap];
-    [self.leftButton addGestureRecognizer:leftTap];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -37,13 +34,20 @@
 
 - (IBAction)leftTap:(id)sender {
     
+    [UIView animateWithDuration:0.2 animations:^{
+        self.backgroundConstraint.constant = self.backgroundConstraint.constant + 100;
+        [self.view layoutIfNeeded];
+    }];
     
     
     
 }
 
 - (IBAction)rightTap:(id)sender {
-    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.backgroundConstraint.constant = self.backgroundConstraint.constant - 100;
+        [self.view layoutIfNeeded];
+    }];
     
     
     

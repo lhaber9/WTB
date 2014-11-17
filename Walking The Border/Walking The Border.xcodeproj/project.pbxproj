@@ -15,6 +15,7 @@
 		52FB22101A164D2D001DC8F0 /* Walking_The_BorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB220F1A164D2D001DC8F0 /* Walking_The_BorderTests.m */; };
 		52FB221C1A164EDA001DC8F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB221A1A164EDA001DC8F0 /* MainViewController.m */; };
 		52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB221B1A164EDA001DC8F0 /* MainViewController.xib */; };
+		80A9A9D61A1AB688009BE56C /* test_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A9A9D51A1AB688009BE56C /* test_background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		52FB22191A164EDA001DC8F0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		52FB221A1A164EDA001DC8F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		52FB221B1A164EDA001DC8F0 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		80A9A9D51A1AB688009BE56C /* test_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				52FB21F21A164D2C001DC8F0 /* Walking The Border */,
 				52FB220C1A164D2D001DC8F0 /* Walking The BorderTests */,
 				52FB21F11A164D2C001DC8F0 /* Products */,
+				80A9A9D51A1AB688009BE56C /* test_background.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -204,6 +207,7 @@
 			files = (
 				52FB21FF1A164D2D001DC8F0 /* Main.storyboard in Resources */,
 				52FB22041A164D2D001DC8F0 /* LaunchScreen.xib in Resources */,
+				80A9A9D61A1AB688009BE56C /* test_background.png in Resources */,
 				52FB22011A164D2D001DC8F0 /* Images.xcassets in Resources */,
 				52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */,
 			);
@@ -418,6 +422,7 @@
 				52FB22151A164D2D001DC8F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52FB22161A164D2D001DC8F0 /* Build configuration list for PBXNativeTarget "Walking The BorderTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +431,7 @@
 				52FB22181A164D2D001DC8F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

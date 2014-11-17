@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    MainViewController* mainVC = [[MainViewController alloc] init];
+    mainVC.view.frame = self.window.frame;
+    
+    self.window.rootViewController = mainVC;\
+    [self.window addSubview:mainVC.view];
+    
     return YES;
 }
 
