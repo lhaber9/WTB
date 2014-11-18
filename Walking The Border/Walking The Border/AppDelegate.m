@@ -22,7 +22,7 @@
     MainViewController* mainVC = [[MainViewController alloc] init];
     mainVC.view.frame = self.window.frame;
     
-    self.window.rootViewController = mainVC;\
+    self.window.rootViewController = mainVC;
     [self.window addSubview:mainVC.view];
     
     return YES;

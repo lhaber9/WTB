@@ -33,14 +33,10 @@
 
 
 - (IBAction)leftTap:(id)sender {
-    
     [UIView animateWithDuration:0.2 animations:^{
         self.backgroundConstraint.constant = self.backgroundConstraint.constant + 100;
         [self.view layoutIfNeeded];
     }];
-    
-    
-    
 }
 
 - (IBAction)rightTap:(id)sender {
@@ -48,9 +44,6 @@
         self.backgroundConstraint.constant = self.backgroundConstraint.constant - 100;
         [self.view layoutIfNeeded];
     }];
-    
-    
-    
 }
 
 /*
