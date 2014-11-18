@@ -6,7 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
-                <outlet property="backgroundConstraint" destination="sMX-Nz-Utc" id="2R7-mf-S8l"/>
+                <outlet property="backgroundDirtConstraint" destination="7Lu-Yh-QOp" id="Pgf-iK-UFJ"/>
+                <outlet property="backgroundFenceConstraint" destination="kvv-Re-UcL" id="Ln7-uz-elC"/>
+                <outlet property="backgroundMountainConstraint" destination="tiB-0K-mIn" id="bjS-iS-veJ"/>
+                <outlet property="backgroundSkyConstraint" destination="07b-Xt-xNt" id="Ioz-bW-mbT"/>
                 <outlet property="leftButton" destination="YIj-J3-nEI" id="XtL-CQ-TTp"/>
                 <outlet property="rightButton" destination="Brb-0j-8zG" id="dxU-8n-hvb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -17,6 +20,34 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pyV-YV-5V0">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="534"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="sky.png" translatesAutoresizingMaskIntoConstraints="NO" id="mG1-Qg-Zb7">
+                            <rect key="frame" x="0.0" y="267" width="1" height="1"/>
+                        </imageView>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="mountain.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nqz-Yc-BFg">
+                            <rect key="frame" x="0.0" y="267" width="1" height="1"/>
+                        </imageView>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="fence.png" translatesAutoresizingMaskIntoConstraints="NO" id="gFd-NM-lp4">
+                            <rect key="frame" x="0.0" y="267" width="1" height="1"/>
+                        </imageView>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="dirt.png" translatesAutoresizingMaskIntoConstraints="NO" id="v58-L6-Ab6">
+                            <rect key="frame" x="0.0" y="267" width="1" height="1"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="mG1-Qg-Zb7" firstAttribute="leading" secondItem="pyV-YV-5V0" secondAttribute="leading" id="07b-Xt-xNt"/>
+                        <constraint firstItem="v58-L6-Ab6" firstAttribute="leading" secondItem="pyV-YV-5V0" secondAttribute="leading" id="7Lu-Yh-QOp"/>
+                        <constraint firstAttribute="centerY" secondItem="gFd-NM-lp4" secondAttribute="centerY" id="WmQ-Wl-0wI"/>
+                        <constraint firstAttribute="centerY" secondItem="mG1-Qg-Zb7" secondAttribute="centerY" id="YkI-tP-UIr"/>
+                        <constraint firstAttribute="centerY" secondItem="v58-L6-Ab6" secondAttribute="centerY" id="cFw-9o-dIO"/>
+                        <constraint firstItem="gFd-NM-lp4" firstAttribute="leading" secondItem="pyV-YV-5V0" secondAttribute="leading" id="kvv-Re-UcL"/>
+                        <constraint firstAttribute="centerY" secondItem="Nqz-Yc-BFg" secondAttribute="centerY" id="qCE-8y-2dD"/>
+                        <constraint firstItem="Nqz-Yc-BFg" firstAttribute="leading" secondItem="pyV-YV-5V0" secondAttribute="leading" id="tiB-0K-mIn"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hn-eJ-y7l">
                     <rect key="frame" x="0.0" y="534" width="600" height="66"/>
                     <subviews>
@@ -88,24 +119,6 @@
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pyV-YV-5V0">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="534"/>
-                    <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="test_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="YTn-Sj-YCM">
-                            <rect key="frame" x="0.0" y="207" width="10000" height="120"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="centerY" secondItem="YTn-Sj-YCM" secondAttribute="centerY" id="HG1-TD-3ee">
-                            <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
-                        </constraint>
-                        <constraint firstItem="YTn-Sj-YCM" firstAttribute="leading" secondItem="pyV-YV-5V0" secondAttribute="leading" id="sMX-Nz-Utc">
-                            <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
-                        </constraint>
-                    </constraints>
-                    <variation key="heightClass=compact-widthClass=regular"/>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -130,6 +143,9 @@
         </view>
     </objects>
     <resources>
-        <image name="test_background.png" width="10000" height="120"/>
+        <image name="dirt.png" width="1" height="1"/>
+        <image name="fence.png" width="1" height="1"/>
+        <image name="mountain.png" width="1" height="1"/>
+        <image name="sky.png" width="1" height="1"/>
     </resources>
 </document>

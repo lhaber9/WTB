@@ -13,7 +13,11 @@
 @property (strong, nonatomic)IBOutlet UIButton* rightButton;
 @property (strong, nonatomic)IBOutlet UIButton* leftButton;
 
-@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundConstraint;
+@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundSkyConstraint;
+@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundMountainConstraint;
+@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundFenceConstraint;
+@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundDirtConstraint;
+
 
 @end
 
@@ -21,6 +25,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UILongPressGestureRecognizer* rightHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(rightTap:)];
+    
+    
+    UILongPressGestureRecognizer* leftHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(leftTap:)];
+    
+    rightHold.minimumPressDuration = 0.1;
+    leftHold.minimumPressDuration = 0.1;
+    
+    [self.rightButton addGestureRecognizer:rightHold];
+    [self.leftButton addGestureRecognizer:leftHold];
+    
     
     
     // Do any additional setup after loading the view from its nib.
@@ -34,14 +50,18 @@
 
 - (IBAction)leftTap:(id)sender {
     [UIView animateWithDuration:0.2 animations:^{
-        self.backgroundConstraint.constant = self.backgroundConstraint.constant + 100;
+        self.backgroundMountainConstraint.constant   = self.backgroundMountainConstraint.constant + 25;
+        self.backgroundFenceConstraint.constant = self.backgroundFenceConstraint.constant + 75;
+        self.backgroundDirtConstraint.constant  = self.backgroundDirtConstraint.constant + 100;
         [self.view layoutIfNeeded];
     }];
 }
 
 - (IBAction)rightTap:(id)sender {
     [UIView animateWithDuration:0.2 animations:^{
-        self.backgroundConstraint.constant = self.backgroundConstraint.constant - 100;
+        self.backgroundMountainConstraint.constant   = self.backgroundMountainConstraint.constant - 25;
+        self.backgroundFenceConstraint.constant = self.backgroundFenceConstraint.constant - 75;
+        self.backgroundDirtConstraint.constant  = self.backgroundDirtConstraint.constant - 100;
         [self.view layoutIfNeeded];
     }];
 }
