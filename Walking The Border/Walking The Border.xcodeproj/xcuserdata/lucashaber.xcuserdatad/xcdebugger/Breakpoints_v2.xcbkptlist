@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "438020863.520291"
+            timestampString = "438045408.487863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "438020863.520291"
+            timestampString = "438045408.487863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-rightTap:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "438020863.520291"
+            timestampString = "438045408.487863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "-leftTap:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,13 +58,101 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "438020863.520291"
+            timestampString = "438045408.487863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-rightTap:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walking The Border/MainViewController.m"
+            timestampString = "438045408.487863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MainViewController rightButton]"
+                  moduleName = "Walking The Border"
+                  urlString = "file:///Volumes/Macintosh%20HDD/Documents/School/Classwork/4-1%20Semester/Digital%20narrative/WTB/Walking%20The%20Border/Walking%20The%20Border/MainViewController.m"
+                  timestampString = "438045294.690659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MainViewController setRightButton:]"
+                  moduleName = "Walking The Border"
+                  urlString = "file:///Volumes/Macintosh%20HDD/Documents/School/Classwork/4-1%20Semester/Digital%20narrative/WTB/Walking%20The%20Border/Walking%20The%20Border/MainViewController.m"
+                  timestampString = "438045294.690939"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walking The Border/MainViewController.m"
+            timestampString = "438045408.487863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MainViewController rightButton]"
+                  moduleName = "Walking The Border"
+                  urlString = "file:///Volumes/Macintosh%20HDD/Documents/School/Classwork/4-1%20Semester/Digital%20narrative/WTB/Walking%20The%20Border/Walking%20The%20Border/MainViewController.m"
+                  timestampString = "438045296.753617"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MainViewController setRightButton:]"
+                  moduleName = "Walking The Border"
+                  urlString = "file:///Volumes/Macintosh%20HDD/Documents/School/Classwork/4-1%20Semester/Digital%20narrative/WTB/Walking%20The%20Border/Walking%20The%20Border/MainViewController.m"
+                  timestampString = "438045296.753898"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

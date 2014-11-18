@@ -8,6 +8,18 @@
 
 #import "MainViewController.h"
 
+static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
+static CGFloat PRESS_AND_HOLD_DELAY = 0.07;
+static CGFloat ANIMATION_DURATION = 0.2;
+
+
+static CGFloat SKY_SPEED = 0;
+static CGFloat MOUNTAINS_SPEED = 25;
+static CGFloat FENCE_SPEED = 75;
+static CGFloat GROUND_SPEED = 100;
+
+
+
 @interface MainViewController ()
 
 @property (strong, nonatomic)IBOutlet UIButton* rightButton;
@@ -18,6 +30,7 @@
 @property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundFenceConstraint;
 @property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundDirtConstraint;
 
+@property (strong, nonatomic)NSTimer* pressAndHoldTimer;
 
 @end
 
@@ -26,18 +39,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UILongPressGestureRecognizer* rightHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(rightTap:)];
+    self.position = 0;
+    self.distanceTraveled = 0;
     
+    UILongPressGestureRecognizer* rightHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(rightTapHold:)];
     
-    UILongPressGestureRecognizer* leftHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(leftTap:)];
+    UILongPressGestureRecognizer* leftHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(leftTapHold:)];
     
-    rightHold.minimumPressDuration = 0.1;
-    leftHold.minimumPressDuration = 0.1;
+    rightHold.minimumPressDuration = PRESS_AND_HOLD_MINIMUM_DURATION;
+    leftHold.minimumPressDuration = PRESS_AND_HOLD_MINIMUM_DURATION;
     
     [self.rightButton addGestureRecognizer:rightHold];
     [self.leftButton addGestureRecognizer:leftHold];
-    
-    
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -47,23 +60,67 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (CGFloat)moveLeft:(id)sender {
+    self.backgroundSkyConstraint.constant   = self.backgroundSkyConstraint.constant + SKY_SPEED;
+    self.backgroundMountainConstraint.constant   = self.backgroundMountainConstraint.constant + MOUNTAINS_SPEED;
+    self.backgroundFenceConstraint.constant = self.backgroundFenceConstraint.constant + FENCE_SPEED;
+    self.backgroundDirtConstraint.constant  = self.backgroundDirtConstraint.constant + GROUND_SPEED;
+    
+    self.position += GROUND_SPEED;
+    self.distanceTraveled += GROUND_SPEED;
+    
+    return self.position;
+}
+
+- (CGFloat)moveRight:(id)sender {
+    self.backgroundSkyConstraint.constant   = self.backgroundSkyConstraint.constant - SKY_SPEED;
+    self.backgroundMountainConstraint.constant   = self.backgroundMountainConstraint.constant - MOUNTAINS_SPEED;
+    self.backgroundFenceConstraint.constant = self.backgroundFenceConstraint.constant - FENCE_SPEED;
+    self.backgroundDirtConstraint.constant  = self.backgroundDirtConstraint.constant - GROUND_SPEED;
+    
+    self.position -= GROUND_SPEED;
+    self.distanceTraveled += GROUND_SPEED;
+    
+    return self.position;
+}
 
 - (IBAction)leftTap:(id)sender {
-    [UIView animateWithDuration:0.2 animations:^{
-        self.backgroundMountainConstraint.constant   = self.backgroundMountainConstraint.constant + 25;
-        self.backgroundFenceConstraint.constant = self.backgroundFenceConstraint.constant + 75;
-        self.backgroundDirtConstraint.constant  = self.backgroundDirtConstraint.constant + 100;
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        [self moveLeft:sender];
         [self.view layoutIfNeeded];
     }];
 }
 
 - (IBAction)rightTap:(id)sender {
-    [UIView animateWithDuration:0.2 animations:^{
-        self.backgroundMountainConstraint.constant   = self.backgroundMountainConstraint.constant - 25;
-        self.backgroundFenceConstraint.constant = self.backgroundFenceConstraint.constant - 75;
-        self.backgroundDirtConstraint.constant  = self.backgroundDirtConstraint.constant - 100;
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        [self moveRight:sender];
         [self.view layoutIfNeeded];
     }];
+}
+
+- (void) rightTapHold: (UILongPressGestureRecognizer *) gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        self.pressAndHoldTimer = [NSTimer scheduledTimerWithTimeInterval:PRESS_AND_HOLD_DELAY target:self selector:@selector(moveRight:) userInfo:nil repeats:YES];
+        
+    }
+    else if (gesture.state == UIGestureRecognizerStateEnded){
+        if (self.pressAndHoldTimer != nil) {
+            [self.pressAndHoldTimer invalidate];
+            self.pressAndHoldTimer = nil;
+        }
+    }
+}
+
+- (void) leftTapHold: (UILongPressGestureRecognizer *) gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+         self.pressAndHoldTimer = [NSTimer scheduledTimerWithTimeInterval:PRESS_AND_HOLD_DELAY target:self selector:@selector(moveLeft:) userInfo:nil repeats:YES];
+    }
+    else if (gesture.state == UIGestureRecognizerStateEnded){
+        if (self.pressAndHoldTimer != nil) {
+            [self.pressAndHoldTimer invalidate];
+            self.pressAndHoldTimer = nil;
+        }
+    }
 }
 
 /*
