@@ -10,8 +10,8 @@
 
 @interface MainViewController : UIViewController
 
-- (CGFloat)moveLeft:(id)sender;
-- (CGFloat)moveRight:(id)sender;
+- (NSInteger)moveLeftWithMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount;
+- (NSInteger)moveRightWithMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount;
 
 - (IBAction)leftTap:(id)sender;
 - (IBAction)rightTap:(id)sender;

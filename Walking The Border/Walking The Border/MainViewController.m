@@ -8,9 +8,16 @@
 
 #import "MainViewController.h"
 
+typedef NS_ENUM(NSInteger, Direction) {
+    RIGHT,
+    LEFT,
+};
+
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
 static CGFloat PRESS_AND_HOLD_DELAY = 0.1;
 static CGFloat ANIMATION_DURATION = 0.2;
+
+static CGFloat GROUND_SIZE_PX = 10000;
 
 static CGFloat SKY_SPEED = 0;
 static CGFloat MOUNTAINS_SPEED = 15;
@@ -35,8 +42,8 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
 
 @property (strong, nonatomic)NSTimer* pressAndHoldTimer;
 
-@property (nonatomic)int pixelPosition;
-@property (nonatomic)int pixelsTraveled;
+@property (nonatomic)NSInteger pixelPosition;
+@property (nonatomic)NSInteger pixelsTraveled;
 @end
 
 @implementation MainViewController
@@ -75,17 +82,17 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
     // Dispose of any resources that can be recreated.
 }
 
-- (int)position {
+- (NSInteger)position {
     return self.pixelPosition * -1;
 }
 
 - (NSString*)positionString{
-    return [[NSString stringWithFormat:@"%i", [self position]] stringByAppendingString:POSTION_LABEL_STRING];
+    return [[NSString stringWithFormat:@"%li", (long)[self position]] stringByAppendingString:POSTION_LABEL_STRING];
     
 }
 
 - (NSString*)distanceTraveledString {
-    return [[NSString stringWithFormat:@"%i", self.pixelsTraveled] stringByAppendingString:DISTANCE_LABEL_STRING];
+    return [[NSString stringWithFormat:@"%li", (long)self.pixelsTraveled] stringByAppendingString:DISTANCE_LABEL_STRING];
 }
 
 - (void)switchInfoLabel: (UITapGestureRecognizer *)recognizer  {
@@ -111,57 +118,73 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
     
 }
 
-- (CGFloat)moveLeft:(id)sender {
-    self.backgroundSkyConstraint.constant   = self.backgroundSkyConstraint.constant - SKY_SPEED;
-    self.backgroundMountainConstraint.constant   = self.backgroundMountainConstraint.constant - MOUNTAINS_SPEED;
-    self.backgroundFenceConstraint.constant = self.backgroundFenceConstraint.constant - FENCE_SPEED;
-    self.backgroundDirtConstraint.constant  = self.backgroundDirtConstraint.constant - GROUND_SPEED;
+- (NSInteger)moveTo:(NSInteger)position shouldCountToOdo:(BOOL)shouldCount {
+    if ([self position] > position){
+        return [self moveRightWithMultiplier:(([self position] - position) / GROUND_SPEED) shouldCountToOdo:shouldCount];
+    }
+    else if ([self position] < position) {
+        return [self moveLeftWithMultiplier:((position - [self position]) / GROUND_SPEED) shouldCountToOdo:shouldCount];
+    }
+    return position;
+}
+
+- (void)moveWorld:(Direction)direction withMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount {
     
-    self.pixelPosition -= GROUND_SPEED;
-    self.pixelsTraveled += GROUND_SPEED;
+    NSInteger signedMult = mult;
+    if (direction == LEFT) {
+        signedMult *= -1;
+    }
     
-    self.positionLabel.text = [self positionString];
-    self.distanceTraveledLabel.text = [self distanceTraveledString];
+    NSInteger newSkyPosition = self.backgroundSkyConstraint.constant + (SKY_SPEED * signedMult);
+    NSInteger newMountainPosition = self.backgroundMountainConstraint.constant + (MOUNTAINS_SPEED * signedMult);
+    NSInteger newFencePosition = self.backgroundFenceConstraint.constant + (FENCE_SPEED * signedMult);
+    NSInteger newDirtPosition = self.backgroundDirtConstraint.constant + (GROUND_SPEED * signedMult);
     
+    NSInteger newPixelPosition = newDirtPosition * -1;
+    
+    if (newPixelPosition < 0) {
+        return;
+    }
+
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        self.backgroundSkyConstraint.constant   = newSkyPosition;
+        self.backgroundMountainConstraint.constant   = newMountainPosition;
+        self.backgroundFenceConstraint.constant = newFencePosition;
+        self.backgroundDirtConstraint.constant  = newDirtPosition;
+        [self.view layoutIfNeeded];
+    }completion:^(BOOL finished) {
+        self.pixelPosition += (GROUND_SPEED * signedMult);
+        
+        if (shouldCount) {
+            self.pixelsTraveled += (GROUND_SPEED * mult);
+        }
+        
+        self.positionLabel.text = [self positionString];
+        self.distanceTraveledLabel.text = [self distanceTraveledString];
+    }];
+}
+
+- (NSInteger)moveLeftWithMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount {
+    [self moveWorld:LEFT withMultiplier:mult shouldCountToOdo:shouldCount];
     return self.pixelPosition;
 }
 
-- (CGFloat)moveRight:(id)sender {
-    if ([self position] <= 0) {
-        return 0;
-    }
-    
-    self.backgroundSkyConstraint.constant   = self.backgroundSkyConstraint.constant + SKY_SPEED;
-    self.backgroundMountainConstraint.constant   = self.backgroundMountainConstraint.constant + MOUNTAINS_SPEED;
-    self.backgroundFenceConstraint.constant = self.backgroundFenceConstraint.constant + FENCE_SPEED;
-    self.backgroundDirtConstraint.constant  = self.backgroundDirtConstraint.constant + GROUND_SPEED;
-    
-    self.pixelPosition += GROUND_SPEED;
-    self.pixelsTraveled += GROUND_SPEED;
-    
-    self.positionLabel.text = [self positionString];
-    self.distanceTraveledLabel.text = [self distanceTraveledString];
-    
+- (NSInteger)moveRightWithMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount{
+    [self moveWorld:RIGHT withMultiplier:mult shouldCountToOdo:shouldCount];
     return self.pixelPosition;
 }
 
 - (IBAction)leftTap:(id)sender {
-    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        [self moveLeft:sender];
-        [self.view layoutIfNeeded];
-    }];
+    [self moveLeftWithMultiplier:1 shouldCountToOdo:YES];
 }
 
 - (IBAction)rightTap:(id)sender {
-    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        [self moveRight:sender];
-        [self.view layoutIfNeeded];
-    }];
+    [self moveRightWithMultiplier:1 shouldCountToOdo:YES];
 }
 
 - (void) rightTapHold: (UILongPressGestureRecognizer *) gesture {
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        self.pressAndHoldTimer = [NSTimer scheduledTimerWithTimeInterval:PRESS_AND_HOLD_DELAY target:self selector:@selector(moveRight:) userInfo:nil repeats:YES];
+        self.pressAndHoldTimer = [NSTimer scheduledTimerWithTimeInterval:PRESS_AND_HOLD_DELAY target:self selector:@selector(rightTap:) userInfo:nil repeats:YES];
         
     }
     else if (gesture.state == UIGestureRecognizerStateEnded){
@@ -174,7 +197,7 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
 
 - (void) leftTapHold: (UILongPressGestureRecognizer *) gesture {
     if (gesture.state == UIGestureRecognizerStateBegan) {
-         self.pressAndHoldTimer = [NSTimer scheduledTimerWithTimeInterval:PRESS_AND_HOLD_DELAY target:self selector:@selector(moveLeft:) userInfo:nil repeats:YES];
+         self.pressAndHoldTimer = [NSTimer scheduledTimerWithTimeInterval:PRESS_AND_HOLD_DELAY target:self selector:@selector(leftTap:) userInfo:nil repeats:YES];
     }
     else if (gesture.state == UIGestureRecognizerStateEnded){
         if (self.pressAndHoldTimer != nil) {
