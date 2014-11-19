@@ -10,10 +10,6 @@
 
 @interface MainViewController : UIViewController
 
-@property (nonatomic)CGFloat position;
-@property (nonatomic)CGFloat distanceTraveled;
-
-
 - (CGFloat)moveLeft:(id)sender;
 - (CGFloat)moveRight:(id)sender;
 
