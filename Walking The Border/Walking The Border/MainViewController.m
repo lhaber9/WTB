@@ -9,17 +9,16 @@
 #import "MainViewController.h"
 
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
-static CGFloat PRESS_AND_HOLD_DELAY = 0.08;
+static CGFloat PRESS_AND_HOLD_DELAY = 0.1;
 static CGFloat ANIMATION_DURATION = 0.2;
 
-
 static CGFloat SKY_SPEED = 0;
-static CGFloat MOUNTAINS_SPEED = 25;
-static CGFloat FENCE_SPEED = 75;
-static CGFloat GROUND_SPEED = 100;
+static CGFloat MOUNTAINS_SPEED = 15;
+static CGFloat FENCE_SPEED = 35;
+static CGFloat GROUND_SPEED = 50;
 
-static NSString* POSTION_LABEL_STRING = @" pixels from start";
-static NSString* DISTANCE_LABEL_STRING = @" pixels traveled";
+static NSString* POSTION_LABEL_STRING = @" Pixels from Start";
+static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
 
 @interface MainViewController ()
 
@@ -47,6 +46,8 @@ static NSString* DISTANCE_LABEL_STRING = @" pixels traveled";
     
     self.pixelPosition = 0;
     self.pixelsTraveled = 0;
+    
+    self.distanceTraveledLabel.alpha = 0;
     
     UILongPressGestureRecognizer* rightHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(rightTapHold:)];
     UILongPressGestureRecognizer* leftHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(leftTapHold:)];
@@ -89,18 +90,22 @@ static NSString* DISTANCE_LABEL_STRING = @" pixels traveled";
 
 - (void)switchInfoLabel: (UITapGestureRecognizer *)recognizer  {
     
-    if (self.distanceTraveledLabel.hidden) {
+    if (self.distanceTraveledLabel.alpha == 0) {
         [UIView animateWithDuration:0.25 animations:^{
-            self.distanceTraveledLabel.hidden = NO;
-            self.positionLabel.hidden = YES;
-            [self.view layoutIfNeeded];
+            self.positionLabel.alpha = 0;
+        }];
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            self.distanceTraveledLabel.alpha = 1;
         }];
     }
     else {
         [UIView animateWithDuration:0.25 animations:^{
-            self.distanceTraveledLabel.hidden = YES;
-            self.positionLabel.hidden = NO;
-            [self.view layoutIfNeeded];
+            self.distanceTraveledLabel.alpha = 0;
+        }];
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            self.positionLabel.alpha = 1;
         }];
     }
     
