@@ -9,7 +9,7 @@
 #import "MainViewController.h"
 
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
-static CGFloat PRESS_AND_HOLD_DELAY = 0.07;
+static CGFloat PRESS_AND_HOLD_DELAY = 0.08;
 static CGFloat ANIMATION_DURATION = 0.2;
 
 
@@ -17,7 +17,6 @@ static CGFloat SKY_SPEED = 0;
 static CGFloat MOUNTAINS_SPEED = 25;
 static CGFloat FENCE_SPEED = 75;
 static CGFloat GROUND_SPEED = 100;
-
 
 
 @interface MainViewController ()
@@ -68,6 +67,14 @@ static CGFloat GROUND_SPEED = 100;
     
     self.position += GROUND_SPEED;
     self.distanceTraveled += GROUND_SPEED;
+    
+    if (self.position >= 0) {
+        self.position = 0;
+        self.backgroundSkyConstraint.constant   = 0;
+        self.backgroundMountainConstraint.constant   = 0;
+        self.backgroundFenceConstraint.constant = 0;
+        self.backgroundDirtConstraint.constant = 0;
+    }
     
     return self.position;
 }
