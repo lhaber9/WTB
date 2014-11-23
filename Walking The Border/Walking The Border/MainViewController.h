@@ -10,8 +10,13 @@
 
 @interface MainViewController : UIViewController
 
-- (NSInteger)moveLeftWithMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount;
-- (NSInteger)moveRightWithMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount;
+- (NSInteger)moveLeftWithMultiplier:(NSInteger)mult
+                   shouldCountToOdo:(BOOL)shouldCount
+            shouldChangeOrientation:(BOOL)shouldChange;
+
+- (NSInteger)moveRightWithMultiplier:(NSInteger)mult
+                    shouldCountToOdo:(BOOL)shouldCount
+             shouldChangeOrientation:(BOOL)shouldChange;
 
 - (IBAction)leftTap:(id)sender;
 - (IBAction)rightTap:(id)sender;

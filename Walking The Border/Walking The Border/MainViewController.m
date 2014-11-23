@@ -7,6 +7,9 @@
 //  TESTING OUT CHANGES
 
 #import "MainViewController.h"
+#import "InfiniteBackgroundElement.h"
+#import "QuartzCore/QuartzCore.h"
+#import "ALView+PureLayout.h"
 
 typedef NS_ENUM(NSInteger, Direction) {
     RIGHT,
@@ -17,17 +20,29 @@ static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
 static CGFloat PRESS_AND_HOLD_DELAY = 0.1;
 static CGFloat ANIMATION_DURATION = 0.2;
 
-static CGFloat GROUND_SIZE_PX = 10000;
-
 static CGFloat SKY_SPEED = 0;
 static CGFloat MOUNTAINS_SPEED = 15;
-static CGFloat FENCE_SPEED = 35;
+static CGFloat FENCE_SPEED = 25;
 static CGFloat GROUND_SPEED = 50;
 
 static NSString* POSTION_LABEL_STRING = @" Pixels from Start";
 static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
 
+static CGFloat BUTTON_RED = 232;
+static CGFloat BUTTON_GREEN = 100;
+static CGFloat BUTTON_BLUE = 73;
+
 @interface MainViewController ()
+
+@property (nonatomic)Direction currentDirection;
+
+@property (strong, nonatomic)IBOutlet UIView* backgroundContainer;
+@property (strong, nonatomic)IBOutlet UIView* foregroundContainer;
+@property (strong, nonatomic)IBOutlet UIView* controlbarContainer;
+
+@property (strong, nonatomic)IBOutlet UIImageView* lukeImageView;
+@property (strong, nonatomic)UIImage* lukeImage;
+@property (strong, nonatomic)UIImage* flippedLuke;
 
 @property (strong, nonatomic)IBOutlet UIButton* rightButton;
 @property (strong, nonatomic)IBOutlet UIButton* leftButton;
@@ -40,9 +55,13 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
 @property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundFenceConstraint;
 @property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundDirtConstraint;
 
+@property (strong, nonatomic)InfiniteBackgroundElement* skyBackground;
+@property (strong, nonatomic)InfiniteBackgroundElement* mountainsBackground;
+@property (strong, nonatomic)InfiniteBackgroundElement* fenceBackground;
+@property (strong, nonatomic)InfiniteBackgroundElement* dirtBackground;
+
 @property (strong, nonatomic)NSTimer* pressAndHoldTimer;
 
-@property (nonatomic)NSInteger pixelPosition;
 @property (nonatomic)NSInteger pixelsTraveled;
 @end
 
@@ -51,14 +70,49 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.pixelPosition = 0;
+    self.lukeImage   = self.lukeImageView.image;
+    self.flippedLuke = [UIImage imageWithCGImage:self.lukeImageView.image.CGImage
+                                           scale:self.lukeImageView.image.scale
+                                     orientation:UIImageOrientationUpMirrored];
+    
     self.pixelsTraveled = 0;
     
     self.distanceTraveledLabel.alpha = 0;
     
+    self.skyBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"sky.png"];
+    self.skyBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
+    self.skyBackground.speed = SKY_SPEED;
+    self.skyBackground.animationDuration = ANIMATION_DURATION;
+    [self addChildViewController:self.skyBackground];
+    [self.backgroundContainer addSubview:self.skyBackground.view];
+    [self.skyBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    
+    self.mountainsBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"mountain.png"];
+    self.mountainsBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
+    self.mountainsBackground.speed = MOUNTAINS_SPEED;
+    self.mountainsBackground.animationDuration = ANIMATION_DURATION;
+    [self addChildViewController:self.mountainsBackground];
+    [self.backgroundContainer addSubview:self.mountainsBackground.view];
+    [self.mountainsBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    
+    self.fenceBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"smallfence.png"];
+    self.fenceBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
+    self.fenceBackground.speed = FENCE_SPEED;
+    self.fenceBackground.animationDuration = ANIMATION_DURATION;
+    [self addChildViewController:self.fenceBackground];
+    [self.backgroundContainer addSubview:self.fenceBackground.view];
+    [self.fenceBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    
+    self.dirtBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"dirt.png"];
+    self.dirtBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
+    self.dirtBackground.speed = GROUND_SPEED;
+    self.dirtBackground.animationDuration = ANIMATION_DURATION;
+    [self addChildViewController:self.dirtBackground];
+    [self.backgroundContainer addSubview:self.dirtBackground.view];
+    [self.dirtBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    
     UILongPressGestureRecognizer* rightHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(rightTapHold:)];
     UILongPressGestureRecognizer* leftHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(leftTapHold:)];
-    
     
     self.positionLabel.text = [@"0" stringByAppendingString:POSTION_LABEL_STRING];
     self.distanceTraveledLabel.text = [@"0" stringByAppendingString:DISTANCE_LABEL_STRING];
@@ -74,6 +128,15 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
     [self.rightButton addGestureRecognizer:rightHold];
     [self.leftButton addGestureRecognizer:leftHold];
     
+    [self.rightButton setBackgroundColor:[UIColor colorWithRed:BUTTON_RED/255 green:BUTTON_GREEN/255 blue:BUTTON_BLUE/255 alpha:1]];
+    [self.leftButton setBackgroundColor:[UIColor colorWithRed:BUTTON_RED/255 green:BUTTON_GREEN/255 blue:BUTTON_BLUE/255 alpha:1]];
+    
+    self.rightButton.layer.cornerRadius = self.rightButton.bounds.size.width/2.0;
+    self.rightButton.layer.borderWidth = 0;
+    
+    self.leftButton.layer.cornerRadius = self.leftButton.bounds.size.width/2.0;
+    self.leftButton.layer.borderWidth = 0;
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -83,7 +146,7 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
 }
 
 - (NSInteger)position {
-    return self.pixelPosition * -1;
+    return self.dirtBackground.position;
 }
 
 - (NSString*)positionString{
@@ -93,6 +156,15 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
 
 - (NSString*)distanceTraveledString {
     return [[NSString stringWithFormat:@"%li", (long)self.pixelsTraveled] stringByAppendingString:DISTANCE_LABEL_STRING];
+}
+
+- (void)flipLuke:(Direction)direction {
+    if (direction == LEFT) {
+        self.lukeImageView.image = self.flippedLuke;
+    }
+    else {
+        self.lukeImageView.image = self.lukeImage;
+    }
 }
 
 - (void)switchInfoLabel: (UITapGestureRecognizer *)recognizer  {
@@ -118,68 +190,74 @@ static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
     
 }
 
-- (NSInteger)moveTo:(NSInteger)position shouldCountToOdo:(BOOL)shouldCount {
+- (NSInteger)moveTo:(NSInteger)position
+   shouldCountToOdo:(BOOL)shouldCount
+shouldChangeOrientation:(BOOL)shouldChange {
     if ([self position] > position){
-        return [self moveRightWithMultiplier:(([self position] - position) / GROUND_SPEED) shouldCountToOdo:shouldCount];
+        return [self moveRightWithMultiplier:(([self position] - position) / GROUND_SPEED) shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
     }
     else if ([self position] < position) {
-        return [self moveLeftWithMultiplier:((position - [self position]) / GROUND_SPEED) shouldCountToOdo:shouldCount];
+        return [self moveLeftWithMultiplier:((position - [self position]) / GROUND_SPEED) shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
     }
     return position;
 }
 
-- (void)moveWorld:(Direction)direction withMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount {
+- (void)moveWorld:(Direction)direction
+ shouldCountToOdo:(BOOL)shouldCount
+shouldChangeOrientation:(BOOL)shouldChange {
     
-    NSInteger signedMult = mult;
+    NSInteger oldPostion = [self position];
+    
+    if (direction != self.currentDirection) {
+        self.currentDirection = direction;
+        [self flipLuke:direction];
+    }
+    
     if (direction == LEFT) {
-        signedMult *= -1;
+       
+        [self.skyBackground moveLeft];
+        [self.mountainsBackground moveLeft];
+        [self.fenceBackground moveLeft];
+        [self.dirtBackground moveLeft];
+        
+    }
+    else if (direction == RIGHT) {
+        [self.skyBackground moveRight];
+        [self.mountainsBackground moveRight];
+        [self.fenceBackground moveRight];
+        [self.dirtBackground moveRight];
+        
     }
     
-    NSInteger newSkyPosition = self.backgroundSkyConstraint.constant + (SKY_SPEED * signedMult);
-    NSInteger newMountainPosition = self.backgroundMountainConstraint.constant + (MOUNTAINS_SPEED * signedMult);
-    NSInteger newFencePosition = self.backgroundFenceConstraint.constant + (FENCE_SPEED * signedMult);
-    NSInteger newDirtPosition = self.backgroundDirtConstraint.constant + (GROUND_SPEED * signedMult);
-    
-    NSInteger newPixelPosition = newDirtPosition * -1;
-    
-    if (newPixelPosition < 0) {
-        return;
+    if (shouldCount) {
+        NSInteger change = [self position] - oldPostion;
+        self.pixelsTraveled += fabs(change);
     }
 
-    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        self.backgroundSkyConstraint.constant   = newSkyPosition;
-        self.backgroundMountainConstraint.constant   = newMountainPosition;
-        self.backgroundFenceConstraint.constant = newFencePosition;
-        self.backgroundDirtConstraint.constant  = newDirtPosition;
-        [self.view layoutIfNeeded];
-    }completion:^(BOOL finished) {
-        self.pixelPosition += (GROUND_SPEED * signedMult);
-        
-        if (shouldCount) {
-            self.pixelsTraveled += (GROUND_SPEED * mult);
-        }
-        
-        self.positionLabel.text = [self positionString];
-        self.distanceTraveledLabel.text = [self distanceTraveledString];
-    }];
+    self.positionLabel.text = [self positionString];
+    self.distanceTraveledLabel.text = [self distanceTraveledString];
 }
 
-- (NSInteger)moveLeftWithMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount {
-    [self moveWorld:LEFT withMultiplier:mult shouldCountToOdo:shouldCount];
-    return self.pixelPosition;
+- (NSInteger)moveLeftWithMultiplier:(NSInteger)mult
+                   shouldCountToOdo:(BOOL)shouldCount
+            shouldChangeOrientation:(BOOL)shouldChange {
+    [self moveWorld:LEFT shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
+    return [self position];
 }
 
-- (NSInteger)moveRightWithMultiplier:(NSInteger)mult shouldCountToOdo:(BOOL)shouldCount{
-    [self moveWorld:RIGHT withMultiplier:mult shouldCountToOdo:shouldCount];
-    return self.pixelPosition;
+- (NSInteger)moveRightWithMultiplier:(NSInteger)mult
+                    shouldCountToOdo:(BOOL)shouldCount
+             shouldChangeOrientation:(BOOL)shouldChange {
+    [self moveWorld:RIGHT shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
+    return [self position];
 }
 
 - (IBAction)leftTap:(id)sender {
-    [self moveLeftWithMultiplier:1 shouldCountToOdo:YES];
+    [self moveLeftWithMultiplier:1 shouldCountToOdo:YES shouldChangeOrientation:YES];
 }
 
 - (IBAction)rightTap:(id)sender {
-    [self moveRightWithMultiplier:1 shouldCountToOdo:YES];
+    [self moveRightWithMultiplier:1 shouldCountToOdo:YES shouldChangeOrientation:YES];
 }
 
 - (void) rightTapHold: (UILongPressGestureRecognizer *) gesture {

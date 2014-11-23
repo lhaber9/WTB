@@ -19,6 +19,12 @@
 		80827EAA1A1C169B00279F15 /* fence.png in Resources */ = {isa = PBXBuildFile; fileRef = 80827EA61A1C169B00279F15 /* fence.png */; };
 		80827EAB1A1C169B00279F15 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 80827EA71A1C169B00279F15 /* mountain.png */; };
 		80827EAC1A1C169B00279F15 /* sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 80827EA81A1C169B00279F15 /* sky.png */; };
+		80CB04601A1F90ED00F13D33 /* luke.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CB045F1A1F90ED00F13D33 /* luke.png */; };
+		80CB04631A1F930900F13D33 /* InfiniteBackgroundElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CB04621A1F930900F13D33 /* InfiniteBackgroundElement.m */; };
+		80CB04651A1F945100F13D33 /* smallfence.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CB04641A1F945100F13D33 /* smallfence.png */; };
+		80CE0A271A2286CE00A4C402 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0A1F1A2286CE00A4C402 /* ALView+PureLayout.m */; };
+		80CE0A281A2286CE00A4C402 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0A211A2286CE00A4C402 /* NSArray+PureLayout.m */; };
+		80CE0A291A2286CE00A4C402 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0A231A2286CE00A4C402 /* NSLayoutConstraint+PureLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +56,19 @@
 		80827EA61A1C169B00279F15 /* fence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fence.png; sourceTree = "<group>"; };
 		80827EA71A1C169B00279F15 /* mountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountain.png; sourceTree = "<group>"; };
 		80827EA81A1C169B00279F15 /* sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sky.png; sourceTree = "<group>"; };
+		80CB045F1A1F90ED00F13D33 /* luke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luke.png; sourceTree = "<group>"; };
+		80CB04611A1F930900F13D33 /* InfiniteBackgroundElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteBackgroundElement.h; sourceTree = "<group>"; };
+		80CB04621A1F930900F13D33 /* InfiniteBackgroundElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteBackgroundElement.m; sourceTree = "<group>"; };
+		80CB04641A1F945100F13D33 /* smallfence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallfence.png; sourceTree = "<group>"; };
+		80CE0A1E1A2286CE00A4C402 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
+		80CE0A1F1A2286CE00A4C402 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
+		80CE0A201A2286CE00A4C402 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		80CE0A211A2286CE00A4C402 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		80CE0A221A2286CE00A4C402 /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		80CE0A231A2286CE00A4C402 /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		80CE0A241A2286CE00A4C402 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
+		80CE0A251A2286CE00A4C402 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
+		80CE0A261A2286CE00A4C402 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +99,8 @@
 				80827EA61A1C169B00279F15 /* fence.png */,
 				80827EA71A1C169B00279F15 /* mountain.png */,
 				80827EA81A1C169B00279F15 /* sky.png */,
+				80CB045F1A1F90ED00F13D33 /* luke.png */,
+				80CB04641A1F945100F13D33 /* smallfence.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +124,8 @@
 				52FB21F31A164D2C001DC8F0 /* Supporting Files */,
 				52FB22191A164EDA001DC8F0 /* MainViewController.h */,
 				52FB221A1A164EDA001DC8F0 /* MainViewController.m */,
+				80CB04611A1F930900F13D33 /* InfiniteBackgroundElement.h */,
+				80CB04621A1F930900F13D33 /* InfiniteBackgroundElement.m */,
 				52FB221B1A164EDA001DC8F0 /* MainViewController.xib */,
 			);
 			path = "Walking The Border";
@@ -111,6 +134,15 @@
 		52FB21F31A164D2C001DC8F0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				80CE0A1E1A2286CE00A4C402 /* ALView+PureLayout.h */,
+				80CE0A1F1A2286CE00A4C402 /* ALView+PureLayout.m */,
+				80CE0A201A2286CE00A4C402 /* NSArray+PureLayout.h */,
+				80CE0A211A2286CE00A4C402 /* NSArray+PureLayout.m */,
+				80CE0A221A2286CE00A4C402 /* NSLayoutConstraint+PureLayout.h */,
+				80CE0A231A2286CE00A4C402 /* NSLayoutConstraint+PureLayout.m */,
+				80CE0A241A2286CE00A4C402 /* PureLayout.h */,
+				80CE0A251A2286CE00A4C402 /* PureLayout+Internal.h */,
+				80CE0A261A2286CE00A4C402 /* PureLayoutDefines.h */,
 				52FB21F41A164D2C001DC8F0 /* Info.plist */,
 				52FB21F51A164D2C001DC8F0 /* main.m */,
 			);
@@ -216,12 +248,14 @@
 			files = (
 				52FB21FF1A164D2D001DC8F0 /* Main.storyboard in Resources */,
 				80827EAC1A1C169B00279F15 /* sky.png in Resources */,
+				80CB04601A1F90ED00F13D33 /* luke.png in Resources */,
 				80827EA91A1C169B00279F15 /* dirt.png in Resources */,
 				52FB22041A164D2D001DC8F0 /* LaunchScreen.xib in Resources */,
 				80827EAB1A1C169B00279F15 /* mountain.png in Resources */,
 				80827EAA1A1C169B00279F15 /* fence.png in Resources */,
 				52FB22011A164D2D001DC8F0 /* Images.xcassets in Resources */,
 				52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */,
+				80CB04651A1F945100F13D33 /* smallfence.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,8 +273,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CE0A291A2286CE00A4C402 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				52FB21F91A164D2C001DC8F0 /* AppDelegate.m in Sources */,
 				52FB221C1A164EDA001DC8F0 /* MainViewController.m in Sources */,
+				80CB04631A1F930900F13D33 /* InfiniteBackgroundElement.m in Sources */,
+				80CE0A271A2286CE00A4C402 /* ALView+PureLayout.m in Sources */,
+				80CE0A281A2286CE00A4C402 /* NSArray+PureLayout.m in Sources */,
 				52FB21F61A164D2C001DC8F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
