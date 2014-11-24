@@ -21,6 +21,7 @@ static CGFloat PRESS_AND_HOLD_DELAY = 0.1;
 static CGFloat ANIMATION_DURATION = 0.2;
 
 static CGFloat SKY_SPEED = 0;
+static CGFloat CLOUDS_SPEED = 5;
 static CGFloat MOUNTAINS_SPEED = 15;
 static CGFloat FENCE_SPEED = 25;
 static CGFloat GROUND_SPEED = 50;
@@ -51,6 +52,7 @@ static CGFloat BUTTON_BLUE = 73;
 @property (strong, nonatomic)IBOutlet UILabel* distanceTraveledLabel;
 
 @property (strong, nonatomic)InfiniteBackgroundElement* skyBackground;
+@property (strong, nonatomic)InfiniteBackgroundElement* cloudsBackground;
 @property (strong, nonatomic)InfiniteBackgroundElement* mountainsBackground;
 @property (strong, nonatomic)InfiniteBackgroundElement* fenceBackground;
 @property (strong, nonatomic)InfiniteBackgroundElement* dirtBackground;
@@ -82,7 +84,15 @@ static CGFloat BUTTON_BLUE = 73;
     [self.backgroundContainer addSubview:self.skyBackground.view];
     [self.skyBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
-    self.mountainsBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"mountain.png"];
+    self.cloudsBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"smallclouds.png"];
+    self.cloudsBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
+    self.cloudsBackground.speed = CLOUDS_SPEED;
+    self.cloudsBackground.animationDuration = ANIMATION_DURATION;
+    [self addChildViewController:self.cloudsBackground];
+    [self.backgroundContainer addSubview:self.cloudsBackground.view];
+    [self.cloudsBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    
+    self.mountainsBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"smallmountain.png"];
     self.mountainsBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.mountainsBackground.speed = MOUNTAINS_SPEED;
     self.mountainsBackground.animationDuration = ANIMATION_DURATION;
@@ -98,7 +108,7 @@ static CGFloat BUTTON_BLUE = 73;
     [self.backgroundContainer addSubview:self.fenceBackground.view];
     [self.fenceBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
-    self.dirtBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"dirt.png"];
+    self.dirtBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"smalldirt.png"];
     self.dirtBackground.delegate = self;
     self.dirtBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.dirtBackground.speed = GROUND_SPEED;
@@ -212,6 +222,7 @@ shouldChangeOrientation:(BOOL)shouldChange {
     if (direction == LEFT) {
        
         [self.skyBackground moveLeft];
+        [self.cloudsBackground moveLeft];
         [self.mountainsBackground moveLeft];
         [self.fenceBackground moveLeft];
         [self.dirtBackground moveLeft];
@@ -219,6 +230,7 @@ shouldChangeOrientation:(BOOL)shouldChange {
     }
     else if (direction == RIGHT) {
         [self.skyBackground moveRight];
+        [self.cloudsBackground moveRight];
         [self.mountainsBackground moveRight];
         [self.fenceBackground moveRight];
         [self.dirtBackground moveRight];
