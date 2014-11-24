@@ -50,11 +50,6 @@ static CGFloat BUTTON_BLUE = 73;
 @property (strong, nonatomic)IBOutlet UILabel* positionLabel;
 @property (strong, nonatomic)IBOutlet UILabel* distanceTraveledLabel;
 
-@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundSkyConstraint;
-@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundMountainConstraint;
-@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundFenceConstraint;
-@property (strong, nonatomic)IBOutlet NSLayoutConstraint* backgroundDirtConstraint;
-
 @property (strong, nonatomic)InfiniteBackgroundElement* skyBackground;
 @property (strong, nonatomic)InfiniteBackgroundElement* mountainsBackground;
 @property (strong, nonatomic)InfiniteBackgroundElement* fenceBackground;
@@ -104,6 +99,7 @@ static CGFloat BUTTON_BLUE = 73;
     [self.fenceBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
     self.dirtBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"dirt.png"];
+    self.dirtBackground.delegate = self;
     self.dirtBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.dirtBackground.speed = GROUND_SPEED;
     self.dirtBackground.animationDuration = ANIMATION_DURATION;
@@ -189,18 +185,18 @@ static CGFloat BUTTON_BLUE = 73;
     }
     
 }
-
-- (NSInteger)moveTo:(NSInteger)position
-   shouldCountToOdo:(BOOL)shouldCount
-shouldChangeOrientation:(BOOL)shouldChange {
-    if ([self position] > position){
-        return [self moveRightWithMultiplier:(([self position] - position) / GROUND_SPEED) shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
-    }
-    else if ([self position] < position) {
-        return [self moveLeftWithMultiplier:((position - [self position]) / GROUND_SPEED) shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
-    }
-    return position;
-}
+//
+//- (NSInteger)moveTo:(NSInteger)position
+//   shouldCountToOdo:(BOOL)shouldCount
+//shouldChangeOrientation:(BOOL)shouldChange {
+//    if ([self position] > position){
+//        return [self moveRightWithMultiplier:(([self position] - position) / GROUND_SPEED) shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
+//    }
+//    else if ([self position] < position) {
+//        return [self moveLeftWithMultiplier:((position - [self position]) / GROUND_SPEED) shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
+//    }
+//    return position;
+//}
 
 - (void)moveWorld:(Direction)direction
  shouldCountToOdo:(BOOL)shouldCount
@@ -294,5 +290,17 @@ shouldChangeOrientation:(BOOL)shouldChange {
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - InfiniteBackgroundDelegate
+
+- (void)willAddViewFrom:(NSInteger)start to:(NSInteger)end {
+    
+    
+}
+
+- (void)willRemoveViewFrom:(NSInteger)start to:(NSInteger)end {
+    
+    
+}
 
 @end

@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol InfiniteBackgroundElementDelegate
+
+- (void)willAddViewFrom:(NSInteger)start to:(NSInteger)end;
+- (void)willRemoveViewFrom:(NSInteger)start to:(NSInteger)end;
+
+@end
+
+
 @interface InfiniteBackgroundElement : UIViewController
 
+@property (nonatomic, weak) id<InfiniteBackgroundElementDelegate> delegate;
 
 @property (nonatomic)CGFloat speed;
 @property (nonatomic)CGFloat animationDuration;
@@ -20,7 +29,5 @@
 
 - (NSInteger)moveLeft;
 - (NSInteger)moveRight;
-
-
 
 @end

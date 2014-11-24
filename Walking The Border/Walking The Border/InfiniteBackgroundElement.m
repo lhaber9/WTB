@@ -57,6 +57,7 @@
     CGFloat totalWidth = self.views.count * self.image.size.width;
     
     if (newPosition > totalWidth - 750) {
+        [self.delegate willAddViewFrom:totalWidth to:totalWidth + self.image.size.width];
         UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
         imageView.image = self.image;
         [self.view addSubview:imageView];
@@ -86,6 +87,7 @@
     CGFloat totalWidth = self.views.count * self.image.size.width;
     
     if (newPosition < totalWidth - self.image.size.width - 750 && self.views.count > 1) {
+        [self.delegate willRemoveViewFrom:totalWidth - self.image.size.width to:totalWidth];
         [self.views.lastObject removeFromSuperview];
         [self.views removeLastObject];
     }

@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 IM2100. All rights reserved.
 //
 
+#import "InfiniteBackgroundElement.h"
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <InfiniteBackgroundElementDelegate>
 
 - (NSInteger)moveLeftWithMultiplier:(NSInteger)mult
                    shouldCountToOdo:(BOOL)shouldCount
