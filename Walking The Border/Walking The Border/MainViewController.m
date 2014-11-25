@@ -51,6 +51,7 @@ static CGFloat BUTTON_BLUE = 73;
 @property (strong, nonatomic)IBOutlet UILabel* positionLabel;
 @property (strong, nonatomic)IBOutlet UILabel* distanceTraveledLabel;
 
+@property (strong, nonatomic)NSArray* infiniteBackgrounds;
 @property (strong, nonatomic)InfiniteBackgroundElement* skyBackground;
 @property (strong, nonatomic)InfiniteBackgroundElement* cloudsBackground;
 @property (strong, nonatomic)InfiniteBackgroundElement* mountainsBackground;
@@ -75,47 +76,21 @@ static CGFloat BUTTON_BLUE = 73;
     self.pixelsTraveled = 0;
     
     self.distanceTraveledLabel.alpha = 0;
+ 
+    NSArray* infiniteBackgroundsData =   @[@[@"sky.png",[NSNumber numberWithFloat:SKY_SPEED]],
+                                         @[@"smallclouds.png",[NSNumber numberWithFloat:CLOUDS_SPEED]],
+                                         @[@"smallmountain.png",[NSNumber numberWithFloat:MOUNTAINS_SPEED]],
+                                         @[@"smallfence.png",[NSNumber numberWithFloat:FENCE_SPEED]],
+                                         @[@"smalldirt.png",[NSNumber numberWithFloat:GROUND_SPEED]]];
     
-    self.skyBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"sky.png"];
-    self.skyBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.skyBackground.speed = SKY_SPEED;
-    self.skyBackground.animationDuration = ANIMATION_DURATION;
-    [self addChildViewController:self.skyBackground];
-    [self.backgroundContainer addSubview:self.skyBackground.view];
-    [self.skyBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    self.infiniteBackgrounds = [NSArray array];
     
-    self.cloudsBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"smallclouds.png"];
-    self.cloudsBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.cloudsBackground.speed = CLOUDS_SPEED;
-    self.cloudsBackground.animationDuration = ANIMATION_DURATION;
-    [self addChildViewController:self.cloudsBackground];
-    [self.backgroundContainer addSubview:self.cloudsBackground.view];
-    [self.cloudsBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    for (NSArray* pngWithSpeed in infiniteBackgroundsData) {
+        [self addInfinteBackground:pngWithSpeed[0] withSpeed:pngWithSpeed[1]];
+    }
     
-    self.mountainsBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"smallmountain.png"];
-    self.mountainsBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.mountainsBackground.speed = MOUNTAINS_SPEED;
-    self.mountainsBackground.animationDuration = ANIMATION_DURATION;
-    [self addChildViewController:self.mountainsBackground];
-    [self.backgroundContainer addSubview:self.mountainsBackground.view];
-    [self.mountainsBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-    
-    self.fenceBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"smallfence.png"];
-    self.fenceBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.fenceBackground.speed = FENCE_SPEED;
-    self.fenceBackground.animationDuration = ANIMATION_DURATION;
-    [self addChildViewController:self.fenceBackground];
-    [self.backgroundContainer addSubview:self.fenceBackground.view];
-    [self.fenceBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-    
-    self.dirtBackground = [[InfiniteBackgroundElement alloc] initWithPng:@"smalldirt.png"];
-    self.dirtBackground.delegate = self;
-    self.dirtBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.dirtBackground.speed = GROUND_SPEED;
-    self.dirtBackground.animationDuration = ANIMATION_DURATION;
-    [self addChildViewController:self.dirtBackground];
-    [self.backgroundContainer addSubview:self.dirtBackground.view];
-    [self.dirtBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    InfiniteBackgroundElement* lastElement = (InfiniteBackgroundElement*)self.infiniteBackgrounds.lastObject;
+    lastElement.delegate = self;
     
     UILongPressGestureRecognizer* rightHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(rightTapHold:)];
     UILongPressGestureRecognizer* leftHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(leftTapHold:)];
@@ -143,6 +118,9 @@ static CGFloat BUTTON_BLUE = 73;
     self.leftButton.layer.cornerRadius = self.leftButton.bounds.size.width/2.0;
     self.leftButton.layer.borderWidth = 0;
     
+    self.currentDirection = LEFT;
+    [self flipLuke:self.currentDirection];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -151,8 +129,12 @@ static CGFloat BUTTON_BLUE = 73;
     // Dispose of any resources that can be recreated.
 }
 
+- (InfiniteBackgroundElement*)lastBackground {
+    return (InfiniteBackgroundElement*)self.infiniteBackgrounds.lastObject;
+}
+
 - (NSInteger)position {
-    return self.dirtBackground.position;
+    return [self lastBackground].position;
 }
 
 - (NSString*)positionString{
@@ -162,6 +144,18 @@ static CGFloat BUTTON_BLUE = 73;
 
 - (NSString*)distanceTraveledString {
     return [[NSString stringWithFormat:@"%li", (long)self.pixelsTraveled] stringByAppendingString:DISTANCE_LABEL_STRING];
+}
+
+- (void)addInfinteBackground:(NSString*)pngName withSpeed:(NSNumber*)speed {
+    
+    InfiniteBackgroundElement* newBackground = [[InfiniteBackgroundElement alloc] initWithPng:pngName];
+    newBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
+    newBackground.speed = [speed integerValue];
+    newBackground.animationDuration = ANIMATION_DURATION;
+    [self addChildViewController:newBackground];
+    [self.backgroundContainer addSubview:newBackground.view];
+    [newBackground.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    self.infiniteBackgrounds = [self.infiniteBackgrounds arrayByAddingObject:newBackground];
 }
 
 - (void)flipLuke:(Direction)direction {
@@ -217,24 +211,16 @@ shouldChangeOrientation:(BOOL)shouldChange {
     if (direction != self.currentDirection) {
         self.currentDirection = direction;
         [self flipLuke:direction];
+        return;
     }
     
-    if (direction == LEFT) {
-       
-        [self.skyBackground moveLeft];
-        [self.cloudsBackground moveLeft];
-        [self.mountainsBackground moveLeft];
-        [self.fenceBackground moveLeft];
-        [self.dirtBackground moveLeft];
-        
-    }
-    else if (direction == RIGHT) {
-        [self.skyBackground moveRight];
-        [self.cloudsBackground moveRight];
-        [self.mountainsBackground moveRight];
-        [self.fenceBackground moveRight];
-        [self.dirtBackground moveRight];
-        
+    for (InfiniteBackgroundElement* background in self.infiniteBackgrounds) {
+        if (direction == LEFT) {
+            [background moveLeft];
+        }
+        else if (direction == RIGHT) {
+            [background moveRight];
+        }
     }
     
     if (shouldCount) {
@@ -306,12 +292,12 @@ shouldChangeOrientation:(BOOL)shouldChange {
 #pragma mark - InfiniteBackgroundDelegate
 
 - (void)willAddViewFrom:(NSInteger)start to:(NSInteger)end {
-    
+    NSLog(@"ADDED");
     
 }
 
 - (void)willRemoveViewFrom:(NSInteger)start to:(NSInteger)end {
-    
+    NSLog(@"RMOVED");
     
 }
 
