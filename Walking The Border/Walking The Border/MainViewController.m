@@ -77,7 +77,7 @@ static CGFloat BUTTON_BLUE = 73;
     
     self.distanceTraveledLabel.alpha = 0;
  
-    NSArray* infiniteBackgroundsData =   @[@[@"sky.png",[NSNumber numberWithFloat:SKY_SPEED]],
+    NSArray* infiniteBackgroundsData = @[@[@"sky.png",[NSNumber numberWithFloat:SKY_SPEED]],
                                          @[@"smallclouds.png",[NSNumber numberWithFloat:CLOUDS_SPEED]],
                                          @[@"smallmountain.png",[NSNumber numberWithFloat:MOUNTAINS_SPEED]],
                                          @[@"smallfence.png",[NSNumber numberWithFloat:FENCE_SPEED]],
