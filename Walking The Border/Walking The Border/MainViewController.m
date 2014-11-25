@@ -68,15 +68,25 @@ static CGFloat BUTTON_BLUE = 73;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initBackgrounds];
+    [self initButtons];
+    
+    
+    // set luke image
     self.lukeImage   = self.lukeImageView.image;
     self.flippedLuke = [UIImage imageWithCGImage:self.lukeImageView.image.CGImage
                                            scale:self.lukeImageView.image.scale
                                      orientation:UIImageOrientationUpMirrored];
     
-    self.pixelsTraveled = 0;
+    // set initial settings
     
+    self.pixelsTraveled = 0;
     self.distanceTraveledLabel.alpha = 0;
- 
+    self.currentDirection = LEFT;
+}
+
+- (void)initBackgrounds {
+    // Set up backgrounds
     NSArray* infiniteBackgroundsData = @[@[@"sky.png",[NSNumber numberWithFloat:SKY_SPEED]],
                                          @[@"smallclouds.png",[NSNumber numberWithFloat:CLOUDS_SPEED]],
                                          @[@"smallmountain.png",[NSNumber numberWithFloat:MOUNTAINS_SPEED]],
@@ -91,6 +101,10 @@ static CGFloat BUTTON_BLUE = 73;
     
     InfiniteBackgroundElement* lastElement = (InfiniteBackgroundElement*)self.infiniteBackgrounds.lastObject;
     lastElement.delegate = self;
+}
+
+- (void)initButtons {
+    // Set up buttons and stuff
     
     UILongPressGestureRecognizer* rightHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(rightTapHold:)];
     UILongPressGestureRecognizer* leftHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(leftTapHold:)];
@@ -117,11 +131,12 @@ static CGFloat BUTTON_BLUE = 73;
     
     self.leftButton.layer.cornerRadius = self.leftButton.bounds.size.width/2.0;
     self.leftButton.layer.borderWidth = 0;
-    
-    self.currentDirection = LEFT;
-    [self flipLuke:self.currentDirection];
-    
-    // Do any additional setup after loading the view from its nib.
+}
+
+
+- (void)setCurrentDirection:(Direction)currentDirection {
+    _currentDirection = currentDirection;
+    [self flipLuke:currentDirection];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -210,7 +225,6 @@ shouldChangeOrientation:(BOOL)shouldChange {
     
     if (direction != self.currentDirection) {
         self.currentDirection = direction;
-        [self flipLuke:direction];
         return;
     }
     
