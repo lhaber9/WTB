@@ -26,9 +26,6 @@ static CGFloat MOUNTAINS_SPEED = 15;
 static CGFloat FENCE_SPEED = 25;
 static CGFloat GROUND_SPEED = 50;
 
-static NSString* POSTION_LABEL_STRING = @" Pixels from Start";
-static NSString* DISTANCE_LABEL_STRING = @" Pixels Traveled";
-
 static CGFloat BUTTON_RED = 232;
 static CGFloat BUTTON_GREEN = 100;
 static CGFloat BUTTON_BLUE = 73;
@@ -81,7 +78,6 @@ static CGFloat BUTTON_BLUE = 73;
     // set initial settings
     
     self.pixelsTraveled = 0;
-    self.distanceTraveledLabel.alpha = 0;
     self.currentDirection = LEFT;
 }
 
@@ -109,13 +105,8 @@ static CGFloat BUTTON_BLUE = 73;
     UILongPressGestureRecognizer* rightHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(rightTapHold:)];
     UILongPressGestureRecognizer* leftHold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(leftTapHold:)];
     
-    self.positionLabel.text = [@"0" stringByAppendingString:POSTION_LABEL_STRING];
-    self.distanceTraveledLabel.text = [@"0" stringByAppendingString:DISTANCE_LABEL_STRING];
-    
-    self.positionLabel.userInteractionEnabled = YES;
-    
-    [self.positionLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(switchInfoLabel:)]];
-    [self.distanceTraveledLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(switchInfoLabel:)]];
+    self.positionLabel.text = @"0";
+    self.distanceTraveledLabel.text = @"0";
     
     rightHold.minimumPressDuration = PRESS_AND_HOLD_MINIMUM_DURATION;
     leftHold.minimumPressDuration = PRESS_AND_HOLD_MINIMUM_DURATION;
@@ -131,6 +122,26 @@ static CGFloat BUTTON_BLUE = 73;
     
     self.leftButton.layer.cornerRadius = self.leftButton.bounds.size.width/2.0;
     self.leftButton.layer.borderWidth = 0;
+    
+    
+    UIImageView* rightArrow = [[UIImageView alloc] initForAutoLayout];
+    UIImageView* leftArrow = [[UIImageView alloc] initForAutoLayout];
+    
+    rightArrow.image = [UIImage imageWithCGImage:[UIImage imageNamed:@"arrow1.png"].CGImage
+                                           scale:[UIImage imageNamed:@"arrow1.png"].scale * 1.8
+                                     orientation:UIImageOrientationUp];
+    
+    leftArrow.image = [UIImage imageWithCGImage:[UIImage imageNamed:@"arrow1.png"].CGImage
+                                          scale:[UIImage imageNamed:@"arrow1.png"].scale * 1.8
+                                    orientation:UIImageOrientationUpMirrored];
+    
+    [self.rightButton addSubview:rightArrow];
+    [rightArrow autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [rightArrow autoAlignAxis:ALAxisVertical toSameAxisOfView:self.rightButton withOffset:2];
+    
+    [self.leftButton addSubview:leftArrow];
+    [leftArrow autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [leftArrow autoAlignAxis:ALAxisVertical toSameAxisOfView:self.leftButton withOffset:-2];
 }
 
 
@@ -153,12 +164,12 @@ static CGFloat BUTTON_BLUE = 73;
 }
 
 - (NSString*)positionString{
-    return [[NSString stringWithFormat:@"%li", (long)[self position]] stringByAppendingString:POSTION_LABEL_STRING];
+    return [NSString stringWithFormat:@"%li", (long)[self position]];
     
 }
 
 - (NSString*)distanceTraveledString {
-    return [[NSString stringWithFormat:@"%li", (long)self.pixelsTraveled] stringByAppendingString:DISTANCE_LABEL_STRING];
+    return [NSString stringWithFormat:@"%li", (long)self.pixelsTraveled];
 }
 
 - (void)addInfinteBackground:(NSString*)pngName withSpeed:(NSNumber*)speed {
@@ -182,28 +193,6 @@ static CGFloat BUTTON_BLUE = 73;
     }
 }
 
-- (void)switchInfoLabel: (UITapGestureRecognizer *)recognizer  {
-    
-    if (self.distanceTraveledLabel.alpha == 0) {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.positionLabel.alpha = 0;
-        }];
-        
-        [UIView animateWithDuration:0.25 animations:^{
-            self.distanceTraveledLabel.alpha = 1;
-        }];
-    }
-    else {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.distanceTraveledLabel.alpha = 0;
-        }];
-        
-        [UIView animateWithDuration:0.25 animations:^{
-            self.positionLabel.alpha = 1;
-        }];
-    }
-    
-}
 //
 //- (NSInteger)moveTo:(NSInteger)position
 //   shouldCountToOdo:(BOOL)shouldCount

@@ -27,7 +27,7 @@
     imageView.image = self.image;
     
     [self.view addSubview:imageView];
-    [imageView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [imageView autoAlignAxisToSuperviewAxis:ALAxisBaseline];
     self.positionConstraint = [imageView autoConstrainAttribute:ALAttributeTrailing toAttribute:ALAttributeTrailing ofView:self.view];
    
     self.views = [NSMutableArray arrayWithObject:imageView];
