@@ -16,7 +16,6 @@
 		52FB221C1A164EDA001DC8F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB221A1A164EDA001DC8F0 /* MainViewController.m */; };
 		52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB221B1A164EDA001DC8F0 /* MainViewController.xib */; };
 		80CB04631A1F930900F13D33 /* InfiniteBackgroundElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CB04621A1F930900F13D33 /* InfiniteBackgroundElement.m */; };
-		80CD06FF1A24DAAB004DB182 /* arrow1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CD06FE1A24DAAB004DB182 /* arrow1.png */; };
 		80CD070B1A24E569004DB182 /* Dig Narrative Title Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CD070A1A24E569004DB182 /* Dig Narrative Title Screen.png */; };
 		80CE0A271A2286CE00A4C402 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0A1F1A2286CE00A4C402 /* ALView+PureLayout.m */; };
 		80CE0A281A2286CE00A4C402 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0A211A2286CE00A4C402 /* NSArray+PureLayout.m */; };
@@ -31,7 +30,7 @@
 		80CE0A3C1A23C21B00A4C402 /* smallfence.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0A321A23C21B00A4C402 /* smallfence.png */; };
 		80CE0A3D1A23C21B00A4C402 /* smallfence2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0A331A23C21B00A4C402 /* smallfence2.png */; };
 		80CE0A3E1A23C21B00A4C402 /* smallmountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0A341A23C21B00A4C402 /* smallmountain.png */; };
-		80CE0A401A24313700A4C402 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0A3F1A24313700A4C402 /* arrow.png */; };
+		80DAA1A51A26D695000B9F5D /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DAA1A41A26D695000B9F5D /* arrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +60,6 @@
 		52FB221B1A164EDA001DC8F0 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		80CB04611A1F930900F13D33 /* InfiniteBackgroundElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteBackgroundElement.h; sourceTree = "<group>"; };
 		80CB04621A1F930900F13D33 /* InfiniteBackgroundElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteBackgroundElement.m; sourceTree = "<group>"; };
-		80CD06FE1A24DAAB004DB182 /* arrow1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow1.png; sourceTree = "<group>"; };
 		80CD070A1A24E569004DB182 /* Dig Narrative Title Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dig Narrative Title Screen.png"; sourceTree = "<group>"; };
 		80CE0A1E1A2286CE00A4C402 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
 		80CE0A1F1A2286CE00A4C402 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
@@ -82,7 +80,7 @@
 		80CE0A321A23C21B00A4C402 /* smallfence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallfence.png; sourceTree = "<group>"; };
 		80CE0A331A23C21B00A4C402 /* smallfence2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallfence2.png; sourceTree = "<group>"; };
 		80CE0A341A23C21B00A4C402 /* smallmountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallmountain.png; sourceTree = "<group>"; };
-		80CE0A3F1A24313700A4C402 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		80DAA1A41A26D695000B9F5D /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,9 +186,8 @@
 				80CE0A321A23C21B00A4C402 /* smallfence.png */,
 				80CE0A331A23C21B00A4C402 /* smallfence2.png */,
 				80CE0A341A23C21B00A4C402 /* smallmountain.png */,
-				80CE0A3F1A24313700A4C402 /* arrow.png */,
-				80CD06FE1A24DAAB004DB182 /* arrow1.png */,
 				80CD070A1A24E569004DB182 /* Dig Narrative Title Screen.png */,
+				80DAA1A41A26D695000B9F5D /* arrow.png */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -278,11 +275,11 @@
 				52FB21FF1A164D2D001DC8F0 /* Main.storyboard in Resources */,
 				80CE0A3C1A23C21B00A4C402 /* smallfence.png in Resources */,
 				80CE0A371A23C21B00A4C402 /* luke.png in Resources */,
-				80CD06FF1A24DAAB004DB182 /* arrow1.png in Resources */,
 				80CD070B1A24E569004DB182 /* Dig Narrative Title Screen.png in Resources */,
 				80CE0A3A1A23C21B00A4C402 /* smallclouds.png in Resources */,
 				52FB22041A164D2D001DC8F0 /* LaunchScreen.xib in Resources */,
 				80CE0A3E1A23C21B00A4C402 /* smallmountain.png in Resources */,
+				80DAA1A51A26D695000B9F5D /* arrow.png in Resources */,
 				80CE0A391A23C21B00A4C402 /* sky.png in Resources */,
 				80CE0A351A23C21B00A4C402 /* dirt.png in Resources */,
 				52FB22011A164D2D001DC8F0 /* Images.xcassets in Resources */,
@@ -290,7 +287,6 @@
 				80CE0A361A23C21B00A4C402 /* fence.png in Resources */,
 				80CE0A3D1A23C21B00A4C402 /* smallfence2.png in Resources */,
 				52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */,
-				80CE0A401A24313700A4C402 /* arrow.png in Resources */,
 				80CE0A3B1A23C21B00A4C402 /* smalldirt.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

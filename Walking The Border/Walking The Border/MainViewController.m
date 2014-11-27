@@ -34,6 +34,9 @@ static CGFloat BUTTON_BLUE = 73;
 
 @property (nonatomic)Direction currentDirection;
 
+@property (strong, nonatomic)NSMutableArray* foregroundElements;
+@property (strong, nonatomic)NSMutableArray* addedElements;
+
 @property (strong, nonatomic)IBOutlet UIView* backgroundContainer;
 @property (strong, nonatomic)IBOutlet UIView* foregroundContainer;
 @property (strong, nonatomic)IBOutlet UIView* controlbarContainer;
@@ -66,6 +69,7 @@ static CGFloat BUTTON_BLUE = 73;
     [super viewDidLoad];
     
     [self initBackgrounds];
+    [self initForegrounds];
     [self initButtons];
     
     
@@ -75,10 +79,22 @@ static CGFloat BUTTON_BLUE = 73;
                                            scale:self.lukeImageView.image.scale
                                      orientation:UIImageOrientationUpMirrored];
     
-    // set initial settings
+    [self didAddViewFrom:[NSNumber numberWithFloat:0] to:[NSNumber numberWithFloat:[self lastBackground].view.frame.size.width]];
     
+    // set initial settings
     self.pixelsTraveled = 0;
     self.currentDirection = LEFT;
+}
+
+- (void)initForegrounds {
+    self.foregroundElements = [NSMutableArray array];
+    self.addedElements = [NSMutableArray array];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:0], @"arrow.png"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:50], @"arrow.png"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000], @"arrow.png"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000], @"arrow.png"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000], @"arrow.png"]];
+    
 }
 
 - (void)initBackgrounds {
@@ -127,12 +143,12 @@ static CGFloat BUTTON_BLUE = 73;
     UIImageView* rightArrow = [[UIImageView alloc] initForAutoLayout];
     UIImageView* leftArrow = [[UIImageView alloc] initForAutoLayout];
     
-    rightArrow.image = [UIImage imageWithCGImage:[UIImage imageNamed:@"arrow1.png"].CGImage
-                                           scale:[UIImage imageNamed:@"arrow1.png"].scale * 1.8
+    rightArrow.image = [UIImage imageWithCGImage:[UIImage imageNamed:@"arrow.png"].CGImage
+                                           scale:[UIImage imageNamed:@"arrow.png"].scale * 1.8
                                      orientation:UIImageOrientationUp];
     
-    leftArrow.image = [UIImage imageWithCGImage:[UIImage imageNamed:@"arrow1.png"].CGImage
-                                          scale:[UIImage imageNamed:@"arrow1.png"].scale * 1.8
+    leftArrow.image = [UIImage imageWithCGImage:[UIImage imageNamed:@"arrow.png"].CGImage
+                                          scale:[UIImage imageNamed:@"arrow.png"].scale * 1.8
                                     orientation:UIImageOrientationUpMirrored];
     
     [self.rightButton addSubview:rightArrow];
@@ -144,6 +160,18 @@ static CGFloat BUTTON_BLUE = 73;
     [leftArrow autoAlignAxis:ALAxisVertical toSameAxisOfView:self.leftButton withOffset:-2];
 }
 
+- (NSArray*)getForegroundElementsBetween:(NSNumber*)start and:(NSNumber*)end {
+    
+    NSMutableArray* elements = [NSMutableArray array];
+    
+    for (NSArray* element in self.foregroundElements) {
+        if ([element[0] floatValue] >= [start floatValue] && [element[0] floatValue] <= [end floatValue]) {
+            [elements addObject:element];
+        }
+    }
+    
+    return elements;
+}
 
 - (void)setCurrentDirection:(Direction)currentDirection {
     _currentDirection = currentDirection;
@@ -219,10 +247,16 @@ shouldChangeOrientation:(BOOL)shouldChange {
     
     for (InfiniteBackgroundElement* background in self.infiniteBackgrounds) {
         if (direction == LEFT) {
-            [background moveLeft];
+            [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+                [background moveLeft];
+                [self.view layoutIfNeeded];
+            }];
         }
         else if (direction == RIGHT) {
-            [background moveRight];
+            [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+                [background moveRight];
+                [self.view layoutIfNeeded];
+            }];
         }
     }
     
@@ -294,13 +328,43 @@ shouldChangeOrientation:(BOOL)shouldChange {
 
 #pragma mark - InfiniteBackgroundDelegate
 
-- (void)willAddViewFrom:(NSInteger)start to:(NSInteger)end {
+- (void)didAddViewFrom:(NSNumber*)start to:(NSNumber*)end {
     NSLog(@"ADDED");
     
+    NSArray* elementsToAdd = [self getForegroundElementsBetween:start and:end];
+    NSMutableArray* elementsAdded = [NSMutableArray array];
+    
+    for (NSArray* element in elementsToAdd) {
+        NSNumber* position = element[0];
+        NSString* fileName = element[1];
+
+        UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
+        imageView.image = [UIImage imageNamed:fileName];
+        
+        [self.backgroundContainer addSubview:imageView];
+        [imageView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+        [imageView autoConstrainAttribute:ALAttributeTrailing
+                              toAttribute:ALAttributeTrailing
+                                   ofView:[self lastBackground].views.firstObject
+                               withOffset:([position floatValue] + 350) * -1];
+        
+        [elementsAdded addObject:imageView];
+    }
+    
+    [self.addedElements addObject:elementsAdded];
 }
 
-- (void)willRemoveViewFrom:(NSInteger)start to:(NSInteger)end {
-    NSLog(@"RMOVED");
+- (void)didRemoveViewFrom:(NSNumber*)start to:(NSNumber*)end {
+    NSLog(@"REMOVED");
+    
+    NSArray* elements = self.addedElements.lastObject;
+    
+    for (NSArray* element in elements) {
+        [(UIImageView*)element removeFromSuperview];
+        
+    }
+    
+    [self.addedElements removeLastObject];
     
 }
 

@@ -12,7 +12,6 @@
 @interface InfiniteBackgroundElement ()
 
 @property (strong, nonatomic)UIImage*     image;
-@property (strong, nonatomic)NSMutableArray*     views;
 @property (strong, nonatomic)NSLayoutConstraint* positionConstraint;
 
 @end
@@ -57,7 +56,6 @@
     CGFloat totalWidth = self.views.count * self.image.size.width;
     
     if (newPosition > totalWidth - 750) {
-        [self.delegate willAddViewFrom:totalWidth to:totalWidth + self.image.size.width];
         UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
         imageView.image = self.image;
         [self.view addSubview:imageView];
@@ -65,12 +63,10 @@
         [imageView autoConstrainAttribute:ALAttributeTrailing toAttribute:ALAttributeLeading ofView:self.views.lastObject];
         
         [self.views addObject:imageView];
+        [self.delegate didAddViewFrom:[NSNumber numberWithDouble:totalWidth] to:[NSNumber numberWithDouble:totalWidth + self.image.size.width]];
     }
     
-    [UIView animateWithDuration:self.animationDuration animations:^{
-        self.positionConstraint.constant = newPosition;
-        [self.view layoutIfNeeded];
-    }];
+    self.positionConstraint.constant = newPosition;
 
     return newPosition;
 }
@@ -87,15 +83,12 @@
     CGFloat totalWidth = self.views.count * self.image.size.width;
     
     if (newPosition < totalWidth - self.image.size.width - 750 && self.views.count > 1) {
-        [self.delegate willRemoveViewFrom:totalWidth - self.image.size.width to:totalWidth];
         [self.views.lastObject removeFromSuperview];
         [self.views removeLastObject];
+        [self.delegate didRemoveViewFrom:[NSNumber numberWithDouble:totalWidth - self.image.size.width] to:[NSNumber numberWithDouble:totalWidth]];
     }
     
-    [UIView animateWithDuration:self.animationDuration animations:^{
-        self.positionConstraint.constant = newPosition;
-        [self.view layoutIfNeeded];
-    }];
+    self.positionConstraint.constant = newPosition;
     
     return newPosition;
 }

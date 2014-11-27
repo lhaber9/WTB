@@ -10,8 +10,8 @@
 
 @protocol InfiniteBackgroundElementDelegate
 
-- (void)willAddViewFrom:(NSInteger)start to:(NSInteger)end;
-- (void)willRemoveViewFrom:(NSInteger)start to:(NSInteger)end;
+- (void)didAddViewFrom:(NSNumber*)start to:(NSNumber*)end;
+- (void)didRemoveViewFrom:(NSNumber*)start to:(NSNumber*)end;
 
 @end
 
@@ -22,6 +22,8 @@
 
 @property (nonatomic)CGFloat speed;
 @property (nonatomic)CGFloat animationDuration;
+
+@property (strong, nonatomic)NSMutableArray*     views;
 
 - (id)initWithPng:(NSString *)PngFile;
 
