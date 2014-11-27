@@ -41,6 +41,9 @@ static CGFloat BUTTON_BLUE = 73;
 @property (strong, nonatomic)IBOutlet UIView* foregroundContainer;
 @property (strong, nonatomic)IBOutlet UIView* controlbarContainer;
 
+@property (strong, nonatomic)IBOutlet UIView*             positionStatusLine;
+@property (strong, nonatomic)IBOutlet NSLayoutConstraint* positionStatusConstraint;
+
 @property (strong, nonatomic)IBOutlet UIImageView* lukeImageView;
 @property (strong, nonatomic)UIImage* lukeImage;
 @property (strong, nonatomic)UIImage* flippedLuke;
@@ -80,6 +83,7 @@ static CGFloat BUTTON_BLUE = 73;
                                      orientation:UIImageOrientationUpMirrored];
     
     [self didAddViewFrom:[NSNumber numberWithFloat:0] to:[NSNumber numberWithFloat:[self lastBackground].view.frame.size.width]];
+    
     
     // set initial settings
     self.pixelsTraveled = 0;
@@ -160,6 +164,23 @@ static CGFloat BUTTON_BLUE = 73;
     [leftArrow autoAlignAxis:ALAxisVertical toSameAxisOfView:self.leftButton withOffset:-2];
 }
 
+- (NSNumber*)totalDistance {
+    
+    NSNumber* max = [NSNumber numberWithLong:0];
+    NSNumber* min = [NSNumber numberWithLong:999999999];
+    
+    for (NSArray* element in self.foregroundElements) {
+        if ([element[0] floatValue] > [max floatValue]) {
+            max =[NSNumber numberWithFloat:[element[0] floatValue]];
+        }
+        if ([element[0] floatValue] < [min floatValue]) {
+            min =[NSNumber numberWithFloat:[element[0] floatValue]];
+        }
+    }
+    
+    return [NSNumber numberWithFloat:[max floatValue] - [min floatValue]];
+}
+
 - (NSArray*)getForegroundElementsBetween:(NSNumber*)start and:(NSNumber*)end {
     
     NSMutableArray* elements = [NSMutableArray array];
@@ -171,6 +192,21 @@ static CGFloat BUTTON_BLUE = 73;
     }
     
     return elements;
+}
+
+- (void)movePositionStatus:(Direction)direction {
+    if (direction == LEFT) {
+        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+            self.positionStatusConstraint.constant -= ((GROUND_SPEED / [[self totalDistance] floatValue]) * self.positionStatusLine.frame.size.width);
+            [self.view layoutIfNeeded];
+        }];
+    }
+    else {
+        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+            self.positionStatusConstraint.constant += ((GROUND_SPEED / [[self totalDistance] floatValue]) * self.positionStatusLine.frame.size.width);
+            [self.view layoutIfNeeded];
+        }];
+    }
 }
 
 - (void)setCurrentDirection:(Direction)currentDirection {
@@ -269,26 +305,14 @@ shouldChangeOrientation:(BOOL)shouldChange {
     self.distanceTraveledLabel.text = [self distanceTraveledString];
 }
 
-- (NSInteger)moveLeftWithMultiplier:(NSInteger)mult
-                   shouldCountToOdo:(BOOL)shouldCount
-            shouldChangeOrientation:(BOOL)shouldChange {
-    [self moveWorld:LEFT shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
-    return [self position];
-}
-
-- (NSInteger)moveRightWithMultiplier:(NSInteger)mult
-                    shouldCountToOdo:(BOOL)shouldCount
-             shouldChangeOrientation:(BOOL)shouldChange {
-    [self moveWorld:RIGHT shouldCountToOdo:shouldCount shouldChangeOrientation:shouldChange];
-    return [self position];
-}
-
 - (IBAction)leftTap:(id)sender {
-    [self moveLeftWithMultiplier:1 shouldCountToOdo:YES shouldChangeOrientation:YES];
+    [self moveWorld:LEFT shouldCountToOdo:YES shouldChangeOrientation:YES];
+    [self movePositionStatus:LEFT];
 }
 
 - (IBAction)rightTap:(id)sender {
-    [self moveRightWithMultiplier:1 shouldCountToOdo:YES shouldChangeOrientation:YES];
+    [self moveWorld:RIGHT shouldCountToOdo:YES shouldChangeOrientation:YES];
+    [self movePositionStatus:RIGHT];
 }
 
 - (void) rightTapHold: (UILongPressGestureRecognizer *) gesture {

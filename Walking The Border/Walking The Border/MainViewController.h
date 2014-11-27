@@ -11,16 +11,6 @@
 
 @interface MainViewController : UIViewController <InfiniteBackgroundElementDelegate>
 
-- (NSInteger)moveLeftWithMultiplier:(NSInteger)mult
-                   shouldCountToOdo:(BOOL)shouldCount
-            shouldChangeOrientation:(BOOL)shouldChange;
-
-- (NSInteger)moveRightWithMultiplier:(NSInteger)mult
-                    shouldCountToOdo:(BOOL)shouldCount
-             shouldChangeOrientation:(BOOL)shouldChange;
-
-
-
 - (IBAction)leftTap:(id)sender;
 - (IBAction)rightTap:(id)sender;
 
