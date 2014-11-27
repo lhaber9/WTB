@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, Direction) {
 };
 
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
-static CGFloat PRESS_AND_HOLD_DELAY = 0.1;
+static CGFloat PRESS_AND_HOLD_DELAY = 0.125;
 static CGFloat ANIMATION_DURATION = 0.2;
 
 static CGFloat SKY_SPEED = 0;
@@ -329,8 +329,6 @@ shouldChangeOrientation:(BOOL)shouldChange {
 #pragma mark - InfiniteBackgroundDelegate
 
 - (void)didAddViewFrom:(NSNumber*)start to:(NSNumber*)end {
-    NSLog(@"ADDED");
-    
     NSArray* elementsToAdd = [self getForegroundElementsBetween:start and:end];
     NSMutableArray* elementsAdded = [NSMutableArray array];
     
@@ -355,8 +353,6 @@ shouldChangeOrientation:(BOOL)shouldChange {
 }
 
 - (void)didRemoveViewFrom:(NSNumber*)start to:(NSNumber*)end {
-    NSLog(@"REMOVED");
-    
     NSArray* elements = self.addedElements.lastObject;
     
     for (NSArray* element in elements) {
@@ -365,7 +361,6 @@ shouldChangeOrientation:(BOOL)shouldChange {
     }
     
     [self.addedElements removeLastObject];
-    
 }
 
 @end
