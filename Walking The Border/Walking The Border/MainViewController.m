@@ -167,18 +167,14 @@ static CGFloat BUTTON_BLUE = 73;
 - (NSNumber*)totalDistance {
     
     NSNumber* max = [NSNumber numberWithLong:0];
-    NSNumber* min = [NSNumber numberWithLong:999999999];
     
     for (NSArray* element in self.foregroundElements) {
         if ([element[0] floatValue] > [max floatValue]) {
             max =[NSNumber numberWithFloat:[element[0] floatValue]];
         }
-        if ([element[0] floatValue] < [min floatValue]) {
-            min =[NSNumber numberWithFloat:[element[0] floatValue]];
-        }
     }
     
-    return [NSNumber numberWithFloat:[max floatValue] - [min floatValue]];
+    return [NSNumber numberWithFloat:[max floatValue]];
 }
 
 - (NSArray*)getForegroundElementsBetween:(NSNumber*)start and:(NSNumber*)end {
@@ -195,6 +191,10 @@ static CGFloat BUTTON_BLUE = 73;
 }
 
 - (void)movePositionStatus:(Direction)direction {
+    if ([self position] > [[self totalDistance] floatValue]) {
+        return;
+    }
+
     if (direction == LEFT) {
         [UIView animateWithDuration:ANIMATION_DURATION animations:^{
             self.positionStatusConstraint.constant -= ((GROUND_SPEED / [[self totalDistance] floatValue]) * self.positionStatusLine.frame.size.width);
