@@ -10,7 +10,6 @@
                 <outlet property="backgroundContainer" destination="pyV-YV-5V0" id="6RT-0K-z0G"/>
                 <outlet property="controlbarContainer" destination="2hn-eJ-y7l" id="43k-0G-461"/>
                 <outlet property="distanceTraveledLabel" destination="BjZ-hh-ch2" id="ifb-aM-msc"/>
-                <outlet property="foregroundContainer" destination="Kee-eT-jm5" id="6MT-9d-6Bg"/>
                 <outlet property="leftButton" destination="YIj-J3-nEI" id="XtL-CQ-TTp"/>
                 <outlet property="lukeImageView" destination="Nxh-j1-v6f" id="tYp-ES-Ca2"/>
                 <outlet property="positionLabel" destination="Kuh-4n-adt" id="iik-h8-6hu"/>
@@ -29,19 +28,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="534"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kee-eT-jm5" userLabel="Foreground">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="534"/>
-                    <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="luke.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nxh-j1-v6f">
-                            <rect key="frame" x="172" y="168" width="256" height="199"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="centerY" secondItem="Nxh-j1-v6f" secondAttribute="centerY" id="ehX-sn-LoF"/>
-                        <constraint firstAttribute="centerX" secondItem="Nxh-j1-v6f" secondAttribute="centerX" id="rIY-W6-hxf"/>
-                    </constraints>
-                </view>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="luke.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nxh-j1-v6f">
+                    <rect key="frame" x="172" y="168" width="256" height="199"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hn-eJ-y7l" userLabel="Control Bar">
                     <rect key="frame" x="0.0" y="534" width="600" height="66"/>
                     <subviews>
@@ -189,18 +178,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Kee-eT-jm5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="90j-Y5-9cp"/>
                 <constraint firstAttribute="bottom" secondItem="2hn-eJ-y7l" secondAttribute="bottom" id="DMq-Q9-vsd"/>
                 <constraint firstItem="2hn-eJ-y7l" firstAttribute="top" secondItem="pyV-YV-5V0" secondAttribute="bottom" id="DQT-H5-f51"/>
                 <constraint firstAttribute="trailing" secondItem="2hn-eJ-y7l" secondAttribute="trailing" id="EdJ-Ls-g0A"/>
+                <constraint firstAttribute="centerY" secondItem="Nxh-j1-v6f" secondAttribute="centerY" constant="33" id="KNs-Zq-YtE"/>
                 <constraint firstItem="2hn-eJ-y7l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KcL-Ad-BJe"/>
                 <constraint firstAttribute="bottom" secondItem="2hn-eJ-y7l" secondAttribute="bottom" id="Lq1-6C-fJL">
                     <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
                 </constraint>
                 <constraint firstAttribute="trailing" secondItem="pyV-YV-5V0" secondAttribute="trailing" id="Mh3-Mc-ahn"/>
-                <constraint firstAttribute="trailing" secondItem="Kee-eT-jm5" secondAttribute="trailing" id="Y5C-GB-9y5"/>
-                <constraint firstItem="Kee-eT-jm5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Z7z-nH-Sqf"/>
-                <constraint firstItem="2hn-eJ-y7l" firstAttribute="top" secondItem="Kee-eT-jm5" secondAttribute="bottom" id="h4i-Lh-P5o"/>
+                <constraint firstAttribute="centerX" secondItem="Nxh-j1-v6f" secondAttribute="centerX" id="TpU-g6-JvK"/>
                 <constraint firstItem="2hn-eJ-y7l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="h5y-0R-0oT"/>
                 <constraint firstItem="pyV-YV-5V0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qrn-a2-KVE"/>
                 <constraint firstItem="pyV-YV-5V0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="s1v-ii-5v6"/>

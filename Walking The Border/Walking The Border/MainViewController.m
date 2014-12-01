@@ -34,11 +34,12 @@ static CGFloat BUTTON_BLUE = 73;
 
 @property (nonatomic)Direction currentDirection;
 
+@property (strong, nonatomic)UIViewController* modalVC;
+
 @property (strong, nonatomic)NSMutableArray* foregroundElements;
 @property (strong, nonatomic)NSMutableArray* addedElements;
 
 @property (strong, nonatomic)IBOutlet UIView* backgroundContainer;
-@property (strong, nonatomic)IBOutlet UIView* foregroundContainer;
 @property (strong, nonatomic)IBOutlet UIView* controlbarContainer;
 
 @property (strong, nonatomic)IBOutlet UIView*             positionStatusLine;
@@ -74,7 +75,7 @@ static CGFloat BUTTON_BLUE = 73;
     [self initBackgrounds];
     [self initForegrounds];
     [self initButtons];
-    
+   
     
     // set luke image
     self.lukeImage   = self.lukeImageView.image;
@@ -93,11 +94,11 @@ static CGFloat BUTTON_BLUE = 73;
 - (void)initForegrounds {
     self.foregroundElements = [NSMutableArray array];
     self.addedElements = [NSMutableArray array];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:0], @"arrow.png"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:50], @"arrow.png"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000], @"arrow.png"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000], @"arrow.png"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000], @"arrow.png"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:0],     @YES, @"arrow.png", @"0", @"tappedFirst:"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:50],    @YES, @"arrow.png", @"1", @"tappedSecond:"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000],  @YES, @"arrow.png", @"2", @"tappedThird:"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000],  @YES, @"arrow.png", @"3", @"tappedFourth:"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000], @YES, @"arrow.png", @"4", @"tappedFifth:"]];
     
 }
 
@@ -191,7 +192,7 @@ static CGFloat BUTTON_BLUE = 73;
 }
 
 - (void)movePositionStatus:(Direction)direction {
-    if ([self position] > [[self totalDistance] floatValue]) {
+    if ([self position] > [[self totalDistance] floatValue] || [self position] == 0) {
         return;
     }
 
@@ -315,6 +316,56 @@ shouldChangeOrientation:(BOOL)shouldChange {
     [self movePositionStatus:RIGHT];
 }
 
+- (void)callSelectorForForegroundElementWithTag:(NSInteger)tag {
+    
+    NSArray* element;
+    for (NSArray* el in self.foregroundElements) {
+        if ([el[3] integerValue] == tag) {
+            element = el;
+            break;
+        }
+    }
+    
+    if ([element[4] isEqualToString:@""]) {
+        return;
+    }
+    
+    self.modalVC = [[UIViewController alloc] init];
+    self.modalVC.view.backgroundColor = [UIColor whiteColor];
+    self.modalVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    
+    UILabel* closeButton = [[UILabel alloc] initForAutoLayout];
+    closeButton.userInteractionEnabled = YES;
+    closeButton.text = @"X";
+    closeButton.textAlignment = NSTextAlignmentCenter;
+    [closeButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeModal:)]];
+    
+    [self.modalVC.view addSubview:closeButton];
+    [closeButton autoPinEdgeToSuperviewEdge:ALEdgeLeading];
+    [closeButton autoPinEdgeToSuperviewEdge:ALEdgeTop];
+    [closeButton autoSetDimensionsToSize:CGSizeMake(44, 44)];
+    
+    SEL selector = NSSelectorFromString(element[4]);
+    IMP imp = [self methodForSelector:selector];
+    void (*func)(id, SEL, id) = (void *)imp;
+    func(self, selector, nil);
+    
+    [self presentViewController:self.modalVC animated:YES completion:nil];
+}
+
+- (void)closeModal:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)tappedForegroundElement:(id)sender {
+    
+    UITapGestureRecognizer* tapGesture = (UITapGestureRecognizer*)sender;
+    UIImageView* tappedElement = (UIImageView*)tapGesture.view;
+    NSInteger tag = tappedElement.tag;
+    
+    [self callSelectorForForegroundElementWithTag:tag];
+}
+
 - (void) rightTapHold: (UILongPressGestureRecognizer *) gesture {
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.pressAndHoldTimer = [NSTimer scheduledTimerWithTimeInterval:PRESS_AND_HOLD_DELAY target:self selector:@selector(rightTap:) userInfo:nil repeats:YES];
@@ -350,6 +401,94 @@ shouldChangeOrientation:(BOOL)shouldChange {
 }
 */
 
+- (UIImageView*)addForegroundElement:(NSString*)fileName atPosition:(NSNumber*)position withTag:(NSInteger)tag andIndicator:(BOOL)shouldShowIndicator {
+    
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedForegroundElement:)];
+    
+    UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
+    imageView.userInteractionEnabled = YES;
+    imageView.image = [UIImage imageNamed:fileName];
+    imageView.tag = tag;
+    [imageView addGestureRecognizer:tapGesture];
+    
+    [self.backgroundContainer addSubview:imageView];
+    [imageView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [imageView autoConstrainAttribute:ALAttributeTrailing
+                          toAttribute:ALAttributeTrailing
+                               ofView:[self lastBackground].views.firstObject
+                           withOffset:([position floatValue] + 350) * -1];
+    
+    if (shouldShowIndicator) {
+        
+    }
+    
+    
+    return imageView;
+}
+
+
+
+- (void)tappedFirst:(id)sender {
+    
+    UILabel* label = [[UILabel alloc] initForAutoLayout];
+    label.text = @"First Element!";
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [self.modalVC.view addSubview:label];
+    [label autoCenterInSuperview];
+    
+}
+
+- (void)tappedSecond:(id)sender {
+    UILabel* label = [[UILabel alloc] initForAutoLayout];
+    label.text = @"Second Element!";
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [self.modalVC.view addSubview:label];
+    [label autoCenterInSuperview];
+}
+- (void)tappedThird:(id)sender {
+    UILabel* label = [[UILabel alloc] initForAutoLayout];
+    label.text = @"Third Element!";
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [self.modalVC.view addSubview:label];
+    [label autoCenterInSuperview];
+}
+- (void)tappedFourth:(id)sender {
+    UILabel* label = [[UILabel alloc] initForAutoLayout];
+    label.text = @"Fourth Element!";
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [self.modalVC.view addSubview:label];
+    [label autoCenterInSuperview];
+    
+}
+- (void)tappedFifth:(id)sender {
+    UILabel* label = [[UILabel alloc] initForAutoLayout];
+    label.text = @"Fifth Element!";
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [self.modalVC.view addSubview:label];
+    [label autoCenterInSuperview];
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #pragma mark - InfiniteBackgroundDelegate
 
 - (void)didAddViewFrom:(NSNumber*)start to:(NSNumber*)end {
@@ -358,17 +497,15 @@ shouldChangeOrientation:(BOOL)shouldChange {
     
     for (NSArray* element in elementsToAdd) {
         NSNumber* position = element[0];
-        NSString* fileName = element[1];
-
-        UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
-        imageView.image = [UIImage imageNamed:fileName];
+        NSString* fileName = element[2];
+        NSInteger tag = [element[3] integerValue];
+        BOOL indicator = element[1];
         
-        [self.backgroundContainer addSubview:imageView];
-        [imageView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
-        [imageView autoConstrainAttribute:ALAttributeTrailing
-                              toAttribute:ALAttributeTrailing
-                                   ofView:[self lastBackground].views.firstObject
-                               withOffset:([position floatValue] + 350) * -1];
+        
+        UIImageView* imageView = [self addForegroundElement:fileName
+                                                 atPosition:position
+                                                    withTag:tag
+                                               andIndicator:indicator];
         
         [elementsAdded addObject:imageView];
     }
@@ -386,5 +523,4 @@ shouldChangeOrientation:(BOOL)shouldChange {
     
     [self.addedElements removeLastObject];
 }
-
 @end

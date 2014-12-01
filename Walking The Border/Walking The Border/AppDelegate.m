@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    sleep(2);
+    sleep(3);
     
     
     MainViewController* mainVC = [[MainViewController alloc] init];
