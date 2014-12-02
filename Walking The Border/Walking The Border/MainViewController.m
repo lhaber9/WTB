@@ -34,6 +34,8 @@ static CGFloat CONTROLBAR_RED = 233;
 static CGFloat CONTROLBAR_GREEN = 180;
 static CGFloat CONTROLBAR_BLUE = 83;
 
+static CGFloat POSITIONBAR_LENGTH = 525;
+
 @interface MainViewController ()
 
 @property (nonatomic)Direction currentDirection;
@@ -47,11 +49,14 @@ static CGFloat CONTROLBAR_BLUE = 83;
 @property (strong, nonatomic)IBOutlet UIView* controlbarContainer;
 
 @property (strong, nonatomic)IBOutlet UIView*             positionStatusLine;
-@property (strong, nonatomic)IBOutlet NSLayoutConstraint* positionStatusConstraint;
+@property (strong, nonatomic)NSLayoutConstraint*          positionStatusConstraint;
 
 @property (strong, nonatomic)IBOutlet UIImageView* lukeImageView;
+@property (strong, nonatomic)UIImage* positionIdicatorImage;
+@property (strong, nonatomic)UIImage* foregroundPositionIndicatorImage;
 @property (strong, nonatomic)UIImage* lukeImage;
 @property (strong, nonatomic)UIImage* flippedLuke;
+
 
 @property (strong, nonatomic)IBOutlet UIButton* rightButton;
 @property (strong, nonatomic)IBOutlet UIButton* leftButton;
@@ -79,7 +84,8 @@ static CGFloat CONTROLBAR_BLUE = 83;
     [self initBackgrounds];
     [self initForegrounds];
     [self initButtons];
-   
+    [self initIndicators];
+    
     
     // set luke image
     self.lukeImage   = self.lukeImageView.image;
@@ -95,11 +101,56 @@ static CGFloat CONTROLBAR_BLUE = 83;
     self.currentDirection = LEFT;
 }
 
+- (void)initIndicators {
+    
+    self.foregroundPositionIndicatorImage = [UIImage imageNamed:@"Red Button.png"];
+    self.positionIdicatorImage = [UIImage imageNamed:@"Gray Button.png"];
+
+    for (NSArray* element in self.foregroundElements) {
+        BOOL shouldShowIndicator = [element[1] boolValue];
+        
+        if (shouldShowIndicator) {
+            
+            UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
+            imageView.image = self.foregroundPositionIndicatorImage;
+            
+            
+            NSNumber* position = element[0];
+            NSNumber* total = [self totalDistance];
+            CGFloat lineWidth = POSITIONBAR_LENGTH * -1;
+            
+            CGFloat offset = ([position floatValue] / [total floatValue]) * lineWidth;
+            
+            [self.controlbarContainer addSubview:imageView];
+            [imageView autoSetDimensionsToSize:CGSizeMake(15, 15)];
+            [imageView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.positionStatusLine];
+            [imageView autoConstrainAttribute:ALAttributeVertical
+                                  toAttribute:ALAttributeTrailing
+                                       ofView:self.positionStatusLine
+                                   withOffset:offset];
+            
+        }
+        
+    }
+    
+    UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
+    imageView.image = self.positionIdicatorImage;
+    
+    
+    [self.controlbarContainer addSubview:imageView];
+    [imageView autoSetDimensionsToSize:CGSizeMake(15, 15)];
+    [imageView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.positionStatusLine];
+    self.positionStatusConstraint = [imageView autoConstrainAttribute:ALAttributeVertical
+                                                          toAttribute:ALAttributeTrailing
+                                                               ofView:self.positionStatusLine];
+    
+}
+
 - (void)initForegrounds {
     self.foregroundElements = [NSMutableArray array];
     self.addedElements = [NSMutableArray array];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:0],     @YES, @"arrow.png", @"0", @"tappedFirst:"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:50],    @YES, @"arrow.png", @"1", @"tappedSecond:"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:50],    @NO, @"arrow.png", @"1", @"tappedSecond:"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000],  @YES, @"arrow.png", @"2", @"tappedThird:"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000],  @YES, @"arrow.png", @"3", @"tappedFourth:"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000], @YES, @"arrow.png", @"4", @"tappedFifth:"]];
@@ -205,13 +256,13 @@ static CGFloat CONTROLBAR_BLUE = 83;
 
     if (direction == LEFT) {
         [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-            self.positionStatusConstraint.constant -= ((GROUND_SPEED / [[self totalDistance] floatValue]) * self.positionStatusLine.frame.size.width);
+            self.positionStatusConstraint.constant -= ((GROUND_SPEED / [[self totalDistance] floatValue]) * POSITIONBAR_LENGTH);
             [self.view layoutIfNeeded];
         }];
     }
     else {
         [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-            self.positionStatusConstraint.constant += ((GROUND_SPEED / [[self totalDistance] floatValue]) * self.positionStatusLine.frame.size.width);
+            self.positionStatusConstraint.constant += ((GROUND_SPEED / [[self totalDistance] floatValue]) * POSITIONBAR_LENGTH);
             [self.view layoutIfNeeded];
         }];
     }
@@ -408,7 +459,7 @@ shouldChangeOrientation:(BOOL)shouldChange {
 }
 */
 
-- (UIImageView*)addForegroundElement:(NSString*)fileName atPosition:(NSNumber*)position withTag:(NSInteger)tag andIndicator:(BOOL)shouldShowIndicator {
+- (UIImageView*)addForegroundElement:(NSString*)fileName atPosition:(NSNumber*)position withTag:(NSInteger)tag {
     
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedForegroundElement:)];
     
@@ -424,11 +475,6 @@ shouldChangeOrientation:(BOOL)shouldChange {
                           toAttribute:ALAttributeTrailing
                                ofView:[self lastBackground].views.firstObject
                            withOffset:([position floatValue] + 350) * -1];
-    
-    if (shouldShowIndicator) {
-        
-    }
-    
     
     return imageView;
 }
@@ -506,13 +552,11 @@ shouldChangeOrientation:(BOOL)shouldChange {
         NSNumber* position = element[0];
         NSString* fileName = element[2];
         NSInteger tag = [element[3] integerValue];
-        BOOL indicator = element[1];
         
         
         UIImageView* imageView = [self addForegroundElement:fileName
                                                  atPosition:position
-                                                    withTag:tag
-                                               andIndicator:indicator];
+                                                    withTag:tag];
         
         [elementsAdded addObject:imageView];
     }

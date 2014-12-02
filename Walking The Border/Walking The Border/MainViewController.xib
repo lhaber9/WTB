@@ -13,7 +13,6 @@
                 <outlet property="leftButton" destination="YIj-J3-nEI" id="XtL-CQ-TTp"/>
                 <outlet property="lukeImageView" destination="Nxh-j1-v6f" id="tYp-ES-Ca2"/>
                 <outlet property="positionLabel" destination="Kuh-4n-adt" id="iik-h8-6hu"/>
-                <outlet property="positionStatusConstraint" destination="O5q-ud-4QA" id="6by-qb-rfz"/>
                 <outlet property="positionStatusLine" destination="Vqb-5B-C6e" id="IoT-Jc-hZl"/>
                 <outlet property="rightButton" destination="Brb-0j-8zG" id="dxU-8n-hvb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -29,7 +28,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="luke.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nxh-j1-v6f">
-                    <rect key="frame" x="172" y="168" width="256" height="199"/>
+                    <rect key="frame" x="172" y="201" width="256" height="199"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hn-eJ-y7l" userLabel="Control Bar">
                     <rect key="frame" x="0.0" y="534" width="600" height="66"/>
@@ -116,25 +115,21 @@
                                     <rect key="frame" x="30" y="18" width="458" height="2"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstAttribute="width" constant="458" id="A9l-lI-nf0"/>
                                         <constraint firstAttribute="height" constant="2" id="TOj-cX-fmo"/>
                                     </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAK-0U-OZI">
-                                    <rect key="frame" x="473" y="11" width="15" height="15"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="15" id="SRb-2N-tha"/>
-                                        <constraint firstAttribute="width" constant="15" id="XMP-Uo-e30"/>
-                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="A9l-lI-nf0"/>
+                                        </mask>
+                                    </variation>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Dtk-Yf-f6t" firstAttribute="bottom" secondItem="Kuh-4n-adt" secondAttribute="bottom" id="14K-hn-6G5"/>
                                 <constraint firstItem="BjZ-hh-ch2" firstAttribute="leading" secondItem="Dtk-Yf-f6t" secondAttribute="trailing" constant="8" id="3uS-xp-JQr"/>
-                                <constraint firstItem="MAK-0U-OZI" firstAttribute="centerY" secondItem="Vqb-5B-C6e" secondAttribute="centerY" id="JyC-ku-kyV"/>
                                 <constraint firstItem="Vqb-5B-C6e" firstAttribute="top" secondItem="tPB-GW-6tT" secondAttribute="top" constant="18" id="Kmu-NT-09g"/>
-                                <constraint firstItem="MAK-0U-OZI" firstAttribute="trailing" secondItem="Vqb-5B-C6e" secondAttribute="trailing" id="O5q-ud-4QA"/>
                                 <constraint firstItem="Dtk-Yf-f6t" firstAttribute="leading" secondItem="tPB-GW-6tT" secondAttribute="leading" constant="10" id="ZCs-L3-lLO"/>
                                 <constraint firstAttribute="trailing" secondItem="Kuh-4n-adt" secondAttribute="trailing" constant="10" id="axH-gb-cpT"/>
                                 <constraint firstItem="Kuh-4n-adt" firstAttribute="leading" secondItem="lr4-uK-r8O" secondAttribute="trailing" constant="8" id="bJs-h3-zoP"/>
@@ -181,7 +176,7 @@
                 <constraint firstAttribute="bottom" secondItem="2hn-eJ-y7l" secondAttribute="bottom" id="DMq-Q9-vsd"/>
                 <constraint firstItem="2hn-eJ-y7l" firstAttribute="top" secondItem="pyV-YV-5V0" secondAttribute="bottom" id="DQT-H5-f51"/>
                 <constraint firstAttribute="trailing" secondItem="2hn-eJ-y7l" secondAttribute="trailing" id="EdJ-Ls-g0A"/>
-                <constraint firstAttribute="centerY" secondItem="Nxh-j1-v6f" secondAttribute="centerY" constant="33" id="KNs-Zq-YtE"/>
+                <constraint firstAttribute="centerY" secondItem="Nxh-j1-v6f" secondAttribute="centerY" id="KNs-Zq-YtE"/>
                 <constraint firstItem="2hn-eJ-y7l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KcL-Ad-BJe"/>
                 <constraint firstAttribute="bottom" secondItem="2hn-eJ-y7l" secondAttribute="bottom" id="Lq1-6C-fJL">
                     <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>

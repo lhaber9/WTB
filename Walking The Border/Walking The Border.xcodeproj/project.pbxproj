@@ -16,6 +16,8 @@
 		52FB221C1A164EDA001DC8F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB221A1A164EDA001DC8F0 /* MainViewController.m */; };
 		52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB221B1A164EDA001DC8F0 /* MainViewController.xib */; };
 		80C45D9D1A2CCD47005AC492 /* TitleScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C45D9C1A2CCD47005AC492 /* TitleScreen.png */; };
+		80C45DA01A2E12D0005AC492 /* Gray Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C45D9E1A2E12D0005AC492 /* Gray Button.png */; };
+		80C45DA11A2E12D0005AC492 /* Red Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C45D9F1A2E12D0005AC492 /* Red Button.png */; };
 		80CB04631A1F930900F13D33 /* InfiniteBackgroundElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CB04621A1F930900F13D33 /* InfiniteBackgroundElement.m */; };
 		80CD070B1A24E569004DB182 /* Dig Narrative Title Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CD070A1A24E569004DB182 /* Dig Narrative Title Screen.png */; };
 		80CE0A271A2286CE00A4C402 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0A1F1A2286CE00A4C402 /* ALView+PureLayout.m */; };
@@ -60,6 +62,8 @@
 		52FB221A1A164EDA001DC8F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		52FB221B1A164EDA001DC8F0 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		80C45D9C1A2CCD47005AC492 /* TitleScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleScreen.png; sourceTree = "<group>"; };
+		80C45D9E1A2E12D0005AC492 /* Gray Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gray Button.png"; sourceTree = "<group>"; };
+		80C45D9F1A2E12D0005AC492 /* Red Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Button.png"; sourceTree = "<group>"; };
 		80CB04611A1F930900F13D33 /* InfiniteBackgroundElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteBackgroundElement.h; sourceTree = "<group>"; };
 		80CB04621A1F930900F13D33 /* InfiniteBackgroundElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteBackgroundElement.m; sourceTree = "<group>"; };
 		80CD070A1A24E569004DB182 /* Dig Narrative Title Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dig Narrative Title Screen.png"; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 				80CE0A341A23C21B00A4C402 /* smallmountain.png */,
 				80CD070A1A24E569004DB182 /* Dig Narrative Title Screen.png */,
 				80DAA1A41A26D695000B9F5D /* arrow.png */,
+				80C45D9E1A2E12D0005AC492 /* Gray Button.png */,
+				80C45D9F1A2E12D0005AC492 /* Red Button.png */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -283,11 +289,13 @@
 				80CE0A3A1A23C21B00A4C402 /* smallclouds.png in Resources */,
 				52FB22041A164D2D001DC8F0 /* LaunchScreen.xib in Resources */,
 				80CE0A3E1A23C21B00A4C402 /* smallmountain.png in Resources */,
+				80C45DA11A2E12D0005AC492 /* Red Button.png in Resources */,
 				80DAA1A51A26D695000B9F5D /* arrow.png in Resources */,
 				80CE0A391A23C21B00A4C402 /* sky.png in Resources */,
 				80CE0A351A23C21B00A4C402 /* dirt.png in Resources */,
 				52FB22011A164D2D001DC8F0 /* Images.xcassets in Resources */,
 				80CE0A381A23C21B00A4C402 /* mountain.png in Resources */,
+				80C45DA01A2E12D0005AC492 /* Gray Button.png in Resources */,
 				80CE0A361A23C21B00A4C402 /* fence.png in Resources */,
 				80CE0A3D1A23C21B00A4C402 /* smallfence2.png in Resources */,
 				52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */,
