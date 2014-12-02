@@ -30,6 +30,10 @@ static CGFloat BUTTON_RED = 232;
 static CGFloat BUTTON_GREEN = 100;
 static CGFloat BUTTON_BLUE = 73;
 
+static CGFloat CONTROLBAR_RED = 233;
+static CGFloat CONTROLBAR_GREEN = 180;
+static CGFloat CONTROLBAR_BLUE = 83;
+
 @interface MainViewController ()
 
 @property (nonatomic)Direction currentDirection;
@@ -118,6 +122,9 @@ static CGFloat BUTTON_BLUE = 73;
     
     InfiniteBackgroundElement* lastElement = (InfiniteBackgroundElement*)self.infiniteBackgrounds.lastObject;
     lastElement.delegate = self;
+    
+    // Color the controlbar container orange.
+    [self.controlbarContainer setBackgroundColor:[UIColor colorWithRed:CONTROLBAR_RED/255 green:CONTROLBAR_GREEN/255 blue:CONTROLBAR_BLUE/255 alpha:1]];
 }
 
 - (void)initButtons {
