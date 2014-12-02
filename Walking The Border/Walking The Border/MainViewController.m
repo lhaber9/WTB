@@ -103,8 +103,8 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 
 - (void)initIndicators {
     
-    self.foregroundPositionIndicatorImage = [UIImage imageNamed:@"Red Button.png"];
-    self.positionIdicatorImage = [UIImage imageNamed:@"Gray Button.png"];
+    self.foregroundPositionIndicatorImage = [UIImage imageNamed:@"Gray Button.png"];
+    self.positionIdicatorImage = [UIImage imageNamed:@"Red Button.png"];
 
     for (NSArray* element in self.foregroundElements) {
         BOOL shouldShowIndicator = [element[1] boolValue];
