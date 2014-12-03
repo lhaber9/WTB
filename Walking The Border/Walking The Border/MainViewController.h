@@ -7,9 +7,10 @@
 //
 
 #import "InfiniteBackgroundElement.h"
+#import "ModalActionVC.h"
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController <InfiniteBackgroundElementDelegate>
+@interface MainViewController : UIViewController <InfiniteBackgroundElementDelegate, ModalActionDelegate>
 
 - (IBAction)leftTap:(id)sender;
 - (IBAction)rightTap:(id)sender;

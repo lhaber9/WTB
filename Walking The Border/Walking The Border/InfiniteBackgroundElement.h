@@ -25,7 +25,7 @@
 
 @property (strong, nonatomic)NSMutableArray*     views;
 
-- (id)initWithPng:(NSString *)PngFile;
+- (id)initWithPng:(NSString *)PngFile andMult:(CGFloat)mult;
 
 - (NSInteger)position;
 

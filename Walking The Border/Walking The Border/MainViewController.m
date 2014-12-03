@@ -7,7 +7,6 @@
 //  TESTING OUT CHANGES
 
 #import "MainViewController.h"
-#import "InfiniteBackgroundElement.h"
 #import "QuartzCore/QuartzCore.h"
 #import "ALView+PureLayout.h"
 
@@ -23,7 +22,8 @@ static CGFloat ANIMATION_DURATION = 0.2;
 static CGFloat SKY_SPEED = 0;
 static CGFloat CLOUDS_SPEED = 5;
 static CGFloat MOUNTAINS_SPEED = 15;
-static CGFloat FENCE_SPEED = 25;
+static CGFloat FENCE_SPEED_BACK = 25;
+static CGFloat FENCE_SPEED_FRONT = 35;
 static CGFloat GROUND_SPEED = 50;
 
 static CGFloat BUTTON_RED = 232;
@@ -39,8 +39,6 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 @interface MainViewController ()
 
 @property (nonatomic)Direction currentDirection;
-
-@property (strong, nonatomic)UIViewController* modalVC;
 
 @property (strong, nonatomic)NSMutableArray* foregroundElements;
 @property (strong, nonatomic)NSMutableArray* addedElements;
@@ -149,26 +147,27 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 - (void)initForegrounds {
     self.foregroundElements = [NSMutableArray array];
     self.addedElements = [NSMutableArray array];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:0],     @YES, @"arrow.png", @"0", @"tappedFirst:"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:50],    @NO, @"arrow.png", @"1", @"tappedSecond:"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000],  @YES, @"arrow.png", @"2", @"tappedThird:"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000],  @YES, @"arrow.png", @"3", @"tappedFourth:"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000], @YES, @"arrow.png", @"4", @"tappedFifth:"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:0],     @YES, @"arrow.png", @"0", @"firstElement"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:500],   @YES, @"friendshipcircle.png", @"1", @"friendshipCircle"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000],  @YES, @"arrow.png", @"2", @"secondElement"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000],  @YES, @"arrow.png", @"3", @"thirdElement"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000], @YES, @"arrow.png", @"4", @"fourthElement"]];
     
 }
 
 - (void)initBackgrounds {
     // Set up backgrounds
-    NSArray* infiniteBackgroundsData = @[@[@"sky.png",[NSNumber numberWithFloat:SKY_SPEED]],
-                                         @[@"smallclouds.png",[NSNumber numberWithFloat:CLOUDS_SPEED]],
-                                         @[@"smallmountain.png",[NSNumber numberWithFloat:MOUNTAINS_SPEED]],
-                                         @[@"smallfence.png",[NSNumber numberWithFloat:FENCE_SPEED]],
-                                         @[@"smalldirt.png",[NSNumber numberWithFloat:GROUND_SPEED]]];
+    NSArray* infiniteBackgroundsData = @[@[@"sky.png",[NSNumber numberWithFloat:SKY_SPEED], @"1"],
+                                         @[@"smallclouds.png",[NSNumber numberWithFloat:CLOUDS_SPEED], @"1"],
+                                         @[@"smallmountain.png",[NSNumber numberWithFloat:MOUNTAINS_SPEED], @"1"],
+                                         @[@"smallfence.png",[NSNumber numberWithFloat:FENCE_SPEED_BACK], @"0.8"],
+                                         @[@"smallfence.png",[NSNumber numberWithFloat:FENCE_SPEED_FRONT], @"1"],
+                                         @[@"smalldirt.png",[NSNumber numberWithFloat:GROUND_SPEED], @"1"]];
     
     self.infiniteBackgrounds = [NSArray array];
     
     for (NSArray* pngWithSpeed in infiniteBackgroundsData) {
-        [self addInfinteBackground:pngWithSpeed[0] withSpeed:pngWithSpeed[1]];
+        [self addInfinteBackground:pngWithSpeed[0] withSpeed:pngWithSpeed[1] andMult:[[NSString stringWithString:pngWithSpeed[2]] floatValue]];
     }
     
     InfiniteBackgroundElement* lastElement = (InfiniteBackgroundElement*)self.infiniteBackgrounds.lastObject;
@@ -295,9 +294,9 @@ static CGFloat POSITIONBAR_LENGTH = 525;
     return [NSString stringWithFormat:@"%li", (long)self.pixelsTraveled];
 }
 
-- (void)addInfinteBackground:(NSString*)pngName withSpeed:(NSNumber*)speed {
+- (void)addInfinteBackground:(NSString*)pngName withSpeed:(NSNumber*)speed andMult:(CGFloat)mult{
     
-    InfiniteBackgroundElement* newBackground = [[InfiniteBackgroundElement alloc] initWithPng:pngName];
+    InfiniteBackgroundElement* newBackground = [[InfiniteBackgroundElement alloc] initWithPng:pngName andMult:mult];
     newBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
     newBackground.speed = [speed integerValue];
     newBackground.animationDuration = ANIMATION_DURATION;
@@ -374,43 +373,6 @@ shouldChangeOrientation:(BOOL)shouldChange {
     [self movePositionStatus:RIGHT];
 }
 
-- (void)callSelectorForForegroundElementWithTag:(NSInteger)tag {
-    
-    NSArray* element;
-    for (NSArray* el in self.foregroundElements) {
-        if ([el[3] integerValue] == tag) {
-            element = el;
-            break;
-        }
-    }
-    
-    if ([element[4] isEqualToString:@""]) {
-        return;
-    }
-    
-    self.modalVC = [[UIViewController alloc] init];
-    self.modalVC.view.backgroundColor = [UIColor whiteColor];
-    self.modalVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    
-    UILabel* closeButton = [[UILabel alloc] initForAutoLayout];
-    closeButton.userInteractionEnabled = YES;
-    closeButton.text = @"X";
-    closeButton.textAlignment = NSTextAlignmentCenter;
-    [closeButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeModal:)]];
-    
-    [self.modalVC.view addSubview:closeButton];
-    [closeButton autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-    [closeButton autoPinEdgeToSuperviewEdge:ALEdgeTop];
-    [closeButton autoSetDimensionsToSize:CGSizeMake(44, 44)];
-    
-    SEL selector = NSSelectorFromString(element[4]);
-    IMP imp = [self methodForSelector:selector];
-    void (*func)(id, SEL, id) = (void *)imp;
-    func(self, selector, nil);
-    
-    [self presentViewController:self.modalVC animated:YES completion:nil];
-}
-
 - (void)closeModal:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -421,7 +383,19 @@ shouldChangeOrientation:(BOOL)shouldChange {
     UIImageView* tappedElement = (UIImageView*)tapGesture.view;
     NSInteger tag = tappedElement.tag;
     
-    [self callSelectorForForegroundElementWithTag:tag];
+    NSArray* element;
+    for (NSArray* el in self.foregroundElements) {
+        if ([el[3] integerValue] == tag){
+            element = el;
+            break;
+        }
+    }
+    
+    ModalActionVC* modalVC = [[ModalActionVC alloc] init];
+    modalVC.delegate = self;
+    modalVC.uniqueDescription = element[4];
+    modalVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:modalVC animated:YES completion:nil];
 }
 
 - (void) rightTapHold: (UILongPressGestureRecognizer *) gesture {
@@ -481,66 +455,12 @@ shouldChangeOrientation:(BOOL)shouldChange {
 
 
 
-- (void)tappedFirst:(id)sender {
-    
-    UILabel* label = [[UILabel alloc] initForAutoLayout];
-    label.text = @"First Element!";
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    [self.modalVC.view addSubview:label];
-    [label autoCenterInSuperview];
-    
+
+#pragma mark - ModalDelegate
+
+- (void)didRequestClose {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void)tappedSecond:(id)sender {
-    UILabel* label = [[UILabel alloc] initForAutoLayout];
-    label.text = @"Second Element!";
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    [self.modalVC.view addSubview:label];
-    [label autoCenterInSuperview];
-}
-- (void)tappedThird:(id)sender {
-    UILabel* label = [[UILabel alloc] initForAutoLayout];
-    label.text = @"Third Element!";
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    [self.modalVC.view addSubview:label];
-    [label autoCenterInSuperview];
-}
-- (void)tappedFourth:(id)sender {
-    UILabel* label = [[UILabel alloc] initForAutoLayout];
-    label.text = @"Fourth Element!";
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    [self.modalVC.view addSubview:label];
-    [label autoCenterInSuperview];
-    
-}
-- (void)tappedFifth:(id)sender {
-    UILabel* label = [[UILabel alloc] initForAutoLayout];
-    label.text = @"Fifth Element!";
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    [self.modalVC.view addSubview:label];
-    [label autoCenterInSuperview];
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #pragma mark - InfiniteBackgroundDelegate
 

@@ -12,14 +12,15 @@
 @interface InfiniteBackgroundElement ()
 
 @property (strong, nonatomic)UIImage*     image;
+@property (nonatomic)CGFloat     mult;
 @property (strong, nonatomic)NSLayoutConstraint* positionConstraint;
 
 @end
 
 @implementation InfiniteBackgroundElement
 
-- (id)initWithPng:(NSString *)PngFile {
-    
+- (id)initWithPng:(NSString *)PngFile andMult:(CGFloat)mult{
+    self.mult = mult;
     self.image = [UIImage imageNamed:PngFile];
     
     UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
@@ -29,6 +30,10 @@
     [imageView autoAlignAxisToSuperviewAxis:ALAxisBaseline];
     self.positionConstraint = [imageView autoConstrainAttribute:ALAttributeTrailing toAttribute:ALAttributeTrailing ofView:self.view];
    
+    if (self.mult < 1){
+        [imageView autoSetDimension:ALDimensionHeight toSize:309 * self.mult];
+    }
+    
     self.views = [NSMutableArray arrayWithObject:imageView];
     
     return self;
@@ -59,8 +64,9 @@
         UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
         imageView.image = self.image;
         [self.view addSubview:imageView];
-        [imageView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+        [imageView autoAlignAxisToSuperviewAxis:ALAxisBaseline];
         [imageView autoConstrainAttribute:ALAttributeTrailing toAttribute:ALAttributeLeading ofView:self.views.lastObject];
+        [imageView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:self.views.lastObject];
         
         [self.views addObject:imageView];
         [self.delegate didAddViewFrom:[NSNumber numberWithDouble:totalWidth] to:[NSNumber numberWithDouble:totalWidth + self.image.size.width]];
