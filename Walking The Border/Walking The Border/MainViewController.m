@@ -15,6 +15,10 @@ typedef NS_ENUM(NSInteger, Direction) {
     LEFT,
 };
 
+static CGFloat MOVE_FOR_HOUR = 1440000;// length of moving for an hour
+static CGFloat TOTAL_DISTANCE = 1440000;
+
+
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
 static CGFloat PRESS_AND_HOLD_DELAY = 0.125;
 static CGFloat ANIMATION_DURATION = 0.2;
@@ -149,9 +153,13 @@ static CGFloat POSITIONBAR_LENGTH = 525;
     self.addedElements = [NSMutableArray array];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:0],     @YES, @"arrow.png", @"0", @"firstElement"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:500],   @YES, @"friendshipcircle.png", @"1", @"friendshipCircle"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000],  @YES, @"arrow.png", @"2", @"secondElement"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000],  @YES, @"arrow.png", @"3", @"thirdElement"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000], @YES, @"arrow.png", @"4", @"fourthElement"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000],  @YES, @"truck.png", @"2", @"fordTruck"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000],  @YES, @"lagloria.png", @"3", @"laGloria"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000],  @YES, @"borderguard.png", @"4", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:11000],  @YES, @"borderguard.png", @"5", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:12000],  @YES, @"borderguard.png", @"6", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:15000],  @YES, @"borderguard.png", @"7", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE], @YES, @"arrow.png", @"8", @"fourthElement"]];
     
 }
 

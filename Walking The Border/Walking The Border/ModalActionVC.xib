@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="closeButton" destination="XRM-TC-JXK" id="64t-ae-6Oa"/>
                 <outlet property="mainView" destination="Deq-SP-INb" id="wku-2a-tpf"/>
+                <outlet property="textView" destination="uX6-by-6yU" id="QCw-1t-akg"/>
                 <outlet property="titleLabel" destination="fFK-wa-TYe" id="7Ok-9G-Jn2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="fT5-86-EWg"/>
             </connections>
@@ -49,7 +50,49 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Deq-SP-INb">
                     <rect key="frame" x="0.0" y="55" width="414" height="681"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX6-by-6yU">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="681"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="uX6-by-6yU" firstAttribute="leading" secondItem="Deq-SP-INb" secondAttribute="leading" id="Cwk-gc-qvL"/>
+                        <constraint firstAttribute="trailing" secondItem="uX6-by-6yU" secondAttribute="trailing" id="EHN-2q-Gdn"/>
+                        <constraint firstItem="uX6-by-6yU" firstAttribute="top" secondItem="Deq-SP-INb" secondAttribute="top" constant="-21" id="OTF-Vc-hdP">
+                            <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
+                        </constraint>
+                        <constraint firstAttribute="bottom" secondItem="uX6-by-6yU" secondAttribute="bottom" id="PRr-zq-rxk"/>
+                        <constraint firstAttribute="trailing" secondItem="uX6-by-6yU" secondAttribute="trailing" constant="202" id="iJd-OZ-Nsm">
+                            <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
+                        </constraint>
+                        <constraint firstItem="uX6-by-6yU" firstAttribute="top" secondItem="Deq-SP-INb" secondAttribute="top" id="rah-yq-p1u"/>
+                        <constraint firstAttribute="bottom" secondItem="uX6-by-6yU" secondAttribute="bottom" constant="21" id="w2l-Qz-xZx">
+                            <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
+                        </constraint>
+                        <constraint firstItem="uX6-by-6yU" firstAttribute="leading" secondItem="Deq-SP-INb" secondAttribute="leading" constant="-202" id="ybl-ob-cjT">
+                            <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
+                        </constraint>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="OTF-Vc-hdP"/>
+                            <exclude reference="iJd-OZ-Nsm"/>
+                            <exclude reference="w2l-Qz-xZx"/>
+                            <exclude reference="ybl-ob-cjT"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="OTF-Vc-hdP"/>
+                            <include reference="iJd-OZ-Nsm"/>
+                            <include reference="w2l-Qz-xZx"/>
+                            <include reference="ybl-ob-cjT"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -65,13 +108,5 @@
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
         </view>
-        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0lH-q4-YSu">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-            <nil key="highlightedColor"/>
-            <point key="canvasLocation" x="578" y="207.5"/>
-        </label>
     </objects>
 </document>
