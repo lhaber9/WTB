@@ -47,18 +47,17 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 @property (strong, nonatomic)NSMutableArray* foregroundElements;
 @property (strong, nonatomic)NSMutableArray* addedElements;
 
-@property (strong, nonatomic)IBOutlet UIView* backgroundContainer;
-@property (strong, nonatomic)IBOutlet UIView* controlbarContainer;
+@property (strong, nonatomic)IBOutlet UIView*    backgroundContainer;
+@property (strong, nonatomic)IBOutlet UIView*    controlbarContainer;
 
-@property (strong, nonatomic)IBOutlet UIView*             positionStatusLine;
-@property (strong, nonatomic)NSLayoutConstraint*          positionStatusConstraint;
+@property (strong, nonatomic)IBOutlet UIView*    positionStatusLine;
+@property (strong, nonatomic)NSLayoutConstraint* positionStatusConstraint;
 
 @property (strong, nonatomic)IBOutlet UIImageView* lukeImageView;
 @property (strong, nonatomic)UIImage* positionIdicatorImage;
 @property (strong, nonatomic)UIImage* foregroundPositionIndicatorImage;
 @property (strong, nonatomic)UIImage* lukeImage;
 @property (strong, nonatomic)UIImage* flippedLuke;
-
 
 @property (strong, nonatomic)IBOutlet UIButton* rightButton;
 @property (strong, nonatomic)IBOutlet UIButton* leftButton;
@@ -151,8 +150,7 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 - (void)initForegrounds {
     self.foregroundElements = [NSMutableArray array];
     self.addedElements = [NSMutableArray array];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:0],     @YES, @"arrow.png", @"0", @"firstElement"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:500],   @YES, @"friendshipcircle.png", @"1", @"friendshipCircle"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.00025],   @YES, @"friendshipcircle.png", @"1", @"friendshipCircle"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000],  @YES, @"truck.png", @"2", @"fordTruck"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000],  @YES, @"lagloria.png", @"3", @"laGloria"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000],  @YES, @"borderguard.png", @"4", @"borderGuard"]];
@@ -165,17 +163,17 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 
 - (void)initBackgrounds {
     // Set up backgrounds
-    NSArray* infiniteBackgroundsData = @[@[@"sky.png",[NSNumber numberWithFloat:SKY_SPEED], @"1"],
-                                         @[@"smallclouds.png",[NSNumber numberWithFloat:CLOUDS_SPEED], @"1"],
-                                         @[@"smallmountain.png",[NSNumber numberWithFloat:MOUNTAINS_SPEED], @"1"],
-                                         @[@"smallfence.png",[NSNumber numberWithFloat:FENCE_SPEED_BACK], @"0.8"],
-                                         @[@"smallfence.png",[NSNumber numberWithFloat:FENCE_SPEED_FRONT], @"1"],
-                                         @[@"smalldirt.png",[NSNumber numberWithFloat:GROUND_SPEED], @"1"]];
+    NSArray* infiniteBackgroundsData = @[@[@"sky.png",@"",[NSNumber numberWithFloat:SKY_SPEED], @"1"],
+                                         @[@"smallclouds.png",@"",[NSNumber numberWithFloat:CLOUDS_SPEED], @"1"],
+                                         @[@"smallmountain.png",@"",[NSNumber numberWithFloat:MOUNTAINS_SPEED], @"1"],
+                                         @[@"smallfence.png",@"",[NSNumber numberWithFloat:FENCE_SPEED_BACK], @"0.8"],
+                                         @[@"smallfence.png",@"",[NSNumber numberWithFloat:FENCE_SPEED_FRONT], @"1"],
+                                         @[@"smalldirt.png",@"",[NSNumber numberWithFloat:GROUND_SPEED], @"1"]];
     
     self.infiniteBackgrounds = [NSArray array];
     
     for (NSArray* pngWithSpeed in infiniteBackgroundsData) {
-        [self addInfinteBackground:pngWithSpeed[0] withSpeed:pngWithSpeed[1] andMult:[[NSString stringWithString:pngWithSpeed[2]] floatValue]];
+        [self addInfinteBackground:pngWithSpeed[0] andEndPng:pngWithSpeed[1] withSpeed:pngWithSpeed[2] andMult:[[NSString stringWithString:pngWithSpeed[3]] floatValue]];
     }
     
     InfiniteBackgroundElement* lastElement = (InfiniteBackgroundElement*)self.infiniteBackgrounds.lastObject;
@@ -302,9 +300,9 @@ static CGFloat POSITIONBAR_LENGTH = 525;
     return [NSString stringWithFormat:@"%li", (long)self.pixelsTraveled];
 }
 
-- (void)addInfinteBackground:(NSString*)pngName withSpeed:(NSNumber*)speed andMult:(CGFloat)mult{
+- (void)addInfinteBackground:(NSString*)pngName andEndPng:(NSString*)endPngFile withSpeed:(NSNumber*)speed andMult:(CGFloat)mult{
     
-    InfiniteBackgroundElement* newBackground = [[InfiniteBackgroundElement alloc] initWithPng:pngName andMult:mult];
+    InfiniteBackgroundElement* newBackground = [[InfiniteBackgroundElement alloc] initWithPng:pngName andEndPng:endPngFile andMult:mult];
     newBackground.view.translatesAutoresizingMaskIntoConstraints = NO;
     newBackground.speed = [speed integerValue];
     newBackground.animationDuration = ANIMATION_DURATION;

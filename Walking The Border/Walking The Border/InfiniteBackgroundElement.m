@@ -19,7 +19,7 @@
 
 @implementation InfiniteBackgroundElement
 
-- (id)initWithPng:(NSString *)PngFile andMult:(CGFloat)mult{
+- (id)initWithPng:(NSString *)PngFile andEndPng:(NSString*)endPngFile andMult:(CGFloat)mult{
     self.mult = mult;
     self.image = [UIImage imageNamed:PngFile];
     
@@ -30,6 +30,14 @@
     [imageView autoAlignAxisToSuperviewAxis:ALAxisBaseline];
     self.positionConstraint = [imageView autoConstrainAttribute:ALAttributeTrailing toAttribute:ALAttributeTrailing ofView:self.view];
    
+    if (![endPngFile isEqualToString:@""]){
+        UIImageView* endImageView = [[UIImageView alloc] initForAutoLayout];
+        endImageView.image = [UIImage imageNamed:endPngFile];
+        [self.view addSubview:endImageView];
+        [endImageView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:imageView];
+        [endImageView autoConstrainAttribute:ALAttributeLeading toAttribute:ALAttributeTrailing ofView:imageView];
+    }
+    
     if (self.mult < 1){
         [imageView autoSetDimension:ALDimensionHeight toSize:309 * self.mult];
     }
