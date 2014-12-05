@@ -17,6 +17,8 @@
 		52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB221B1A164EDA001DC8F0 /* MainViewController.xib */; };
 		809E46F11A2F7032004EF6D0 /* ModalActionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E46EF1A2F7032004EF6D0 /* ModalActionVC.m */; };
 		809E46F21A2F7032004EF6D0 /* ModalActionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809E46F01A2F7032004EF6D0 /* ModalActionVC.xib */; };
+		80C08ACE1A322D050015F00B /* borderguard.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C08ACD1A322D050015F00B /* borderguard.png */; };
+		80C08AD01A3231DC0015F00B /* lagloria.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C08ACF1A3231DC0015F00B /* lagloria.png */; };
 		80C45D9D1A2CCD47005AC492 /* TitleScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C45D9C1A2CCD47005AC492 /* TitleScreen.png */; };
 		80C45DA01A2E12D0005AC492 /* Gray Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C45D9E1A2E12D0005AC492 /* Gray Button.png */; };
 		80C45DA11A2E12D0005AC492 /* Red Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C45D9F1A2E12D0005AC492 /* Red Button.png */; };
@@ -36,6 +38,7 @@
 		80CE0A3C1A23C21B00A4C402 /* smallfence.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0A321A23C21B00A4C402 /* smallfence.png */; };
 		80CE0A3D1A23C21B00A4C402 /* smallfence2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0A331A23C21B00A4C402 /* smallfence2.png */; };
 		80CE0A3E1A23C21B00A4C402 /* smallmountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0A341A23C21B00A4C402 /* smallmountain.png */; };
+		80CE784D1A31728A00124660 /* truck.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE784C1A31728A00124660 /* truck.png */; };
 		80DAA1A51A26D695000B9F5D /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DAA1A41A26D695000B9F5D /* arrow.png */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +70,8 @@
 		809E46EE1A2F7032004EF6D0 /* ModalActionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalActionVC.h; sourceTree = "<group>"; };
 		809E46EF1A2F7032004EF6D0 /* ModalActionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalActionVC.m; sourceTree = "<group>"; };
 		809E46F01A2F7032004EF6D0 /* ModalActionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalActionVC.xib; sourceTree = "<group>"; };
+		80C08ACD1A322D050015F00B /* borderguard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderguard.png; sourceTree = "<group>"; };
+		80C08ACF1A3231DC0015F00B /* lagloria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lagloria.png; sourceTree = "<group>"; };
 		80C45D9C1A2CCD47005AC492 /* TitleScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleScreen.png; sourceTree = "<group>"; };
 		80C45D9E1A2E12D0005AC492 /* Gray Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gray Button.png"; sourceTree = "<group>"; };
 		80C45D9F1A2E12D0005AC492 /* Red Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Button.png"; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 		80CE0A321A23C21B00A4C402 /* smallfence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallfence.png; sourceTree = "<group>"; };
 		80CE0A331A23C21B00A4C402 /* smallfence2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallfence2.png; sourceTree = "<group>"; };
 		80CE0A341A23C21B00A4C402 /* smallmountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallmountain.png; sourceTree = "<group>"; };
+		80CE784C1A31728A00124660 /* truck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = truck.png; sourceTree = "<group>"; };
 		80DAA1A41A26D695000B9F5D /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,6 +214,9 @@
 				80C45D9E1A2E12D0005AC492 /* Gray Button.png */,
 				80C45D9F1A2E12D0005AC492 /* Red Button.png */,
 				80C45DA21A2E1CD8005AC492 /* friendshipcircle.png */,
+				80CE784C1A31728A00124660 /* truck.png */,
+				80C08ACF1A3231DC0015F00B /* lagloria.png */,
+				80C08ACD1A322D050015F00B /* borderguard.png */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -302,6 +311,7 @@
 				52FB22041A164D2D001DC8F0 /* LaunchScreen.xib in Resources */,
 				80CE0A3E1A23C21B00A4C402 /* smallmountain.png in Resources */,
 				80C45DA11A2E12D0005AC492 /* Red Button.png in Resources */,
+				80C08AD01A3231DC0015F00B /* lagloria.png in Resources */,
 				80DAA1A51A26D695000B9F5D /* arrow.png in Resources */,
 				809E46F21A2F7032004EF6D0 /* ModalActionVC.xib in Resources */,
 				80CE0A391A23C21B00A4C402 /* sky.png in Resources */,
@@ -309,9 +319,11 @@
 				52FB22011A164D2D001DC8F0 /* Images.xcassets in Resources */,
 				80CE0A381A23C21B00A4C402 /* mountain.png in Resources */,
 				80C45DA01A2E12D0005AC492 /* Gray Button.png in Resources */,
+				80CE784D1A31728A00124660 /* truck.png in Resources */,
 				80CE0A361A23C21B00A4C402 /* fence.png in Resources */,
 				80CE0A3D1A23C21B00A4C402 /* smallfence2.png in Resources */,
 				52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */,
+				80C08ACE1A322D050015F00B /* borderguard.png in Resources */,
 				80CE0A3B1A23C21B00A4C402 /* smalldirt.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
