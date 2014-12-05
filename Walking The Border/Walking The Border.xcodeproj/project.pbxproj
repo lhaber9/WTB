@@ -19,6 +19,10 @@
 		809E46F21A2F7032004EF6D0 /* ModalActionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809E46F01A2F7032004EF6D0 /* ModalActionVC.xib */; };
 		80C08ACE1A322D050015F00B /* borderguard.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C08ACD1A322D050015F00B /* borderguard.png */; };
 		80C08AD01A3231DC0015F00B /* lagloria.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C08ACF1A3231DC0015F00B /* lagloria.png */; };
+		80C08AD21A323E140015F00B /* hoteljacumba.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C08AD11A323E140015F00B /* hoteljacumba.png */; };
+		80C08AD41A323E180015F00B /* dirtendpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C08AD31A323E180015F00B /* dirtendpoint.png */; };
+		80C08AD61A323E1E0015F00B /* truck2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C08AD51A323E1E0015F00B /* truck2.png */; };
+		80C08AD81A323E240015F00B /* mountainendpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C08AD71A323E240015F00B /* mountainendpoint.png */; };
 		80C45D9D1A2CCD47005AC492 /* TitleScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C45D9C1A2CCD47005AC492 /* TitleScreen.png */; };
 		80C45DA01A2E12D0005AC492 /* Gray Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C45D9E1A2E12D0005AC492 /* Gray Button.png */; };
 		80C45DA11A2E12D0005AC492 /* Red Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C45D9F1A2E12D0005AC492 /* Red Button.png */; };
@@ -72,6 +76,10 @@
 		809E46F01A2F7032004EF6D0 /* ModalActionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalActionVC.xib; sourceTree = "<group>"; };
 		80C08ACD1A322D050015F00B /* borderguard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderguard.png; sourceTree = "<group>"; };
 		80C08ACF1A3231DC0015F00B /* lagloria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lagloria.png; sourceTree = "<group>"; };
+		80C08AD11A323E140015F00B /* hoteljacumba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hoteljacumba.png; sourceTree = "<group>"; };
+		80C08AD31A323E180015F00B /* dirtendpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dirtendpoint.png; sourceTree = "<group>"; };
+		80C08AD51A323E1E0015F00B /* truck2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = truck2.png; sourceTree = "<group>"; };
+		80C08AD71A323E240015F00B /* mountainendpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountainendpoint.png; sourceTree = "<group>"; };
 		80C45D9C1A2CCD47005AC492 /* TitleScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleScreen.png; sourceTree = "<group>"; };
 		80C45D9E1A2E12D0005AC492 /* Gray Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gray Button.png"; sourceTree = "<group>"; };
 		80C45D9F1A2E12D0005AC492 /* Red Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Button.png"; sourceTree = "<group>"; };
@@ -217,6 +225,10 @@
 				80CE784C1A31728A00124660 /* truck.png */,
 				80C08ACF1A3231DC0015F00B /* lagloria.png */,
 				80C08ACD1A322D050015F00B /* borderguard.png */,
+				80C08AD11A323E140015F00B /* hoteljacumba.png */,
+				80C08AD31A323E180015F00B /* dirtendpoint.png */,
+				80C08AD51A323E1E0015F00B /* truck2.png */,
+				80C08AD71A323E240015F00B /* mountainendpoint.png */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -306,7 +318,9 @@
 				80C45D9D1A2CCD47005AC492 /* TitleScreen.png in Resources */,
 				80CE0A3C1A23C21B00A4C402 /* smallfence.png in Resources */,
 				80CE0A371A23C21B00A4C402 /* luke.png in Resources */,
+				80C08AD61A323E1E0015F00B /* truck2.png in Resources */,
 				80CD070B1A24E569004DB182 /* Dig Narrative Title Screen.png in Resources */,
+				80C08AD81A323E240015F00B /* mountainendpoint.png in Resources */,
 				80CE0A3A1A23C21B00A4C402 /* smallclouds.png in Resources */,
 				52FB22041A164D2D001DC8F0 /* LaunchScreen.xib in Resources */,
 				80CE0A3E1A23C21B00A4C402 /* smallmountain.png in Resources */,
@@ -320,10 +334,12 @@
 				80CE0A381A23C21B00A4C402 /* mountain.png in Resources */,
 				80C45DA01A2E12D0005AC492 /* Gray Button.png in Resources */,
 				80CE784D1A31728A00124660 /* truck.png in Resources */,
+				80C08AD41A323E180015F00B /* dirtendpoint.png in Resources */,
 				80CE0A361A23C21B00A4C402 /* fence.png in Resources */,
 				80CE0A3D1A23C21B00A4C402 /* smallfence2.png in Resources */,
 				52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */,
 				80C08ACE1A322D050015F00B /* borderguard.png in Resources */,
+				80C08AD21A323E140015F00B /* hoteljacumba.png in Resources */,
 				80CE0A3B1A23C21B00A4C402 /* smalldirt.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

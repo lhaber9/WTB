@@ -12,6 +12,7 @@
                 <outlet property="distanceTraveledLabel" destination="BjZ-hh-ch2" id="ifb-aM-msc"/>
                 <outlet property="leftButton" destination="YIj-J3-nEI" id="XtL-CQ-TTp"/>
                 <outlet property="lukeImageView" destination="Nxh-j1-v6f" id="tYp-ES-Ca2"/>
+                <outlet property="overEndIndicator" destination="NM7-TT-fCS" id="WEs-5V-Vme"/>
                 <outlet property="positionLabel" destination="Kuh-4n-adt" id="iik-h8-6hu"/>
                 <outlet property="positionStatusLine" destination="Vqb-5B-C6e" id="IoT-Jc-hZl"/>
                 <outlet property="rightButton" destination="Brb-0j-8zG" id="dxU-8n-hvb"/>
@@ -87,6 +88,15 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPB-GW-6tT">
                             <rect key="frame" x="41" y="0.0" width="519" height="66"/>
                             <subviews>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NM7-TT-fCS">
+                                    <rect key="frame" x="30" y="0.0" width="7" height="12"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="heightClass=compact-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                        <rect key="frame" x="0.0" y="0.0" width="7" height="12"/>
+                                    </variation>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance Traveled:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dtk-Yf-f6t">
                                     <rect key="frame" x="10" y="35" width="141" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -127,17 +137,43 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="NM7-TT-fCS" firstAttribute="leading" secondItem="Vqb-5B-C6e" secondAttribute="leading" id="13O-WL-aud"/>
                                 <constraint firstItem="Dtk-Yf-f6t" firstAttribute="bottom" secondItem="Kuh-4n-adt" secondAttribute="bottom" id="14K-hn-6G5"/>
                                 <constraint firstItem="BjZ-hh-ch2" firstAttribute="leading" secondItem="Dtk-Yf-f6t" secondAttribute="trailing" constant="8" id="3uS-xp-JQr"/>
+                                <constraint firstItem="NM7-TT-fCS" firstAttribute="top" secondItem="tPB-GW-6tT" secondAttribute="top" constant="23" id="BH3-iB-5SY">
+                                    <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
+                                </constraint>
+                                <constraint firstItem="NM7-TT-fCS" firstAttribute="top" secondItem="tPB-GW-6tT" secondAttribute="top" id="Ejz-r9-aF1"/>
                                 <constraint firstItem="Vqb-5B-C6e" firstAttribute="top" secondItem="tPB-GW-6tT" secondAttribute="top" constant="18" id="Kmu-NT-09g"/>
+                                <constraint firstItem="NM7-TT-fCS" firstAttribute="leading" secondItem="tPB-GW-6tT" secondAttribute="leading" id="V0T-8f-gSe"/>
+                                <constraint firstItem="NM7-TT-fCS" firstAttribute="leading" secondItem="tPB-GW-6tT" secondAttribute="leading" constant="254" id="YaM-cb-YxI">
+                                    <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
+                                </constraint>
                                 <constraint firstItem="Dtk-Yf-f6t" firstAttribute="leading" secondItem="tPB-GW-6tT" secondAttribute="leading" constant="10" id="ZCs-L3-lLO"/>
                                 <constraint firstAttribute="trailing" secondItem="Kuh-4n-adt" secondAttribute="trailing" constant="10" id="axH-gb-cpT"/>
                                 <constraint firstItem="Kuh-4n-adt" firstAttribute="leading" secondItem="lr4-uK-r8O" secondAttribute="trailing" constant="8" id="bJs-h3-zoP"/>
+                                <constraint firstItem="NM7-TT-fCS" firstAttribute="top" secondItem="tPB-GW-6tT" secondAttribute="top" id="gu9-QN-RaW"/>
                                 <constraint firstItem="lr4-uK-r8O" firstAttribute="leading" secondItem="BjZ-hh-ch2" secondAttribute="trailing" constant="100" id="mLc-dt-Y25"/>
                                 <constraint firstItem="Dtk-Yf-f6t" firstAttribute="bottom" secondItem="BjZ-hh-ch2" secondAttribute="bottom" id="tar-OB-BVF"/>
                                 <constraint firstItem="Dtk-Yf-f6t" firstAttribute="bottom" secondItem="lr4-uK-r8O" secondAttribute="bottom" id="wua-s1-dbX"/>
                                 <constraint firstAttribute="bottom" secondItem="Dtk-Yf-f6t" secondAttribute="bottom" constant="10" id="yk1-Ox-8cU"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="BH3-iB-5SY"/>
+                                    <exclude reference="Ejz-r9-aF1"/>
+                                    <exclude reference="V0T-8f-gSe"/>
+                                    <exclude reference="YaM-cb-YxI"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=compact-widthClass=regular">
+                                <mask key="constraints">
+                                    <exclude reference="BH3-iB-5SY"/>
+                                    <exclude reference="Ejz-r9-aF1"/>
+                                    <exclude reference="V0T-8f-gSe"/>
+                                    <exclude reference="YaM-cb-YxI"/>
+                                </mask>
+                            </variation>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

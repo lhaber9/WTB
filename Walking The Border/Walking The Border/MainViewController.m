@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, Direction) {
 };
 
 static CGFloat MOVE_FOR_HOUR = 1440000;// length of moving for an hour
-static CGFloat TOTAL_DISTANCE = 1440000;
+static CGFloat TOTAL_DISTANCE = 200000;
 
 
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
@@ -52,8 +52,10 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 
 @property (strong, nonatomic)IBOutlet UIView*    positionStatusLine;
 @property (strong, nonatomic)NSLayoutConstraint* positionStatusConstraint;
+@property (strong, nonatomic)IBOutlet UILabel*    overEndIndicator;
 
 @property (strong, nonatomic)IBOutlet UIImageView* lukeImageView;
+@property (strong, nonatomic)IBOutlet UIImageView* positionIdicatorImageView;
 @property (strong, nonatomic)UIImage* positionIdicatorImage;
 @property (strong, nonatomic)UIImage* foregroundPositionIndicatorImage;
 @property (strong, nonatomic)UIImage* lukeImage;
@@ -134,31 +136,56 @@ static CGFloat POSITIONBAR_LENGTH = 525;
         
     }
     
-    UIImageView* imageView = [[UIImageView alloc] initForAutoLayout];
-    imageView.image = self.positionIdicatorImage;
+    self.positionIdicatorImageView = [[UIImageView alloc] initForAutoLayout];
+    self.positionIdicatorImageView.image = self.positionIdicatorImage;
     
     
-    [self.controlbarContainer addSubview:imageView];
-    [imageView autoSetDimensionsToSize:CGSizeMake(15, 15)];
-    [imageView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.positionStatusLine];
-    self.positionStatusConstraint = [imageView autoConstrainAttribute:ALAttributeVertical
-                                                          toAttribute:ALAttributeTrailing
-                                                               ofView:self.positionStatusLine];
+    [self.controlbarContainer addSubview:self.positionIdicatorImageView];
+    [self.positionIdicatorImageView autoSetDimensionsToSize:CGSizeMake(15, 15)];
+    [self.positionIdicatorImageView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.positionStatusLine];
+    self.positionStatusConstraint = [self.positionIdicatorImageView autoConstrainAttribute:ALAttributeVertical
+                                                                               toAttribute:ALAttributeTrailing
+                                                                                    ofView:self.positionStatusLine];
     
 }
 
 - (void)initForegrounds {
     self.foregroundElements = [NSMutableArray array];
     self.addedElements = [NSMutableArray array];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.00025],   @YES, @"friendshipcircle.png", @"1", @"friendshipCircle"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:1000],  @YES, @"truck.png", @"2", @"fordTruck"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:5000],  @YES, @"lagloria.png", @"3", @"laGloria"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000],  @YES, @"borderguard.png", @"4", @"borderGuard"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:11000],  @YES, @"borderguard.png", @"5", @"borderGuard"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:12000],  @YES, @"borderguard.png", @"6", @"borderGuard"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:15000],  @YES, @"borderguard.png", @"7", @"borderGuard"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE], @YES, @"arrow.png", @"8", @"fourthElement"]];
     
+    // Elements
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.005], @YES, @"friendshipcircle.png", @"1", @"friendshipCircle"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.08],  @YES, @"arrow.png", @"2", @"otayMountain"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.16],  @YES, @"arrow.png", @"3", @"tecate"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.28],  @YES, @"lagloria.png", @"4", @"laGloria"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.41],  @YES, @"hotejacumba", @"5", @"jacumba"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.66],  @YES, @"arrow.png", @"6", @"elCamino"]];
+    
+    
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.2],  @YES, @"borderguard.png", @"99", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.6],  @YES, @"borderguard.png", @"98", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.8],  @YES, @"borderguard.png", @"97", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.95], @YES, @"borderguard.png", @"96", @"borderGuard"]];
+    
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.3],        @YES, @"truck2.png", @"95", @"fordTruck"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:(TOTAL_DISTANCE * 0.3) + 5],  @YES, @"borderguard.png", @"94", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.7],        @YES, @"truck.png", @"93", @"fordTruck"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:(TOTAL_DISTANCE * 0.7) + 5],  @YES, @"borderguard.png", @"92", @"borderGuard"]];
+    
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.5],  @YES, @"truck2.png", @"91", @"fordTruck"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.85],  @YES, @"truck.png", @"90", @"fordTruck"]];
+    
+    
+    
+    
+    
+//    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000],  @YES, @"borderguard.png", @"4", @"borderGuard"]];
+//    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:10000],  @YES, @"borderguard.png", @"4", @"borderGuard"]];
+//    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:11000],  @YES, @"borderguard.png", @"5", @"borderGuard"]];
+//    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:12000],  @YES, @"borderguard.png", @"6", @"borderGuard"]];
+//    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:15000],  @YES, @"borderguard.png", @"7", @"borderGuard"]];
+//    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE], @YES, @"arrow.png", @"8", @"fourthElement"]];
+//    
 }
 
 - (void)initBackgrounds {
@@ -255,10 +282,18 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 }
 
 - (void)movePositionStatus:(Direction)direction {
-    if ([self position] > [[self totalDistance] floatValue] || [self position] == 0) {
+    if ([self position] > [[self totalDistance] floatValue]) {
+        self.overEndIndicator.hidden = NO;
+        self.positionIdicatorImageView.hidden = YES;
         return;
     }
 
+    if ([self position] == 0){
+        return;
+    }
+    
+    self.overEndIndicator.hidden = YES;
+    self.positionIdicatorImageView.hidden = NO;
     if (direction == LEFT) {
         [UIView animateWithDuration:ANIMATION_DURATION animations:^{
             self.positionStatusConstraint.constant -= ((GROUND_SPEED / [[self totalDistance] floatValue]) * POSITIONBAR_LENGTH);

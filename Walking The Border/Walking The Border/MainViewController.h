@@ -10,7 +10,7 @@
 #import "ModalActionVC.h"
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController <InfiniteBackgroundElementDelegate, ModalActionDelegate>
+@interface MainViewController : UIViewController <InfiniteBackgroundElementDelegate, ModalActionDelegate, UIGestureRecognizerDelegate>
 
 - (IBAction)leftTap:(id)sender;
 - (IBAction)rightTap:(id)sender;
