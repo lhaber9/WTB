@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, Direction) {
 static CGFloat RIGHT_LIMIT = -200;
 
 static CGFloat MOVE_FOR_HOUR = 1440000;// length of moving for an hour
-static CGFloat TOTAL_DISTANCE = 20000;
+static CGFloat TOTAL_DISTANCE = 5000;
 
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
 static CGFloat PRESS_AND_HOLD_DELAY = 0.125;
@@ -31,10 +31,10 @@ static CGFloat FENCE_SPEED_BACK = 25;
 static CGFloat FENCE_SPEED_FRONT = 35;
 static CGFloat GROUND_SPEED = 50;
 
-static CGFloat TRUCK_LEFT_INTERVAL = 150;
-static CGFloat TRUCK_RIGHT_INTERVAL = 120;
-static CGFloat GUARD_LEFT_INTERVAL = 75;
-static CGFloat GUARD_RIGHT_INTERVAL = 250;
+static CGFloat TRUCK_LEFT_INTERVAL = 100;
+static CGFloat TRUCK_RIGHT_INTERVAL = 102;
+static CGFloat GUARD_LEFT_INTERVAL = 150;
+static CGFloat GUARD_RIGHT_INTERVAL = 200;
 
 static CGFloat BUTTON_RED = 232;
 static CGFloat BUTTON_GREEN = 100;
@@ -46,11 +46,11 @@ static CGFloat CONTROLBAR_BLUE = 83;
 
 static CGFloat POSITIONBAR_LENGTH = 525;
 
-static CGFloat POPUP_POINT = 100;
-
 @interface MainViewController ()
 
 @property (nonatomic)Direction currentDirection;
+
+@property (strong, nonatomic)NSNumber* elcamino_position;
 
 @property (strong, nonatomic)NSMutableArray* foregroundElements;
 @property (strong, nonatomic)NSMutableArray* addedElements;
@@ -91,6 +91,8 @@ static CGFloat POPUP_POINT = 100;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.elcamino_position = [NSNumber numberWithFloat:TOTAL_DISTANCE * 0.55];
     
     [self initBackgrounds];
     [self initForegrounds];
@@ -183,6 +185,7 @@ static CGFloat POPUP_POINT = 100;
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.16],  @YES, @"arrow.png", @"3", @"tecate"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.28],  @YES, @"lagloria.png", @"4", @"laGloria"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.41],  @YES, @"WelcomeToJacumba2.png", @"5", @"jacumba"]];
+    [self.foregroundElements addObject:@[self.elcamino_position,  @YES, @"fighterjets.png", @"6", @"elCamino"]];
     
     
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.2],  @YES, @"borderguard.png", @"99", @"borderGuard"]];
@@ -536,7 +539,7 @@ shouldChangeOrientation:(BOOL)shouldChange {
         self.pixelsTraveled += fabs(change);
     }
     
-    if ([self position] == POPUP_POINT && direction == LEFT){
+    if ([self position] == [self.elcamino_position integerValue] && direction == LEFT){
         if (self.pressAndHoldTimer != nil) {
             [self.pressAndHoldTimer invalidate];
             self.pressAndHoldTimer = nil;
@@ -641,7 +644,7 @@ shouldChangeOrientation:(BOOL)shouldChange {
     
     [self.backgroundContainer addSubview:imageView];
     [imageView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
-    [imageView autoConstrainAttribute:ALAttributeTrailing
+    [imageView autoConstrainAttribute:ALAttributeVertical
                           toAttribute:ALAttributeTrailing
                                ofView:[self lastBackground].views.firstObject
                            withOffset:([position floatValue] + 350) * -1];
