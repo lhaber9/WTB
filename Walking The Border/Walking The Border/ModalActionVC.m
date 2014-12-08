@@ -49,7 +49,7 @@
         self.titleLabel.text = @"Border Guard";
 
         self.textView.hidden = NO;
-        self.textView.text = @"Every few miles, I'll run into an agent, who'll ask what I'm doing out here. Sometimes he'll ask to see the soles of my shoes. Agents spend most of their time cutting sign, which is to say, they patrol dirt roads near the border, looking for fresh footprints or other sign of aliens. When they come across people who are not aliens, they often ask to see the soles of their shoes. That way they won't later confuse native sign for alien sign.;
+        self.textView.text = @"Every few miles, I'll run into an agent, who'll ask what I'm doing out here. Sometimes he'll ask to see the soles of my shoes. Agents spend most of their time cutting sign, which is to say, they patrol dirt roads near the border, looking for fresh footprints or other sign of aliens. When they come across people who are not aliens, they often ask to see the soles of their shoes. That way they won't later confuse native sign for alien sign.";
         
         [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
         self.observer = YES;
