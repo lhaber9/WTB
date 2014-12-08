@@ -51,7 +51,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Deq-SP-INb">
                     <rect key="frame" x="0.0" y="55" width="414" height="681"/>
                     <subviews>
-                        <textView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX6-by-6yU">
+                        <textView hidden="YES" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="top" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uX6-by-6yU">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="681"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="26"/>

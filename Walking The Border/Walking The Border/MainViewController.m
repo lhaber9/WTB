@@ -15,9 +15,10 @@ typedef NS_ENUM(NSInteger, Direction) {
     LEFT,
 };
 
-static CGFloat MOVE_FOR_HOUR = 1440000;// length of moving for an hour
-static CGFloat TOTAL_DISTANCE = 200000;
+static CGFloat RIGHT_LIMIT = -200;
 
+static CGFloat MOVE_FOR_HOUR = 1440000;// length of moving for an hour
+static CGFloat TOTAL_DISTANCE = 20000;
 
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
 static CGFloat PRESS_AND_HOLD_DELAY = 0.125;
@@ -30,6 +31,11 @@ static CGFloat FENCE_SPEED_BACK = 25;
 static CGFloat FENCE_SPEED_FRONT = 35;
 static CGFloat GROUND_SPEED = 50;
 
+static CGFloat TRUCK_LEFT_INTERVAL = 150;
+static CGFloat TRUCK_RIGHT_INTERVAL = 120;
+static CGFloat GUARD_LEFT_INTERVAL = 75;
+static CGFloat GUARD_RIGHT_INTERVAL = 250;
+
 static CGFloat BUTTON_RED = 232;
 static CGFloat BUTTON_GREEN = 100;
 static CGFloat BUTTON_BLUE = 73;
@@ -39,6 +45,8 @@ static CGFloat CONTROLBAR_GREEN = 180;
 static CGFloat CONTROLBAR_BLUE = 83;
 
 static CGFloat POSITIONBAR_LENGTH = 525;
+
+static CGFloat POPUP_POINT = 100;
 
 @interface MainViewController ()
 
@@ -89,6 +97,22 @@ static CGFloat POSITIONBAR_LENGTH = 525;
     [self initButtons];
     [self initIndicators];
     
+    UIView* underview = [[UIView alloc] initForAutoLayout];
+    underview.backgroundColor = [UIColor clearColor];
+    [self.backgroundContainer addSubview:underview];
+    [underview addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMountains:)]];
+    
+    [underview autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:50];
+    [underview autoPinEdgeToSuperviewEdge:ALEdgeRight];
+    [underview autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+    [underview autoSetDimension:ALDimensionHeight toSize:125];
+    
+    dispatch_after(0, dispatch_get_main_queue(), ^{
+        [NSTimer scheduledTimerWithTimeInterval:TRUCK_LEFT_INTERVAL target:self selector:@selector(moveTruckLeft:) userInfo:nil repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:TRUCK_RIGHT_INTERVAL target:self selector:@selector(moveTruckRight:) userInfo:nil repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:GUARD_LEFT_INTERVAL target:self selector:@selector(moveGuardLeft:) userInfo:nil repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:GUARD_RIGHT_INTERVAL target:self selector:@selector(moveGuardRight:) userInfo:nil repeats:YES];
+    });
     
     // set luke image
     self.lukeImage   = self.lukeImageView.image;
@@ -96,12 +120,12 @@ static CGFloat POSITIONBAR_LENGTH = 525;
                                            scale:self.lukeImageView.image.scale
                                      orientation:UIImageOrientationUpMirrored];
     
-    [self didAddViewFrom:[NSNumber numberWithFloat:0] to:[NSNumber numberWithFloat:[self lastBackground].view.frame.size.width]];
-    
+    [self didAddViewFrom:[NSNumber numberWithFloat:0] to:[NSNumber numberWithFloat:[UIImage imageNamed:@"smalldirt.png"].size.width]];
     
     // set initial settings
     self.pixelsTraveled = 0;
     self.currentDirection = LEFT;
+    [self flipLuke:LEFT];
 }
 
 - (void)initIndicators {
@@ -155,24 +179,23 @@ static CGFloat POSITIONBAR_LENGTH = 525;
     
     // Elements
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.005], @YES, @"friendshipcircle.png", @"1", @"friendshipCircle"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.08],  @YES, @"arrow.png", @"2", @"otayMountain"]];
+    //[self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.08],  @YES, @"arrow.png", @"2", @"otayMountain"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.16],  @YES, @"arrow.png", @"3", @"tecate"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.28],  @YES, @"lagloria.png", @"4", @"laGloria"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.41],  @YES, @"hotejacumba", @"5", @"jacumba"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.66],  @YES, @"arrow.png", @"6", @"elCamino"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.41],  @YES, @"WelcomeToJacumba2.png", @"5", @"jacumba"]];
     
     
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.2],  @YES, @"borderguard.png", @"99", @"borderGuard"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.6],  @YES, @"borderguard.png", @"98", @"borderGuard"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.8],  @YES, @"borderguard.png", @"97", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.8],  @YES, @"borderguardflip.png", @"97", @"borderGuard"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.95], @YES, @"borderguard.png", @"96", @"borderGuard"]];
     
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.3],        @YES, @"truck2.png", @"95", @"fordTruck"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:(TOTAL_DISTANCE * 0.3) + 5],  @YES, @"borderguard.png", @"94", @"borderGuard"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.7],        @YES, @"truck.png", @"93", @"fordTruck"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:(TOTAL_DISTANCE * 0.7) + 5],  @YES, @"borderguard.png", @"92", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.7],        @YES, @"truckflip.png", @"93", @"fordTruck"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:(TOTAL_DISTANCE * 0.7) + 5],  @YES, @"borderguardflip.png", @"92", @"borderGuard"]];
     
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.5],  @YES, @"truck2.png", @"91", @"fordTruck"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.5],  @YES, @"truck2flip.png", @"91", @"fordTruck"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.85],  @YES, @"truck.png", @"90", @"fordTruck"]];
     
     
@@ -190,12 +213,12 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 
 - (void)initBackgrounds {
     // Set up backgrounds
-    NSArray* infiniteBackgroundsData = @[@[@"sky.png",@"",[NSNumber numberWithFloat:SKY_SPEED], @"1"],
-                                         @[@"smallclouds.png",@"",[NSNumber numberWithFloat:CLOUDS_SPEED], @"1"],
-                                         @[@"smallmountain.png",@"",[NSNumber numberWithFloat:MOUNTAINS_SPEED], @"1"],
+    NSArray* infiniteBackgroundsData = @[@[@"sky.png",@"sky.png",[NSNumber numberWithFloat:SKY_SPEED], @"1"],
+                                         @[@"smallclouds.png",@"smallclouds.png",[NSNumber numberWithFloat:CLOUDS_SPEED], @"1"],
+                                         @[@"smallmountain.png",@"mountainendpoint.png",[NSNumber numberWithFloat:MOUNTAINS_SPEED], @"1"],
                                          @[@"smallfence.png",@"",[NSNumber numberWithFloat:FENCE_SPEED_BACK], @"0.8"],
                                          @[@"smallfence.png",@"",[NSNumber numberWithFloat:FENCE_SPEED_FRONT], @"1"],
-                                         @[@"smalldirt.png",@"",[NSNumber numberWithFloat:GROUND_SPEED], @"1"]];
+                                         @[@"smalldirt.png",@"dirtendpoint.png",[NSNumber numberWithFloat:GROUND_SPEED], @"1"]];
     
     self.infiniteBackgrounds = [NSArray array];
     
@@ -255,6 +278,12 @@ static CGFloat POSITIONBAR_LENGTH = 525;
     [leftArrow autoAlignAxis:ALAxisVertical toSameAxisOfView:self.leftButton withOffset:-2];
 }
 
+
+- (void)tapLuke:(id)sender {
+    
+    
+}
+
 - (NSNumber*)totalDistance {
     
     NSNumber* max = [NSNumber numberWithLong:0];
@@ -288,29 +317,128 @@ static CGFloat POSITIONBAR_LENGTH = 525;
         return;
     }
 
-    if ([self position] == 0){
+    if ([self position] <= 0){
         return;
     }
     
     self.overEndIndicator.hidden = YES;
     self.positionIdicatorImageView.hidden = NO;
     if (direction == LEFT) {
-        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-            self.positionStatusConstraint.constant -= ((GROUND_SPEED / [[self totalDistance] floatValue]) * POSITIONBAR_LENGTH);
-            [self.view layoutIfNeeded];
-        }];
+        dispatch_after(0, dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+                self.positionStatusConstraint.constant -= ((GROUND_SPEED / [[self totalDistance] floatValue]) * POSITIONBAR_LENGTH);
+                [self.view layoutIfNeeded];
+            }];
+        });
     }
     else {
-        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-            self.positionStatusConstraint.constant += ((GROUND_SPEED / [[self totalDistance] floatValue]) * POSITIONBAR_LENGTH);
+        dispatch_after(0, dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+                self.positionStatusConstraint.constant += ((GROUND_SPEED / [[self totalDistance] floatValue]) * POSITIONBAR_LENGTH);
+                [self.view layoutIfNeeded];
+            }];
+        });
+    }
+}
+
+- (void)moveTruckLeft:(id)sender {
+    UIImageView* truckImage = [[UIImageView alloc] initForAutoLayout];
+    
+    if (arc4random() % 2 == 0) {
+        truckImage.image = [UIImage imageNamed:@"truck.png"];
+    }
+    else {
+       truckImage.image = [UIImage imageNamed:@"truck2.png"];
+    }
+    
+    [self.backgroundContainer addSubview:truckImage];
+    [truckImage autoConstrainAttribute:ALAttributeHorizontal toAttribute:ALAttributeHorizontal ofView:self.backgroundContainer];
+    NSLayoutConstraint* position = [truckImage autoConstrainAttribute:ALAttributeLeading toAttribute:ALAttributeTrailing ofView:self.backgroundContainer];
+    [self.view layoutIfNeeded];
+    
+    dispatch_after(0, dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:2 animations:^{
+            position.constant = -1 * (self.backgroundContainer.frame.size.width + truckImage.frame.size.width);
+            [self.view layoutIfNeeded];
+        }completion:^(BOOL finished) {
+            [truckImage removeFromSuperview];
             [self.view layoutIfNeeded];
         }];
+        
+    });
+}
+
+- (void)moveTruckRight:(id)sender {
+    UIImageView* truckImage = [[UIImageView alloc] initForAutoLayout];
+    
+    if (arc4random() % 2 == 0) {
+        truckImage.image = [UIImage imageNamed:@"truckflip.png"];
     }
+    else {
+        truckImage.image = [UIImage imageNamed:@"truck2flip.png"];
+    }
+    
+    [self.backgroundContainer addSubview:truckImage];
+    [truckImage autoConstrainAttribute:ALAttributeHorizontal toAttribute:ALAttributeHorizontal ofView:self.backgroundContainer];
+    NSLayoutConstraint* position = [truckImage autoConstrainAttribute:ALAttributeTrailing toAttribute:ALAttributeLeading ofView:self.backgroundContainer];
+    [self.view layoutIfNeeded];
+    
+    dispatch_after(0, dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:2 animations:^{
+            position.constant = (self.backgroundContainer.frame.size.width + truckImage.frame.size.width);
+            [self.view layoutIfNeeded];
+        }completion:^(BOOL finished) {
+            [truckImage removeFromSuperview];
+            [self.view layoutIfNeeded];
+        }];
+        
+    });
+}
+    
+- (void)moveGuardLeft:(id)sender {
+    UIImageView* guardImage = [[UIImageView alloc] initForAutoLayout];
+    guardImage.image = [UIImage imageNamed:@"borderguard.png"];
+    
+    [self.backgroundContainer addSubview:guardImage];
+    [guardImage autoConstrainAttribute:ALAttributeHorizontal toAttribute:ALAttributeHorizontal ofView:self.backgroundContainer];
+    NSLayoutConstraint* position = [guardImage autoConstrainAttribute:ALAttributeLeading toAttribute:ALAttributeTrailing ofView:self.backgroundContainer];
+    [self.view layoutIfNeeded];
+    
+    dispatch_after(0, dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:5 animations:^{
+            position.constant = -1 * (self.backgroundContainer.frame.size.width + guardImage.frame.size.width);
+            [self.view layoutIfNeeded];
+        }completion:^(BOOL finished) {
+            [guardImage removeFromSuperview];
+            [self.view layoutIfNeeded];
+        }];
+        
+    });
+}
+
+- (void)moveGuardRight:(id)sender {
+    UIImageView* guardImage = [[UIImageView alloc] initForAutoLayout];
+    guardImage.image = [UIImage imageNamed:@"borderguardflip.png"];
+    
+    [self.backgroundContainer addSubview:guardImage];
+    [guardImage autoConstrainAttribute:ALAttributeHorizontal toAttribute:ALAttributeHorizontal ofView:self.backgroundContainer];
+    NSLayoutConstraint* position = [guardImage autoConstrainAttribute:ALAttributeTrailing toAttribute:ALAttributeLeading ofView:self.backgroundContainer];
+    [self.view layoutIfNeeded];
+    
+    dispatch_after(0, dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:5 animations:^{
+            position.constant = (self.backgroundContainer.frame.size.width + guardImage.frame.size.width);
+            [self.view layoutIfNeeded];
+        }completion:^(BOOL finished) {
+            [guardImage removeFromSuperview];
+            [self.view layoutIfNeeded];
+        }];
+        
+    });
 }
 
 - (void)setCurrentDirection:(Direction)currentDirection {
     _currentDirection = currentDirection;
-    [self flipLuke:currentDirection];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -375,10 +503,13 @@ shouldChangeOrientation:(BOOL)shouldChange {
     
     NSInteger oldPostion = [self position];
     
-    if (direction != self.currentDirection) {
+    if (direction != self.currentDirection && shouldChange) {
         self.currentDirection = direction;
+        [self flipLuke:direction];
         return;
     }
+    
+    [self movePositionStatus:direction];
     
     for (InfiniteBackgroundElement* background in self.infiniteBackgrounds) {
         if (direction == LEFT) {
@@ -388,6 +519,11 @@ shouldChangeOrientation:(BOOL)shouldChange {
             }];
         }
         else if (direction == RIGHT) {
+            
+            if ([self position] <= RIGHT_LIMIT) {
+                return;
+            }
+            
             [UIView animateWithDuration:ANIMATION_DURATION animations:^{
                 [background moveRight];
                 [self.view layoutIfNeeded];
@@ -399,6 +535,15 @@ shouldChangeOrientation:(BOOL)shouldChange {
         NSInteger change = [self position] - oldPostion;
         self.pixelsTraveled += fabs(change);
     }
+    
+    if ([self position] == POPUP_POINT && direction == LEFT){
+        if (self.pressAndHoldTimer != nil) {
+            [self.pressAndHoldTimer invalidate];
+            self.pressAndHoldTimer = nil;
+        }
+        
+        [self tappedForegroundElementWithDescription:@"popupForm"];
+    }
 
     self.positionLabel.text = [self positionString];
     self.distanceTraveledLabel.text = [self distanceTraveledString];
@@ -406,12 +551,10 @@ shouldChangeOrientation:(BOOL)shouldChange {
 
 - (IBAction)leftTap:(id)sender {
     [self moveWorld:LEFT shouldCountToOdo:YES shouldChangeOrientation:YES];
-    [self movePositionStatus:LEFT];
 }
 
 - (IBAction)rightTap:(id)sender {
     [self moveWorld:RIGHT shouldCountToOdo:YES shouldChangeOrientation:YES];
-    [self movePositionStatus:RIGHT];
 }
 
 - (void)closeModal:(id)sender {
@@ -424,6 +567,10 @@ shouldChangeOrientation:(BOOL)shouldChange {
     UIImageView* tappedElement = (UIImageView*)tapGesture.view;
     NSInteger tag = tappedElement.tag;
     
+    [self tappedForegroundElementWithTag:tag];
+}
+
+- (void)tappedForegroundElementWithTag:(NSInteger)tag {
     NSArray* element;
     for (NSArray* el in self.foregroundElements) {
         if ([el[3] integerValue] == tag){
@@ -432,11 +579,19 @@ shouldChangeOrientation:(BOOL)shouldChange {
         }
     }
     
+    [self tappedForegroundElementWithDescription:element[4]];
+}
+
+- (void)tappedForegroundElementWithDescription:(NSString*)description {
     ModalActionVC* modalVC = [[ModalActionVC alloc] init];
     modalVC.delegate = self;
-    modalVC.uniqueDescription = element[4];
+    modalVC.uniqueDescription = description;
     modalVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:modalVC animated:YES completion:nil];
+}
+
+- (void)tapMountains:(id)sender {
+    [self tappedForegroundElementWithDescription:@"mountains"];
 }
 
 - (void) rightTapHold: (UILongPressGestureRecognizer *) gesture {
@@ -499,7 +654,12 @@ shouldChangeOrientation:(BOOL)shouldChange {
 
 #pragma mark - ModalDelegate
 
-- (void)didRequestClose {
+- (void)didCloseWithoutCompletion {
+    [self moveWorld:RIGHT shouldCountToOdo:NO shouldChangeOrientation:NO];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didCompleteAction {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

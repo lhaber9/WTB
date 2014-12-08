@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439497580.662836"
+            timestampString = "439758057.043277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29">
+            startingLineNumber = "30"
+            endingLineNumber = "30">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -53,56 +53,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439318673.072705"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439318673.072705"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Walking The Border/InfiniteBackgroundElement.m"
-            timestampString = "438470673.521275"
+            timestampString = "439758057.043277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "@interface InfiniteBackgroundElement()"
-            landmarkType = "2">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Walking The Border/InfiniteBackgroundElement.m"
-            timestampString = "439498147.751123"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "-moveLeft"
             landmarkType = "5">
          </BreakpointContent>
@@ -114,11 +70,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/InfiniteBackgroundElement.m"
-            timestampString = "439498147.751123"
+            timestampString = "439758057.043277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-moveLeft"
             landmarkType = "5">
          </BreakpointContent>
@@ -130,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761180.458347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
             landmarkName = "-moveWorld:shouldCountToOdo:shouldChangeOrientation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -146,11 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/InfiniteBackgroundElement.m"
-            timestampString = "439498147.751123"
+            timestampString = "439758057.043277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-moveRight"
             landmarkType = "5">
          </BreakpointContent>
@@ -162,7 +118,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/InfiniteBackgroundElement.m"
-            timestampString = "439321471.918777"
+            timestampString = "439758057.043277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -178,11 +134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439497580.662836"
+            timestampString = "439758057.043277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26">
+            startingLineNumber = "27"
+            endingLineNumber = "27">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -192,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
             landmarkName = "-moveWorld:shouldCountToOdo:shouldChangeOrientation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -208,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761180.458347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "469"
+            endingLineNumber = "469"
             landmarkName = "-addInfinteBackground:andEndPng:withSpeed:andMult:"
             landmarkType = "5">
          </BreakpointContent>
@@ -224,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "509"
+            endingLineNumber = "509"
             landmarkName = "-moveWorld:shouldCountToOdo:shouldChangeOrientation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -240,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761180.458347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "470"
+            endingLineNumber = "470"
             landmarkName = "-addInfinteBackground:andEndPng:withSpeed:andMult:"
             landmarkType = "5">
          </BreakpointContent>
@@ -256,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761180.458347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
             landmarkName = "-moveWorld:shouldCountToOdo:shouldChangeOrientation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -272,11 +228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439762536.985638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "515"
-            endingLineNumber = "515"
+            startingLineNumber = "652"
+            endingLineNumber = "652"
             landmarkName = "@implementation MainViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -288,11 +244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "-totalDistance"
             landmarkType = "5">
          </BreakpointContent>
@@ -304,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439762536.985638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "532"
-            endingLineNumber = "532"
+            startingLineNumber = "674"
+            endingLineNumber = "674"
             landmarkName = "-didAddViewFrom:to:"
             landmarkType = "5">
          </BreakpointContent>
@@ -320,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439762536.985638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "516"
-            endingLineNumber = "516"
+            startingLineNumber = "653"
+            endingLineNumber = "653"
             landmarkName = "@implementation MainViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -336,11 +292,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "-totalDistance"
             landmarkType = "5">
          </BreakpointContent>
@@ -352,11 +308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761180.458347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
             landmarkName = "-lastBackground"
             landmarkType = "5">
          </BreakpointContent>
@@ -368,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761180.458347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
             landmarkName = "-lastBackground"
             landmarkType = "5">
          </BreakpointContent>
@@ -384,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761180.458347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
+            startingLineNumber = "501"
+            endingLineNumber = "501"
             landmarkName = "-moveWorld:shouldCountToOdo:shouldChangeOrientation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -400,11 +356,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439762536.985638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "535"
-            endingLineNumber = "535"
+            startingLineNumber = "677"
+            endingLineNumber = "677"
             landmarkName = "-didAddViewFrom:to:"
             landmarkType = "5">
          </BreakpointContent>
@@ -416,11 +372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761180.458347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
             landmarkName = "-moveWorld:shouldCountToOdo:shouldChangeOrientation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -432,11 +388,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "-totalDistance"
             landmarkType = "5">
          </BreakpointContent>
@@ -448,11 +404,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "-getForegroundElementsBetween:and:"
             landmarkType = "5">
          </BreakpointContent>
@@ -464,11 +420,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761934.85089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
+            startingLineNumber = "559"
+            endingLineNumber = "559"
             landmarkName = "-closeModal:"
             landmarkType = "5">
          </BreakpointContent>
@@ -480,11 +436,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761934.85089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "562"
+            endingLineNumber = "562"
             landmarkName = "-closeModal:"
             landmarkType = "5">
          </BreakpointContent>
@@ -496,11 +452,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439762536.985638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "513"
-            endingLineNumber = "513"
+            startingLineNumber = "650"
+            endingLineNumber = "650"
             landmarkName = "-addForegroundElement:atPosition:withTag:"
             landmarkType = "5">
          </BreakpointContent>
@@ -512,11 +468,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761934.85089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "558"
+            endingLineNumber = "558"
             landmarkName = "-rightTap:"
             landmarkType = "5">
          </BreakpointContent>
@@ -528,27 +484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "419"
-            endingLineNumber = "419"
-            landmarkName = "-rightTap:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "-initIndicators"
             landmarkType = "5">
          </BreakpointContent>
@@ -560,11 +500,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "-initIndicators"
             landmarkType = "5">
          </BreakpointContent>
@@ -576,11 +516,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-initIndicators"
             landmarkType = "5">
          </BreakpointContent>
@@ -592,11 +532,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439762029.710518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
+            startingLineNumber = "538"
+            endingLineNumber = "538"
             landmarkName = "-moveWorld:shouldCountToOdo:shouldChangeOrientation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -608,7 +548,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/ModalActionVC.m"
-            timestampString = "439496912.848479"
+            timestampString = "439762918.31391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
@@ -624,11 +564,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/ModalActionVC.h"
-            timestampString = "439319529.372555"
+            timestampString = "439762436.267114"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "delegate"
             landmarkType = "19">
             <Locations>
@@ -670,11 +610,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/ModalActionVC.m"
-            timestampString = "439497114.40309"
+            timestampString = "439763056.181701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-close:"
             landmarkType = "5">
          </BreakpointContent>
@@ -686,12 +626,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439762536.985638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "521"
-            endingLineNumber = "521"
-            landmarkName = "-didRequestClose"
+            startingLineNumber = "659"
+            endingLineNumber = "659"
+            landmarkName = "-didCloseWithoutCompletion"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -702,7 +642,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/ModalActionVC.m"
-            timestampString = "439496912.848479"
+            timestampString = "439762918.31391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
@@ -718,7 +658,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/ModalActionVC.m"
-            timestampString = "439496912.848479"
+            timestampString = "439762918.31391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
@@ -733,28 +673,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
-            landmarkName = "-tappedForegroundElement:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Walking The Border/InfiniteBackgroundElement.m"
-            timestampString = "439498147.751123"
+            timestampString = "439758057.043277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-moveLeft"
             landmarkType = "5">
          </BreakpointContent>
@@ -766,11 +690,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439761849.946057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
             landmarkName = "-movePositionStatus:"
             landmarkType = "5">
          </BreakpointContent>
@@ -782,12 +706,108 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Walking The Border/MainViewController.m"
-            timestampString = "439501886.922646"
+            timestampString = "439762536.985638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
-            landmarkName = "-movePositionStatus:"
+            startingLineNumber = "675"
+            endingLineNumber = "675"
+            landmarkName = "-didAddViewFrom:to:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walking The Border/MainViewController.m"
+            timestampString = "439761849.946057"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "-getForegroundElementsBetween:and:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walking The Border/MainViewController.m"
+            timestampString = "439761180.458347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walking The Border/MainViewController.m"
+            timestampString = "439762536.985638"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "594"
+            endingLineNumber = "594"
+            landmarkName = "-tapMountains:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walking The Border/MainViewController.m"
+            timestampString = "439761849.946057"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
+            landmarkName = "-moveTruckRight:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walking The Border/MainViewController.m"
+            timestampString = "439761849.946057"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
+            landmarkName = "-moveGuardLeft:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Walking The Border/MainViewController.m"
+            timestampString = "439762536.985638"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "658"
+            endingLineNumber = "658"
+            landmarkName = "-didCloseWithoutCompletion"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

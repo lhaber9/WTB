@@ -10,14 +10,18 @@
 
 @protocol ModalActionDelegate
 
-- (void)didRequestClose;
+- (void)didCloseWithoutCompletion;
+
+- (void)didCompleteAction;
 
 @end
 
 
 @interface ModalActionVC : UIViewController
 
-@property (weak, nonatomic)id<ModalActionDelegate> delegate;
 
+@property (weak, nonatomic)id<ModalActionDelegate> delegate;
 @property (strong, nonatomic)NSString* uniqueDescription;
+@property (strong, nonatomic)IBOutlet UITextView* textView;
+
 @end

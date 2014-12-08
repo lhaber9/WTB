@@ -29,17 +29,21 @@
     [self.view addSubview:imageView];
     [imageView autoAlignAxisToSuperviewAxis:ALAxisBaseline];
     self.positionConstraint = [imageView autoConstrainAttribute:ALAttributeTrailing toAttribute:ALAttributeTrailing ofView:self.view];
-   
+    
+    if (self.mult < 1){
+        [imageView autoSetDimension:ALDimensionHeight toSize:309 * self.mult];
+    }
+    
     if (![endPngFile isEqualToString:@""]){
         UIImageView* endImageView = [[UIImageView alloc] initForAutoLayout];
         endImageView.image = [UIImage imageNamed:endPngFile];
         [self.view addSubview:endImageView];
         [endImageView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:imageView];
         [endImageView autoConstrainAttribute:ALAttributeLeading toAttribute:ALAttributeTrailing ofView:imageView];
-    }
-    
-    if (self.mult < 1){
-        [imageView autoSetDimension:ALDimensionHeight toSize:309 * self.mult];
+        
+        if (self.mult < 1){
+            [endImageView autoSetDimension:ALDimensionHeight toSize:309 * self.mult];
+        }
     }
     
     self.views = [NSMutableArray arrayWithObject:imageView];
@@ -89,10 +93,6 @@
     
     CGFloat currentPosition = self.positionConstraint.constant;
     CGFloat newPosition = currentPosition - self.speed;
-    
-    if (newPosition < 0) {
-        return 0;
-    }
     
     CGFloat totalWidth = self.views.count * self.image.size.width;
     
