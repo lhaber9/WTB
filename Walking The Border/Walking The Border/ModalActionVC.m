@@ -72,12 +72,11 @@
         
         [self.mainView addSubview:label];
         [label autoConstrainAttribute:ALAttributeVertical toAttribute:ALAttributeVertical ofView:self.mainView];
-        [label autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+        [label autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
         
         self.textView.hidden = NO;
-        self.textView.text = @"This is the treacherous El Camino Del Diablo Dont Go In Here Ya Bitch";
-        
-        
+        self.textView.text = @"Beware!\n\nThis is the treacherous El Camino Del Diablo. There is serious danger of property damage and permanent, painful, disabling, and disfiguring injury or death due to high explosive detonations from falling objects such as aircraft, aerial targets, live ammunition, missiles, bombs, etc.";
+
     }
     
     [self.view layoutIfNeeded];
