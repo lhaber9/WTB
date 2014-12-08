@@ -31,11 +31,6 @@ static CGFloat FENCE_SPEED_BACK = 25;
 static CGFloat FENCE_SPEED_FRONT = 35;
 static CGFloat GROUND_SPEED = 50;
 
-static CGFloat TRUCK_LEFT_INTERVAL = 100;
-static CGFloat TRUCK_RIGHT_INTERVAL = 102;
-static CGFloat GUARD_LEFT_INTERVAL = 150;
-static CGFloat GUARD_RIGHT_INTERVAL = 200;
-
 static CGFloat BUTTON_RED = 232;
 static CGFloat BUTTON_GREEN = 100;
 static CGFloat BUTTON_BLUE = 73;
@@ -45,6 +40,8 @@ static CGFloat CONTROLBAR_GREEN = 180;
 static CGFloat CONTROLBAR_BLUE = 83;
 
 static CGFloat POSITIONBAR_LENGTH = 525;
+
+static unsigned int RANDOM_MAX = 100;
 
 @interface MainViewController ()
 
@@ -84,6 +81,11 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 
 @property (strong, nonatomic)NSTimer* pressAndHoldTimer;
 
+@property (strong, nonatomic)NSTimer* TruckLeftTimer;
+@property (strong, nonatomic)NSTimer* TruckRightTimer;
+@property (strong, nonatomic)NSTimer* GuardLeftTimer;
+@property (strong, nonatomic)NSTimer* GuardRightTimer;
+
 @property (nonatomic)BOOL inElCamino;
 
 @property (nonatomic)NSInteger pixelsTraveled;
@@ -112,11 +114,13 @@ static CGFloat POSITIONBAR_LENGTH = 525;
     [underview autoPinEdgeToSuperviewEdge:ALEdgeLeft];
     [underview autoSetDimension:ALDimensionHeight toSize:125];
     
+    
+    
     dispatch_after(0, dispatch_get_main_queue(), ^{
-        [NSTimer scheduledTimerWithTimeInterval:TRUCK_LEFT_INTERVAL target:self selector:@selector(moveTruckLeft:) userInfo:nil repeats:YES];
-        [NSTimer scheduledTimerWithTimeInterval:TRUCK_RIGHT_INTERVAL target:self selector:@selector(moveTruckRight:) userInfo:nil repeats:YES];
-        [NSTimer scheduledTimerWithTimeInterval:GUARD_LEFT_INTERVAL target:self selector:@selector(moveGuardLeft:) userInfo:nil repeats:YES];
-        [NSTimer scheduledTimerWithTimeInterval:GUARD_RIGHT_INTERVAL target:self selector:@selector(moveGuardRight:) userInfo:nil repeats:YES];
+        self.TruckLeftTimer = [NSTimer scheduledTimerWithTimeInterval:arc4random() % RANDOM_MAX target:self selector:@selector(moveTruckLeft:) userInfo:nil repeats:YES];
+        self.TruckRightTimer = [NSTimer scheduledTimerWithTimeInterval:arc4random() % RANDOM_MAX target:self selector:@selector(moveTruckRight:) userInfo:nil repeats:YES];
+        self.GuardLeftTimer = [NSTimer scheduledTimerWithTimeInterval:arc4random() % RANDOM_MAX target:self selector:@selector(moveGuardLeft:) userInfo:nil repeats:YES];
+        self.GuardRightTimer = [NSTimer scheduledTimerWithTimeInterval:arc4random() % RANDOM_MAX target:self selector:@selector(moveGuardRight:) userInfo:nil repeats:YES];
     });
     
     // set luke image
@@ -369,8 +373,12 @@ static CGFloat POSITIONBAR_LENGTH = 525;
             [truckImage removeFromSuperview];
             [self.view layoutIfNeeded];
         }];
-        
     });
+    
+    [self.TruckLeftTimer invalidate];
+    self.TruckLeftTimer = nil;
+    
+    self.TruckLeftTimer = [NSTimer scheduledTimerWithTimeInterval:arc4random() % RANDOM_MAX target:self selector:@selector(moveTruckLeft:) userInfo:nil repeats:YES];
 }
 
 - (void)moveTruckRight:(id)sender {
@@ -398,6 +406,11 @@ static CGFloat POSITIONBAR_LENGTH = 525;
         }];
         
     });
+    
+    [self.TruckRightTimer invalidate];
+    self.TruckRightTimer = nil;
+    
+    self.TruckRightTimer = [NSTimer scheduledTimerWithTimeInterval:arc4random() % RANDOM_MAX target:self selector:@selector(moveTruckRight:) userInfo:nil repeats:YES];
 }
     
 - (void)moveGuardLeft:(id)sender {
@@ -419,6 +432,11 @@ static CGFloat POSITIONBAR_LENGTH = 525;
         }];
         
     });
+    
+    [self.GuardLeftTimer invalidate];
+    self.GuardLeftTimer = nil;
+    
+    self.GuardLeftTimer = [NSTimer scheduledTimerWithTimeInterval:arc4random() % RANDOM_MAX target:self selector:@selector(moveGuardLeft:) userInfo:nil repeats:YES];
 }
 
 - (void)moveGuardRight:(id)sender {
@@ -440,6 +458,11 @@ static CGFloat POSITIONBAR_LENGTH = 525;
         }];
         
     });
+    
+    [self.GuardRightTimer invalidate];
+    self.GuardRightTimer = nil;
+    
+    self.GuardRightTimer = [NSTimer scheduledTimerWithTimeInterval:arc4random() % RANDOM_MAX target:self selector:@selector(moveGuardRight:) userInfo:nil repeats:YES];
 }
 
 - (void)setCurrentDirection:(Direction)currentDirection {
