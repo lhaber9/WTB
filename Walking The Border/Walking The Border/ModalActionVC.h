@@ -12,7 +12,7 @@
 
 - (void)didCloseWithoutCompletion;
 
-- (void)didCompleteAction;
+- (void)didCompleteAction:(NSString*)description;
 
 @end
 

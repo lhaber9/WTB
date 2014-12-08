@@ -149,7 +149,7 @@
 }
 
 - (void)successfulClose:(id)sender {
-     [self.delegate didCompleteAction];
+    [self.delegate didCompleteAction:self.uniqueDescription];
 }
 
 - (IBAction)close:(id)sender {
@@ -158,7 +158,7 @@
         return;
     }
     
-    [self.delegate didCompleteAction];
+    [self.delegate didCompleteAction:self.uniqueDescription];
 }
 
 /*

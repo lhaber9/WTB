@@ -84,6 +84,8 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 
 @property (strong, nonatomic)NSTimer* pressAndHoldTimer;
 
+@property (nonatomic)BOOL inElCamino;
+
 @property (nonatomic)NSInteger pixelsTraveled;
 @end
 
@@ -92,6 +94,7 @@ static CGFloat POSITIONBAR_LENGTH = 525;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.inElCamino = NO;
     self.elcamino_position = [NSNumber numberWithFloat:TOTAL_DISTANCE * 0.55];
     
     [self initBackgrounds];
@@ -181,8 +184,7 @@ static CGFloat POSITIONBAR_LENGTH = 525;
     
     // Elements
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.005], @YES, @"friendshipcircle.png", @"1", @"friendshipCircle"]];
-    //[self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.08],  @YES, @"arrow.png", @"2", @"otayMountain"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.16],  @YES, @"arrow.png", @"3", @"tecate"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.16],  @YES, @"booth.png", @"3", @"tecate"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.28],  @YES, @"lagloria.png", @"4", @"laGloria"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.41],  @YES, @"WelcomeToJacumba2.png", @"5", @"jacumba"]];
     [self.foregroundElements addObject:@[self.elcamino_position,  @YES, @"fighterjets.png", @"6", @"elCamino"]];
@@ -193,8 +195,8 @@ static CGFloat POSITIONBAR_LENGTH = 525;
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.8],  @YES, @"borderguardflip.png", @"97", @"borderGuard"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.95], @YES, @"borderguard.png", @"96", @"borderGuard"]];
     
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.3],        @YES, @"truck2.png", @"95", @"fordTruck"]];
-    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:(TOTAL_DISTANCE * 0.3) + 5],  @YES, @"borderguard.png", @"94", @"borderGuard"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.35],        @YES, @"truck2.png", @"95", @"fordTruck"]];
+    [self.foregroundElements addObject:@[[NSNumber numberWithFloat:(TOTAL_DISTANCE * 0.35) + 5],  @YES, @"borderguard.png", @"94", @"borderGuard"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:TOTAL_DISTANCE * 0.7],        @YES, @"truckflip.png", @"93", @"fordTruck"]];
     [self.foregroundElements addObject:@[[NSNumber numberWithFloat:(TOTAL_DISTANCE * 0.7) + 5],  @YES, @"borderguardflip.png", @"92", @"borderGuard"]];
     
@@ -541,13 +543,16 @@ shouldChangeOrientation:(BOOL)shouldChange {
     
     if (direction == LEFT &&
         [self position] >= [self.elcamino_position integerValue] &&
-        [self position] <= [self.elcamino_position integerValue] + GROUND_SPEED){
+        !self.inElCamino){
         if (self.pressAndHoldTimer != nil) {
             [self.pressAndHoldTimer invalidate];
             self.pressAndHoldTimer = nil;
         }
         
         [self tappedForegroundElementWithDescription:@"popupForm"];
+    }
+    else if ([self position] < [self.elcamino_position integerValue]) {
+        self.inElCamino = NO;
     }
 
     self.positionLabel.text = [self positionString];
@@ -664,7 +669,11 @@ shouldChangeOrientation:(BOOL)shouldChange {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)didCompleteAction {
+- (void)didCompleteAction:(NSString*)description {
+    if ([description isEqualToString:@"popupForm"]) {
+        self.inElCamino = YES;
+    }
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

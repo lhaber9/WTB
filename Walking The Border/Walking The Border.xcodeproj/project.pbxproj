@@ -48,6 +48,7 @@
 		80C316631A36370C00AD9051 /* borderguardflip.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C316601A36370C00AD9051 /* borderguardflip.png */; };
 		80C316641A36370C00AD9051 /* truck2flip.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C316611A36370C00AD9051 /* truck2flip.png */; };
 		80C316651A36370C00AD9051 /* truckflip.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C316621A36370C00AD9051 /* truckflip.png */; };
+		80C316671A3655FC00AD9051 /* booth.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C316661A3655FC00AD9051 /* booth.png */; };
 		80CB04631A1F930900F13D33 /* InfiniteBackgroundElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CB04621A1F930900F13D33 /* InfiniteBackgroundElement.m */; };
 		80CE0A271A2286CE00A4C402 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0A1F1A2286CE00A4C402 /* ALView+PureLayout.m */; };
 		80CE0A281A2286CE00A4C402 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0A211A2286CE00A4C402 /* NSArray+PureLayout.m */; };
@@ -113,6 +114,7 @@
 		80C316601A36370C00AD9051 /* borderguardflip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderguardflip.png; sourceTree = "<group>"; };
 		80C316611A36370C00AD9051 /* truck2flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = truck2flip.png; sourceTree = "<group>"; };
 		80C316621A36370C00AD9051 /* truckflip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = truckflip.png; sourceTree = "<group>"; };
+		80C316661A3655FC00AD9051 /* booth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = booth.png; sourceTree = "<group>"; };
 		80CB04611A1F930900F13D33 /* InfiniteBackgroundElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteBackgroundElement.h; sourceTree = "<group>"; };
 		80CB04621A1F930900F13D33 /* InfiniteBackgroundElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteBackgroundElement.m; sourceTree = "<group>"; };
 		80CE0A1E1A2286CE00A4C402 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				80C316291A362D8000AD9051 /* borderguard.png */,
 				80C3162A1A362D8000AD9051 /* Dig Narrative Title Screen.png */,
 				80C3162B1A362D8000AD9051 /* dirt.png */,
+				80C316661A3655FC00AD9051 /* booth.png */,
 				80C3162C1A362D8000AD9051 /* dirtendpoint.png */,
 				80C3162D1A362D8000AD9051 /* fence.png */,
 				80C3162E1A362D8000AD9051 /* fighterjets.png */,
@@ -369,6 +372,7 @@
 				80C3164A1A362D8000AD9051 /* fighterjets.png in Resources */,
 				80C316511A362D8000AD9051 /* mountainendpoint.png in Resources */,
 				80C316581A362D8000AD9051 /* smallfence.png in Resources */,
+				80C316671A3655FC00AD9051 /* booth.png in Resources */,
 				80C316491A362D8000AD9051 /* fence.png in Resources */,
 				80C316541A362D8000AD9051 /* Sample UI Final Project.png in Resources */,
 				52FB221D1A164EDA001DC8F0 /* MainViewController.xib in Resources */,
