@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, Direction) {
 static CGFloat RIGHT_LIMIT = -200;
 
 static CGFloat MOVE_FOR_HOUR = 1440000;// length of moving for an hour
-static CGFloat TOTAL_DISTANCE = 5000;
+static CGFloat TOTAL_DISTANCE = 100000;
 
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
 static CGFloat PRESS_AND_HOLD_DELAY = 0.125;
@@ -539,7 +539,9 @@ shouldChangeOrientation:(BOOL)shouldChange {
         self.pixelsTraveled += fabs(change);
     }
     
-    if ([self position] == [self.elcamino_position integerValue] && direction == LEFT){
+    if (direction == LEFT &&
+        [self position] >= [self.elcamino_position integerValue] &&
+        [self position] <= [self.elcamino_position integerValue] + GROUND_SPEED){
         if (self.pressAndHoldTimer != nil) {
             [self.pressAndHoldTimer invalidate];
             self.pressAndHoldTimer = nil;

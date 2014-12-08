@@ -67,7 +67,7 @@
         
         UILabel* label = [[UILabel alloc] initForAutoLayout];
         label.userInteractionEnabled = YES;
-        label.text = @"Tap Here";
+        label.text = @"Tap Here to Accept the Risk";
         [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(successfulClose:)]];
         
         [self.mainView addSubview:label];
