@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, Direction) {
 static CGFloat RIGHT_LIMIT = -200;
 
 static CGFloat MOVE_FOR_HOUR = 1440000;// length of moving for an hour
-static CGFloat TOTAL_DISTANCE = 10000;
+static CGFloat TOTAL_DISTANCE = 15000;
 
 static CGFloat PRESS_AND_HOLD_MINIMUM_DURATION = 0.1;
 static CGFloat PRESS_AND_HOLD_DELAY = 0.125;

@@ -38,21 +38,61 @@
     }
     else if ([self.uniqueDescription isEqualToString:@"fordTruck"]) {
         self.titleLabel.text = @"Ford Truck";
+        
+        self.textView.hidden = NO;
+        self.textView.text = @"Sometimes I'll see agents even when they're not really there. I'll spot their bright white-and-green vehicles parked on almost every significant overlook, but it's not till I'm right up on them, peering through the tinted windows, that I can tell whether they're occupied or just expensive scarecrows. About a third are empty.";
+        
+        [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
+        self.observer = YES;
     }
     else if ([self.uniqueDescription isEqualToString:@"borderGuard"]) {
         self.titleLabel.text = @"Border Guard";
+
+        self.textView.hidden = NO;
+        self.textView.text = @"Every few miles, I'll run into an agent, who'll ask what I'm doing out here. Sometimes he'll ask to see the soles of my shoes. Agents spend most of their time cutting sign, which is to say, they patrol dirt roads near the border, looking for fresh footprints or other sign of aliens. When they come across people who are not aliens, they often ask to see the soles of their shoes. That way they won't later confuse native sign for alien sign.;
+        
+        [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
+        self.observer = YES;
     }
     else if ([self.uniqueDescription isEqualToString:@"tecate"]) {
         self.titleLabel.text = @"Tecate";
+        
+        
+        self.textView.hidden = NO;
+        self.textView.text = @"I spot a truck, and this one has an agent inside. I tap on the window and he rolls it down and gives me a nod. People call this town Tecatito on account of how it sits right across the border from the much bigger town of Tecate, Mexico. The agent's got the nose of his truck pointed straight south, where every so often someone walks out of the Customs building and into America. A poster pasted to a wall in his line of sight features head shots of ten Hispanic men, along with details of the crimes they're wanted for, mostly smuggling, some kidnapping, some murders. I tell him I'm going across, that my hotel's a couple of miles away, that I'll have to walk through most of Tecate to get there. Does he think I'll have any problems, safetywise? Tecate's not too bad these days, he says. From what he hears, anyway. He's never crossed himself.";
+        
+        [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
+        self.observer = YES;
     }
     else if ([self.uniqueDescription isEqualToString:@"laGloria"]) {
         self.titleLabel.text = @"La Gloria";
+        
+        
+        self.textView.hidden = NO;
+        self.textView.text = @"The trees shimmer and wobble in the red glow of his receding taillights, and then it's dark again and I go and gather up everything I think I might be able to use as a weapon, including the pepper spray, a knife, and some hiking poles. I bring it all inside the tent, crawl into my bag, zip up, and lie there, waiting. Every so often, I hear something moving outside, crunching seedpods or snapping twigs, and I turn on my headlamp and scoot up and try to look out through the tent's wall of mosquito netting, but the netting catches the light, and all I see is the wall itself. Then I turn off the light until I hear something else. Lying there in the dark, watching vague shadows on the polyester, it feels like a world of unknowns is outside pressing in.";
+        
+        [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
+        self.observer = YES;
     }
     else if ([self.uniqueDescription isEqualToString:@"jacumba"]) {
         self.titleLabel.text = @"Jacumba";
+        
+        
+        self.textView.hidden = NO;
+        self.textView.text = @"The manager's smoking a cigarette outside when I get there, and there are plenty of rooms available, and he gives me the key to one and I go and take a shower and change, and when I come back outside, the manager's still standing by the street, smoking another cigarette. He's a skinny guy, maybe forty, maybe fifty, with a tight-cinched belt and a sort of permanent smirk. There's a convenience store — Mountain Sage Market — across the street from the hotel, and it's open, and so's the Laundromat next to it, but most everything else here on the main drag — a car wash, a gas station, an antique shop — has gone out of business. In a vacant lot near the shuttered car wash, a clutch of Border Patrol agents are milling around, waiting for something.\n\nI ask the manager about Jacume, which is the town directly south of Jacumba, right across the fence. I'd read about Jacume. The Los Angeles Times calls it a \"black hole,\" says it's overrun by smugglers and that even the Mexican cops won't go near it. The manager tells me that Jacumba and Jacume used to be as close as their names imply, that before the fence went up, people from Jacume used to cross all the time to work day shifts and do their shopping here in Jacumba, and people in Jacumba used to cross all the time to eat or party in Jacume. Jacumba and Jacume, the way he tells it, used to be real border towns, meaning places where north and south sort of overlapped and mixed together. Now they're just towns on the border.";
+        
+        [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
+        self.observer = YES;
     }
     else if ([self.uniqueDescription isEqualToString:@"elCamino"]) {
         self.titleLabel.text = @"El Camino";
+        
+        
+        self.textView.hidden = NO;
+        self.textView.text = @"The geography, the remoteness, and the challenges of the Camino have remained more or less constant since Pablo Valencia's time, though there is one new hazard he would have found bewildering: A big chunk of it runs through the U. S. Air Force's Barry M. Goldwater Range. To gain entry, I signed a liability release that read, in part, that I accepted the \"danger of property damage and permanent, painful, disabling, and disfiguring injury or death due to high explosive detonations from falling objects such as aircraft, aerial targets, live ammunition, missiles, bombs, etc.\"\n\nThe Tinajas Altas are less than fifteen minutes behind me when I hear a huge roaring sound. I look to the north and see, barreling toward me close above the desert floor, two F-16 fighter jets. Before they reach me, they pull up and shoot nearly vertical, chasing each other into the blue sky.";
+        
+        [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:NULL];
+        self.observer = YES;
     }
     
     else if ([self.uniqueDescription isEqualToString:@"mountains"]) {
