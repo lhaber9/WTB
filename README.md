@@ -1,6 +1,6 @@
 This is a Final Project for IM 2100 - Digital Narrative, Fall 2014 at Northeastern University.
 
-It is a prototype of a game proividing an ineractive experience of a story told here:http://www.esquire.com/features/mexican-border-0511
+It is a prototype of a game providing an interactive experience of a story told here:http://www.esquire.com/features/mexican-border-0511
 
 
 
